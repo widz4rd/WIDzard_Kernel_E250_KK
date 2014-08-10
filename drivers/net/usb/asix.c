@@ -3116,7 +3116,7 @@ static struct sk_buff *ax88772_tx_fixup(struct usbnet *dev, struct sk_buff *skb,
 	skb_copy_to_linear_data(skb, &packet_len, sizeof(packet_len));
 #endif
 
-	if ((skb->len % 512) == 0) {
+	if (padlen) {
 		cpu_to_le32s(&padbytes);
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 22)
 		memcpy(skb->tail, &padbytes, sizeof(padbytes));
