@@ -14,8 +14,8 @@
  *  Richard Purdie <rpurdie@openedhand.com>
  */
 
-#define LZO1X_MEM_COMPRESS	(16384 * sizeof(unsigned char *))
-#define LZO1X_1_MEM_COMPRESS	LZO1X_MEM_COMPRESS
+#define LZO1X_1_MEM_COMPRESS	(8192 * sizeof(unsigned short))
+#define LZO1X_MEM_COMPRESS	LZO1X_1_MEM_COMPRESS
 
 #define lzo1x_worst_compress(x) ((x) + ((x) / 16) + 64 + 3)
 
@@ -40,5 +40,6 @@ int lzo1x_decompress_safe(const unsigned char *src, size_t src_len,
 #define LZO_E_EOF_NOT_FOUND		(-7)
 #define LZO_E_INPUT_NOT_CONSUMED	(-8)
 #define LZO_E_NOT_YET_IMPLEMENTED	(-9)
+#define LZO_E_INVALID_ARGUMENT		(-10)
 
 #endif
