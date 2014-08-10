@@ -617,6 +617,23 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		wall_time = (unsigned int) cputime64_sub(cur_wall_time,
 				j_dbs_info->prev_cpu_wall);
 		j_dbs_info->prev_cpu_wall = cur_wall_time;
+		/*
+		 * Ignore wall delta jitters in both directions.  An
+		 * exceptionally long wall_time will likely result
+		 * idle but it was waken up to do work so the next
+		 * slice is less likely to want to run at low
+		 * frequency. Let's evaluate the next slice instead of
+		 * the idle long one that passed already and it's too
+		 * late to reduce in frequency.  As opposed an
+		 * exceptionally short slice that just run at low
+		 * frequency is unlikely to be idle, but we may go
+		 * back to idle pretty soon and that not idle slice
+		 * already passed. If short slices will keep coming
+		 * after a series of long slices the exponential
+		 * backoff will converge faster and we'll react faster
+		 * to high load. As opposed we'll decay slower
+		 * towards low load and long idle times.
+		 */
 
 		idle_time = (unsigned int) cputime64_sub(cur_idle_time,
 				j_dbs_info->prev_cpu_idle);
@@ -1028,6 +1045,7 @@ static int cpufreq_ondemand_flexrate_do(struct cpufreq_policy *policy,
 	return 0;
 }
 
+#ifndef CONFIG_CPU_FREQ_GOV_PEGASUSQ
 int cpufreq_ondemand_flexrate_request(unsigned int rate_us,
 				      unsigned int duration)
 {
@@ -1083,6 +1101,7 @@ out:
 	return err;
 }
 EXPORT_SYMBOL_GPL(cpufreq_ondemand_flexrate_request);
+#endif
 
 static ssize_t store_flexrate_request(struct kobject *a, struct attribute *b,
 				      const char *buf, size_t count)
