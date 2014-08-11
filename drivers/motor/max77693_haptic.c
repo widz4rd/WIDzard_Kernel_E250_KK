@@ -244,7 +244,7 @@ void vibtonz_pwm(int nForce)
 	}
 
 	pwm_period = g_hap_data->pdata->period;
-	pwm_duty = pwm_period / 2 + ((pwm_period / 2 - 2) * nForce) / 127;
+	pwm_duty = pwm_period / 2 + ((pwm_period / 2 - 2) * nForce) / 27;
 
 	if (pwm_duty > g_hap_data->pdata->duty)
 		pwm_duty = g_hap_data->pdata->duty;
@@ -386,7 +386,7 @@ static int max77693_haptic_resume(struct platform_device *pdev)
 static struct platform_driver max77693_haptic_driver = {
 	.probe		= max77693_haptic_probe,
 	.remove		= max77693_haptic_remove,
-	.suspend	= max77693_haptic_suspend,
+	.suspend		= max77693_haptic_suspend,
 	.resume		= max77693_haptic_resume,
 	.driver = {
 		.name	= "max77693-haptic",

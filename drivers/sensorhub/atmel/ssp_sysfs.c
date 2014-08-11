@@ -401,36 +401,24 @@ static ssize_t set_prox_delay(struct device *dev,
 static DEVICE_ATTR(mcu_rev, S_IRUGO, mcu_revision_show, NULL);
 static DEVICE_ATTR(mcu_name, S_IRUGO, mcu_model_name_show, NULL);
 static DEVICE_ATTR(mcu_update, S_IRUGO, mcu_update_kernel_bin_show, NULL);
-static DEVICE_ATTR(mcu_update2, S_IRUGO,
-	mcu_update_kernel_crashed_bin_show, NULL);
+static DEVICE_ATTR(mcu_update2, S_IRUGO, mcu_update_kernel_crashed_bin_show, NULL);
 static DEVICE_ATTR(mcu_update_ums, S_IRUGO, mcu_update_ums_bin_show, NULL);
 static DEVICE_ATTR(mcu_reset, S_IRUGO, mcu_reset_show, NULL);
-static DEVICE_ATTR(mcu_test, S_IRUGO | S_IWUSR | S_IWGRP,
-	mcu_factorytest_show, mcu_factorytest_store);
-static DEVICE_ATTR(mcu_sleep_test, S_IRUGO | S_IWUSR | S_IWGRP,
-	mcu_sleep_factorytest_show, mcu_sleep_factorytest_store);
-static DEVICE_ATTR(enable, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_sensors_enable, set_sensors_enable);
-static DEVICE_ATTR(mag_poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_mag_delay, set_mag_delay);
-static DEVICE_ATTR(ori_poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_ori_delay, set_ori_delay);
-
+static DEVICE_ATTR(mcu_test, S_IRUGO | S_IWUSR | S_IWGRP, mcu_factorytest_show, mcu_factorytest_store);
+static DEVICE_ATTR(mcu_sleep_test, S_IRUGO | S_IWUSR | S_IWGRP, mcu_sleep_factorytest_show, mcu_sleep_factorytest_store);
+static DEVICE_ATTR(enable, S_IRUGO | S_IWUSR | S_IWGRP, show_sensors_enable, set_sensors_enable);
+static DEVICE_ATTR(mag_poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_mag_delay, set_mag_delay);
+static DEVICE_ATTR(ori_poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_ori_delay, set_ori_delay);
 static struct device_attribute dev_attr_acc_poll_delay
-	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_acc_delay, set_acc_delay);
+	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_acc_delay, set_acc_delay);
 static struct device_attribute dev_attr_gyro_poll_delay
-	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_gyro_delay, set_gyro_delay);
+	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_gyro_delay, set_gyro_delay);
 static struct device_attribute dev_attr_pressure_poll_delay
-	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_pressure_delay, set_pressure_delay);
+	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_pressure_delay, set_pressure_delay);
 static struct device_attribute dev_attr_light_poll_delay
-	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_light_delay, set_light_delay);
+	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_light_delay, set_light_delay);
 static struct device_attribute dev_attr_prox_poll_delay
-	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP,
-	show_prox_delay, set_prox_delay);
+	= __ATTR(poll_delay, S_IRUGO | S_IWUSR | S_IWGRP, show_prox_delay, set_prox_delay);
 
 static struct device_attribute *mcu_attrs[] = {
 	&dev_attr_enable,

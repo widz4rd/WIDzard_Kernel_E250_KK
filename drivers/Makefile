@@ -6,23 +6,23 @@
 #
 
 obj-y				+= gpio/
-obj-$(CONFIG_PCI)		+= pci/
+obj-$(CONFIG_PCI)			+= pci/
 obj-$(CONFIG_PARISC)		+= parisc/
 obj-$(CONFIG_RAPIDIO)		+= rapidio/
 obj-y				+= video/
 obj-y				+= idle/
-obj-$(CONFIG_ACPI)		+= acpi/
-obj-$(CONFIG_SFI)		+= sfi/
+obj-$(CONFIG_ACPI)			+= acpi/
+obj-$(CONFIG_SFI)			+= sfi/
 # PnP must come after ACPI since it will eventually need to check if acpi
 # was used and do nothing if so
-obj-$(CONFIG_PNP)		+= pnp/
+obj-$(CONFIG_PNP)			+= pnp/
 obj-$(CONFIG_ARM_AMBA)		+= amba/
 # Many drivers will want to use DMA so this has to be made available
 # really early.
-obj-$(CONFIG_DMA_ENGINE)	+= dma/
+obj-$(CONFIG_DMA_ENGINE)		+= dma/
 
 obj-$(CONFIG_VIRTIO)		+= virtio/
-obj-$(CONFIG_XEN)		+= xen/
+obj-$(CONFIG_XEN)			+= xen/
 
 # regulators early, since some subsystems rely on them to initialize
 obj-$(CONFIG_REGULATOR)		+= regulator/
@@ -38,8 +38,8 @@ obj-y				+= gpu/
 obj-$(CONFIG_CONNECTOR)		+= connector/
 
 # i810fb and intelfb depend on char/agp/
-obj-$(CONFIG_FB_I810)           += video/i810/
-obj-$(CONFIG_FB_INTEL)          += video/intelfb/
+obj-$(CONFIG_FB_I810)          	+= video/i810/
+obj-$(CONFIG_FB_INTEL)          	+= video/intelfb/
 
 obj-$(CONFIG_USE_MUIC)		+= muic/
 
@@ -47,58 +47,58 @@ obj-$(CONFIG_PARPORT)		+= parport/
 obj-y				+= base/ block/ misc/ mfd/ nfc/
 obj-$(CONFIG_NUBUS)		+= nubus/
 obj-y				+= macintosh/
-obj-$(CONFIG_IDE)		+= ide/
-obj-$(CONFIG_SCSI)		+= scsi/
-obj-$(CONFIG_ATA)		+= ata/
-obj-$(CONFIG_TARGET_CORE)	+= target/
-obj-$(CONFIG_MTD)		+= mtd/
-obj-$(CONFIG_SPI)		+= spi/
+obj-$(CONFIG_IDE)			+= ide/
+obj-$(CONFIG_SCSI)			+= scsi/
+obj-$(CONFIG_ATA)			+= ata/
+obj-$(CONFIG_TARGET_CORE)		+= target/
+obj-$(CONFIG_MTD)			+= mtd/
+obj-$(CONFIG_SPI)			+= spi/
 obj-y				+= net/
-obj-$(CONFIG_ATM)		+= atm/
+obj-$(CONFIG_ATM)			+= atm/
 obj-$(CONFIG_FUSION)		+= message/
 obj-y				+= firewire/
-obj-$(CONFIG_UIO)		+= uio/
+obj-$(CONFIG_UIO)			+= uio/
 obj-y				+= cdrom/
 obj-y				+= auxdisplay/
 obj-$(CONFIG_PCCARD)		+= pcmcia/
-obj-$(CONFIG_DIO)		+= dio/
-obj-$(CONFIG_SBUS)		+= sbus/
+obj-$(CONFIG_DIO)			+= dio/
+obj-$(CONFIG_SBUS)			+= sbus/
 obj-$(CONFIG_ZORRO)		+= zorro/
-obj-$(CONFIG_MAC)		+= macintosh/
-obj-$(CONFIG_ATA_OVER_ETH)	+= block/aoe/
+obj-$(CONFIG_MAC)			+= macintosh/
+obj-$(CONFIG_ATA_OVER_ETH)		+= block/aoe/
 obj-$(CONFIG_PARIDE)		+= block/paride/
-obj-$(CONFIG_TC)		+= tc/
-obj-$(CONFIG_UWB)		+= uwb/
-obj-$(CONFIG_USB_OTG_UTILS)	+= usb/
-obj-$(CONFIG_USB)		+= usb/
-obj-$(CONFIG_PCI)		+= usb/
-obj-$(CONFIG_USB_GADGET)	+= usb/
+obj-$(CONFIG_TC)			+= tc/
+obj-$(CONFIG_UWB)			+= uwb/
+obj-$(CONFIG_USB_OTG_UTILS)		+= usb/
+obj-$(CONFIG_USB)			+= usb/
+obj-$(CONFIG_PCI)			+= usb/
+obj-$(CONFIG_USB_GADGET)		+= usb/
 obj-$(CONFIG_SERIO)		+= input/serio/
 obj-$(CONFIG_GAMEPORT)		+= input/gameport/
 obj-$(CONFIG_INPUT)		+= input/
-obj-$(CONFIG_I2O)		+= message/
+obj-$(CONFIG_I2O)			+= message/
 obj-$(CONFIG_RTC_LIB)		+= rtc/
 obj-y				+= i2c/ media/
-obj-$(CONFIG_PPS)		+= pps/
-obj-$(CONFIG_PTP_1588_CLOCK)	+= ptp/
-obj-$(CONFIG_W1)		+= w1/
-obj-$(CONFIG_POWER_SUPPLY)	+= battery/
-obj-$(CONFIG_POWER_SUPPLY)	+= power/
+obj-$(CONFIG_PPS)			+= pps/
+obj-$(CONFIG_PTP_1588_CLOCK)		+= ptp/
+obj-$(CONFIG_W1)			+= w1/
+obj-$(CONFIG_POWER_SUPPLY)		+= battery/
+obj-$(CONFIG_POWER_SUPPLY)		+= power/
 obj-$(CONFIG_HWMON)		+= hwmon/
 obj-$(CONFIG_THERMAL)		+= thermal/
 obj-$(CONFIG_WATCHDOG)		+= watchdog/
 obj-$(CONFIG_PHONE)		+= telephony/
-obj-$(CONFIG_MD)		+= md/
+obj-$(CONFIG_MD)			+= md/
 ifeq ($(CONFIG_BT_TIZEN),y)
-obj-$(CONFIG_BT)		+= bluetooth_tizen/
+obj-$(CONFIG_BT)			+= bluetooth_tizen/
 else
-obj-$(CONFIG_BT)		+= bluetooth/
+obj-$(CONFIG_BT)			+= bluetooth/
 endif
-obj-$(CONFIG_ACCESSIBILITY)	+= accessibility/
-obj-$(CONFIG_ISDN)		+= isdn/
-obj-$(CONFIG_EDAC)		+= edac/
-obj-$(CONFIG_MCA)		+= mca/
-obj-$(CONFIG_EISA)		+= eisa/
+obj-$(CONFIG_ACCESSIBILITY)		+= accessibility/
+obj-$(CONFIG_ISDN)			+= isdn/
+obj-$(CONFIG_EDAC)			+= edac/
+obj-$(CONFIG_MCA)			+= mca/
+obj-$(CONFIG_EISA)			+= eisa/
 obj-y				+= lguest/
 obj-$(CONFIG_CPU_FREQ)		+= cpufreq/
 obj-$(CONFIG_CPU_IDLE)		+= cpuidle/
@@ -130,6 +130,7 @@ obj-y				+= ieee802154/
 obj-y				+= clk/
 obj-$(CONFIG_HWSPINLOCK)	+= hwspinlock/
 obj-$(CONFIG_ANDROID_TIMED_OUTPUT)		+= motor/
+obj-$(CONFIG_VIBETONZ)		+= motor/
 
 obj-$(CONFIG_SENSORS_CORE)	+= sensor/
 obj-$(CONFIG_SENSORS_SSP)	+= sensorhub/
@@ -141,6 +142,7 @@ obj-$(CONFIG_ACCESSORY)		+= accessory/
 obj-$(CONFIG_IR_REMOCON)	+= irda/
 obj-$(CONFIG_BARCODE_EMUL)	+= barcode_emul/
 obj-$(CONFIG_EXTCON)		+= extcon/
+obj-$(CONFIG_SAMSUNG_PHONE_TTY)	+= dpram/
 # Secure OS Mobicore
 obj-$(CONFIG_MOBICORE_DRIVER)	+= gud20/
 
@@ -148,6 +150,8 @@ obj-$(CONFIG_IOMMU_SUPPORT)	+= iommu/
 
 obj-$(CONFIG_FELICA) += felica/
 
+obj-$(CONFIG_AUTHENTEC_VPNCLIENT_INTERCEPTOR) += interceptor/
+obj-$(CONFIG_J4FS)		+= j4fs/
 ifeq (1, $(shell if [ -d ./drivers/exfat ]; then echo 1; fi))
 obj-y	+= exfat/
 endif

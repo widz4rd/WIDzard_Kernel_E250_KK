@@ -7,6 +7,12 @@
 
 #define END_SEQ			0xffff
 
+#ifdef CONFIG_FB_S5P_MDNIE_HIJACK
+// Yank555.lu : Hijack switch
+#define HIJACK_DISABLED	0
+#define HIJACK_ENABLED	1
+#endif
+
 enum MODE {
 	DYNAMIC,
 	STANDARD,
@@ -14,6 +20,7 @@ enum MODE {
 	NATURAL,
 #endif
 	MOVIE,
+	HIJACK,
 #if !defined(CONFIG_CPU_EXYNOS4210)
 	AUTO,
 #endif

@@ -355,7 +355,7 @@ int get_write_access(struct inode * inode)
 
 int deny_write_access(struct file * file)
 {
-	struct inode *inode = file->f_path.dentry->d_inode;
+	struct inode *inode = file_inode(file);
 
 	spin_lock(&inode->i_lock);
 	if (atomic_read(&inode->i_writecount) > 0) {
@@ -1363,7 +1363,7 @@ static int link_path_walk(const char *name, struct nameidata *nd)
 	struct path next;
 	int err;
 	unsigned int lookup_flags = nd->flags;
-	
+
 	while (*name=='/')
 		name++;
 	if (!*name)
