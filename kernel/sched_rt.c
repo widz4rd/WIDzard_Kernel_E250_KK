@@ -1484,7 +1484,6 @@ static int pull_rt_task(struct rq *this_rq)
 	int this_cpu = this_rq->cpu, ret = 0, cpu;
 	struct task_struct *p = NULL;
 	struct rq *src_rq;
-
 	bool moved = false;
 	int src_cpu = 0;
 
