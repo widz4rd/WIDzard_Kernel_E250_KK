@@ -179,7 +179,7 @@ void deactivate_locked_super(struct super_block *s)
 {
 	struct file_system_type *fs = s->s_type;
 	if (atomic_dec_and_test(&s->s_active)) {
-		cleancache_flush_fs(s);
+		cleancache_invalidate_fs(s);
 		fs->kill_sb(s);
 		/*
 		 * We need to call rcu_barrier so all the delayed rcu free
@@ -222,9 +222,7 @@ EXPORT_SYMBOL(deactivate_super);
  *	and want to turn it into a full-blown active reference.  grab_super()
  *	is called with sb_lock held and drops it.  Returns 1 in case of
  *	success, 0 if we had failed (superblock contents was already dead or
- *	dying when grab_super() had been called).  Note that this is only
- *	called for superblocks not in rundown mode (== ones still on ->fs_supers
- *	of their type), so increment of ->s_count is OK here.
+ *	dying when grab_super() had been called).
  */
 static int grab_super(struct super_block *s) __releases(sb_lock)
 {
