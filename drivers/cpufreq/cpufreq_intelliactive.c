@@ -32,10 +32,7 @@
 #include <linux/slab.h>
 #include <linux/kernel_stat.h>
 #include <asm/cputime.h>
-<<<<<<< HEAD
-=======
 #include <linux/input.h>
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 
 static int active_count;
 
@@ -49,15 +46,8 @@ struct cpufreq_interactive_cpuinfo {
 	u64 cputime_speedadj_timestamp;
 	struct cpufreq_policy *policy;
 	struct cpufreq_frequency_table *freq_table;
-<<<<<<< HEAD
-	spinlock_t target_freq_lock; /*protects target freq */
 	unsigned int target_freq;
 	unsigned int floor_freq;
-	unsigned int max_freq;
-=======
-	unsigned int target_freq;
-	unsigned int floor_freq;
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	u64 floor_validate_time;
 	u64 hispeed_validate_time;
 	struct rw_semaphore enable_sem;
@@ -159,7 +149,6 @@ struct cpufreq_governor cpufreq_gov_intelliactive = {
 };
 
 static inline cputime64_t get_cpu_idle_time_jiffy(unsigned int cpu,
-<<<<<<< HEAD
 							cputime64_t *wall)
 {
 	cputime64_t idle_time;
@@ -180,28 +169,6 @@ static inline cputime64_t get_cpu_idle_time_jiffy(unsigned int cpu,
 		*wall = (cputime64_t)jiffies_to_usecs(cur_wall_time);
 
 	return (cputime64_t)jiffies_to_usecs(idle_time);
-=======
-						  cputime64_t *wall)
-{
-	u64 idle_time;
-	u64 cur_wall_time;
-	u64 busy_time;
-
-	cur_wall_time = jiffies64_to_cputime64(get_jiffies_64());
-
-	busy_time  = kcpustat_cpu(cpu).cpustat[CPUTIME_USER];
-	busy_time += kcpustat_cpu(cpu).cpustat[CPUTIME_SYSTEM];
-	busy_time += kcpustat_cpu(cpu).cpustat[CPUTIME_IRQ];
-	busy_time += kcpustat_cpu(cpu).cpustat[CPUTIME_SOFTIRQ];
-	busy_time += kcpustat_cpu(cpu).cpustat[CPUTIME_STEAL];
-	busy_time += kcpustat_cpu(cpu).cpustat[CPUTIME_NICE];
-
-	idle_time = cur_wall_time - busy_time;
-	if (wall)
-		*wall = jiffies_to_usecs(cur_wall_time);
-
-	return jiffies_to_usecs(idle_time);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 }
 
 static inline cputime64_t get_cpu_idle_time(unsigned int cpu,
@@ -458,20 +425,12 @@ static void cpufreq_interactive_timer(unsigned long data)
 	if (WARN_ON_ONCE(!delta_time))
 		goto rearm;
 
-<<<<<<< HEAD
-	spin_lock_irqsave(&pcpu->target_freq_lock, flags);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	do_div(cputime_speedadj, delta_time);
 	loadadjfreq = (unsigned int)cputime_speedadj * 100;
 	cpu_load = loadadjfreq / pcpu->target_freq;
 	pcpu->prev_load = cpu_load;
 	boosted = boost_val || now < boostpulse_endtime;
 
-<<<<<<< HEAD
-=======
-	// HACK HACK HACK BEGIN
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	if (counter < 5) {
 		counter++;
 		if (counter > 2) {
@@ -512,11 +471,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 					continue;
 
 				max_load = max(max_load, picpu->prev_load);
-<<<<<<< HEAD
-				max_freq = max(max_freq, picpu->target_freq);
-=======
 				max_freq = max(max_freq, picpu->policy->cur);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			}
 
 			if (max_freq > up_threshold_any_cpu_freq &&
@@ -536,10 +491,6 @@ static void cpufreq_interactive_timer(unsigned long data)
 	    new_freq > pcpu->target_freq &&
 	    now - pcpu->hispeed_validate_time <
 	    freq_to_above_hispeed_delay(pcpu->target_freq)) {
-<<<<<<< HEAD
-		spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		goto rearm;
 	}
 
@@ -547,15 +498,8 @@ static void cpufreq_interactive_timer(unsigned long data)
 
 	if (cpufreq_frequency_table_target(pcpu->policy, pcpu->freq_table,
 					   new_freq, CPUFREQ_RELATION_L,
-<<<<<<< HEAD
-					   &index)) {
-		spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-		goto rearm;
-	}
-=======
 					   &index))
 		goto rearm;
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 
 	new_freq = pcpu->freq_table[index].frequency;
 
@@ -570,10 +514,6 @@ static void cpufreq_interactive_timer(unsigned long data)
 
 	if (new_freq < pcpu->floor_freq) {
 		if (now - pcpu->floor_validate_time < mod_min_sample_time) {
-<<<<<<< HEAD
-			spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			goto rearm;
 		}
 	}
@@ -592,18 +532,10 @@ static void cpufreq_interactive_timer(unsigned long data)
 	}
 
 	if (pcpu->target_freq == new_freq) {
-<<<<<<< HEAD
-		spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		goto rearm_if_notmax;
 	}
 
 	pcpu->target_freq = new_freq;
-<<<<<<< HEAD
-	spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	spin_lock_irqsave(&speedchange_cpumask_lock, flags);
 	cpumask_set_cpu(data, &speedchange_cpumask);
 	spin_unlock_irqrestore(&speedchange_cpumask_lock, flags);
@@ -760,16 +692,6 @@ static void cpufreq_interactive_boost(void)
 {
 	int i;
 	int anyboost = 0;
-<<<<<<< HEAD
-	unsigned long flags[2];
-	struct cpufreq_interactive_cpuinfo *pcpu;
-
-	spin_lock_irqsave(&speedchange_cpumask_lock, flags[0]);
-
-	for_each_online_cpu(i) {
-		pcpu = &per_cpu(cpuinfo, i);
-		spin_lock_irqsave(&pcpu->target_freq_lock, flags[1]);
-=======
 	unsigned long flags;
 	struct cpufreq_interactive_cpuinfo *pcpu;
 
@@ -778,7 +700,6 @@ static void cpufreq_interactive_boost(void)
 	for_each_online_cpu(i) {
 		pcpu = &per_cpu(cpuinfo, i);
 
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		if (pcpu->target_freq < hispeed_freq) {
 			pcpu->target_freq = hispeed_freq;
 			cpumask_set_cpu(i, &speedchange_cpumask);
@@ -794,16 +715,9 @@ static void cpufreq_interactive_boost(void)
 
 		pcpu->floor_freq = hispeed_freq;
 		pcpu->floor_validate_time = ktime_to_us(ktime_get());
-<<<<<<< HEAD
-		spin_unlock_irqrestore(&pcpu->target_freq_lock, flags[1]);
-	}
-
-	spin_unlock_irqrestore(&speedchange_cpumask_lock, flags[0]);
-=======
 	}
 
 	spin_unlock_irqrestore(&speedchange_cpumask_lock, flags);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 
 	if (anyboost)
 		wake_up_process(speedchange_task);
@@ -950,11 +864,7 @@ static ssize_t show_target_loads(
 		ret += sprintf(buf + ret, "%u%s", target_loads[i],
 			       i & 0x1 ? ":" : " ");
 
-<<<<<<< HEAD
-	sprintf(buf + ret - 1, "\n");
-=======
 	ret += sprintf(buf + --ret, "\n");
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	spin_unlock_irqrestore(&target_loads_lock, flags);
 	return ret;
 }
@@ -997,11 +907,7 @@ static ssize_t show_above_hispeed_delay(
 		ret += sprintf(buf + ret, "%u%s", above_hispeed_delay[i],
 			       i & 0x1 ? ":" : " ");
 
-<<<<<<< HEAD
-	sprintf(buf + ret - 1, "\n");
-=======
 	ret += sprintf(buf + --ret, "\n");
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	spin_unlock_irqrestore(&above_hispeed_delay_lock, flags);
 	return ret;
 }
@@ -1188,11 +1094,6 @@ static ssize_t store_boost(struct kobject *kobj, struct attribute *attr,
 
 	if (boost_val) {
 		cpufreq_interactive_boost();
-<<<<<<< HEAD
-	} else {
-		boostpulse_endtime = ktime_to_us(ktime_get());
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 	}
 
 	return count;
@@ -1216,11 +1117,7 @@ static ssize_t store_boostpulse(struct kobject *kobj, struct attribute *attr,
 }
 
 static struct global_attr boostpulse =
-<<<<<<< HEAD
 	__ATTR(boostpulse, 0644, NULL, store_boostpulse);
-=======
-	__ATTR(boostpulse, 0200, NULL, store_boostpulse);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 
 static ssize_t show_boostpulse_duration(
 	struct kobject *kobj, struct attribute *attr, char *buf)
@@ -1357,8 +1254,6 @@ static struct attribute *interactive_attributes[] = {
 	NULL,
 };
 
-<<<<<<< HEAD
-=======
 static void interactive_input_event(struct input_handle *handle,
 		unsigned int type,
 		unsigned int code, int value)
@@ -1436,7 +1331,6 @@ static struct input_handler interactive_input_handler = {
 	.id_table	= interactive_ids,
 };
 
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 static struct attribute_group interactive_attr_group = {
 	.attrs = interactive_attributes,
 	.name = "intelliactive",
@@ -1469,10 +1363,6 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 	unsigned int j;
 	struct cpufreq_interactive_cpuinfo *pcpu;
 	struct cpufreq_frequency_table *freq_table;
-<<<<<<< HEAD
-	unsigned long flags;
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 
 	switch (event) {
 	case CPUFREQ_GOV_START:
@@ -1496,14 +1386,7 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 				ktime_to_us(ktime_get());
 			pcpu->hispeed_validate_time =
 				pcpu->floor_validate_time;
-<<<<<<< HEAD
-			pcpu->max_freq = policy->max;
 			down_write(&pcpu->enable_sem);
-			del_timer_sync(&pcpu->cpu_timer);
-			del_timer_sync(&pcpu->cpu_slack_timer);
-=======
-			down_write(&pcpu->enable_sem);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			cpufreq_interactive_timer_start(j);
 			pcpu->governor_enabled = 1;
 			up_write(&pcpu->enable_sem);
@@ -1518,13 +1401,10 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 			return 0;
 		}
 
-<<<<<<< HEAD
-=======
 		if (!policy->cpu)
 			rc = input_register_handler
 				(&interactive_input_handler);
 
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		rc = sysfs_create_group(cpufreq_global_kobject,
 				&interactive_attr_group);
 		if (rc) {
@@ -1544,26 +1424,18 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 			pcpu = &per_cpu(cpuinfo, j);
 			down_write(&pcpu->enable_sem);
 			pcpu->governor_enabled = 0;
-<<<<<<< HEAD
-			pcpu->target_freq = 0;
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
 			up_write(&pcpu->enable_sem);
 		}
 
 		if (--active_count > 0) {
+			if (!policy->cpu)
+				input_unregister_handler(&interactive_input_handler);
 			mutex_unlock(&gov_lock);
 			return 0;
 		}
 
-<<<<<<< HEAD
-=======
-		if (!policy->cpu)
-			input_unregister_handler(&interactive_input_handler);
-
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		cpufreq_unregister_notifier(
 			&cpufreq_notifier_block, CPUFREQ_TRANSITION_NOTIFIER);
 		idle_notifier_unregister(&cpufreq_interactive_idle_nb);
@@ -1583,15 +1455,6 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 		for_each_cpu(j, policy->cpus) {
 			pcpu = &per_cpu(cpuinfo, j);
 
-<<<<<<< HEAD
-			down_read(&pcpu->enable_sem);
-			if (pcpu->governor_enabled == 0) {
-				up_read(&pcpu->enable_sem);
-				continue;
-			}
-
-			spin_lock_irqsave(&pcpu->target_freq_lock, flags);
-=======
 			/* hold write semaphore to avoid race */
 			down_write(&pcpu->enable_sem);
 			if (pcpu->governor_enabled == 0) {
@@ -1600,42 +1463,21 @@ static int cpufreq_governor_intelliactive(struct cpufreq_policy *policy,
 			}
 
 			/* update target_freq firstly */
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			if (policy->max < pcpu->target_freq)
 				pcpu->target_freq = policy->max;
 			else if (policy->min > pcpu->target_freq)
 				pcpu->target_freq = policy->min;
 
-<<<<<<< HEAD
-			spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
-			up_read(&pcpu->enable_sem);
-
-			/* Reschedule timer only if policy->max is raised.
-=======
 			/* Reschedule timer.
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 			 * Delete the timers, else the timer callback may
 			 * return without re-arm the timer when failed
 			 * acquire the semaphore. This race may cause timer
 			 * stopped unexpectedly.
 			 */
-<<<<<<< HEAD
-
-			if (policy->max > pcpu->max_freq) {
-				down_write(&pcpu->enable_sem);
-				del_timer_sync(&pcpu->cpu_timer);
-				del_timer_sync(&pcpu->cpu_slack_timer);
-				cpufreq_interactive_timer_start(j);
-				up_write(&pcpu->enable_sem);
-			}
-
-			pcpu->max_freq = policy->max;
-=======
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
 			cpufreq_interactive_timer_start(j);
 			up_write(&pcpu->enable_sem);
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		}
 		break;
 	}
@@ -1661,10 +1503,6 @@ static int __init cpufreq_intelliactive_init(void)
 		init_timer(&pcpu->cpu_slack_timer);
 		pcpu->cpu_slack_timer.function = cpufreq_interactive_nop_timer;
 		spin_lock_init(&pcpu->load_lock);
-<<<<<<< HEAD
-		spin_lock_init(&pcpu->target_freq_lock);
-=======
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 		init_rwsem(&pcpu->enable_sem);
 	}
 

@@ -386,6 +386,7 @@ posix_acl_chmod_masq(struct posix_acl *acl, mode_t mode)
 
 	return 0;
 }
+
 int
 posix_acl_create(struct posix_acl **acl, gfp_t gfp, mode_t *mode_p)
 {
@@ -403,6 +404,7 @@ posix_acl_create(struct posix_acl **acl, gfp_t gfp, mode_t *mode_p)
 	return err;
 }
 EXPORT_SYMBOL(posix_acl_create);
+
 int
 posix_acl_chmod(struct posix_acl **acl, gfp_t gfp, mode_t mode)
 {

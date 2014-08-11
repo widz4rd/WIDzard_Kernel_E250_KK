@@ -1,0 +1,105 @@
+#!/bin/bash
+
+KERNEL_PATH="/home/strawberry/Downloads/WIDzard/TW"
+RAMFS_TMP="/tmp/ramfs-source"
+ROOTFS_PATH="/home/strawberry/Downloads/WIDzard/Ramdisk/recovery/"
+TOOLCHAIN="/home/strawberry/arm-linaro-cortex-a9_4.9.1/bin/arm-cortex_a9-linux-gnueabihf-"
+HOME_PATH="/home/strawberry/Downloads/WIDzard"
+echo ===========================================================
+echo 
+echo "                                          Clean Folder"
+echo "Perform a working config"
+echo ===========================================================
+rm -rf $RAMFS_TMP
+ls -al $RAMFS_TMP
+rm -rf $HOME_PATH/recovery.img
+rm -rf $HOME_PATH/zImage
+rm -rf $HOME_PATH/ramdisk.cpio.gz
+rm -rf $HOME_PATH/RELEASE
+echo "Done"
+sleep 1
+cp -ax /home/strawberry/Downloads/WIDzard/Zip3 $HOME_PATH/RELEASE
+echo ===========================================================
+echo 
+echo "                                          make _defconfig"
+echo "Perform a working config"
+echo ===========================================================
+make -j4 WIDzard_SKT_Boeffla_defconfig
+echo "Done"
+sleep 1
+
+echo ===========================================================
+echo 
+echo "                                                 make -j"`grep 'processor' /proc/cpuinfo | wc -l`
+echo "Start compiling...save 'compile.log'"
+echo ===========================================================
+rm -rf compile.log;
+make -j`grep 'processor' /proc/cpuinfo | wc -l` USE_CCACHE=1 ARCH=arm CROSS_COMPILE=$TOOLCHAIN >> compile.log 2>&1 || exit -1
+echo "Done"
+sleep 1
+
+echo ===========================================================
+echo 
+echo "                                       module Stripping..."
+echo 
+echo ===========================================================
+find . -type f -name '*.ko' | xargs -n 1 "$TOOLCHAIN"strip --strip-unneeded
+echo "Done"
+sleep 1
+
+echo ===========================================================
+echo 
+echo "                                                 make -j"`grep 'processor' /proc/cpuinfo | wc -l`
+echo "recompiling..."
+echo ===========================================================
+make -j`grep 'processor' /proc/cpuinfo | wc -l` USE_CCACHE=1 ARCH=arm CROSS_COMPILE=$TOOLCHAIN || exit -1
+echo "Done"
+cp -f $KERNEL_PATH/arch/arm/boot/zImage $HOME_PATH
+sleep 1
+	
+
+
+
+
+echo ===========================================================
+echo 
+echo "                                       Create ramdisk.cpio"
+echo 
+echo ===========================================================
+cp -ax $ROOTFS_PATH $RAMFS_TMP
+cd $RAMFS_TMP
+echo "Fix Start"
+/home/strawberry/Downloads/WIDzard/ramdisk_fixPermission
+find . | cpio -o -H newc > ../ramdisk.cpio
+cd ..
+ls -lh ramdisk.cpio
+rm -rf ramdisk.cpio.gz
+gzip -9 ramdisk.cpio
+cp -f /tmp/ramdisk.cpio.gz $HOME_PATH
+cp -f $KERNEL_PATH/arch/arm/boot/zImage $HOME_PATH
+echo "Done"
+sleep 1
+
+echo ===========================================================
+echo 
+echo "                                          Make Boot.img.."
+echo 
+echo ===========================================================
+cd $HOME_PATH
+./mkbootimg --kernel zImage --ramdisk ramdisk.cpio.gz --board smdk4x12 --base 0x10000000 --pagesize 2048 --ramdiskaddr 0x11000000 -o ./recovery.img
+sleep 1
+
+
+echo ===========================================================
+echo 
+echo "                                   Copy & Zip boot.img..."
+echo 
+echo ===========================================================
+cd $HOME_PATH
+cp boot.img $HOME_PATH/RELEASE
+cd $HOME_PATH/RELEASE
+zip -0 -r Philz_Recovery_`date +"%Y-%m-%d-%H-%M-%S"` *
+
+
+exit
+

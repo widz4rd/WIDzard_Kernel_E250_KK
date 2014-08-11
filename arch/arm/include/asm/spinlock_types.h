@@ -6,7 +6,6 @@
 #endif
 
 #define TICKET_SHIFT	16
-
 typedef struct {
 	union {
 		u32 slock;

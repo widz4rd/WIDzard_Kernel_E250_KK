@@ -120,22 +120,8 @@ static inline int arch_spin_trylock(arch_spinlock_t *lock)
 
 static inline void arch_spin_unlock(arch_spinlock_t *lock)
 {
-	unsigned long tmp;
-	u32 slock;
-
 	smp_mb();
-
-	__asm__ __volatile__(
-"	mov	%1, #1\n"
-"1:	ldrex	%0, [%2]\n"
-"	uadd16	%0, %0, %1\n"
-"	strex	%1, %0, [%2]\n"
-"	teq	%1, #0\n"
-"	bne	1b"
-	: "=&r" (slock), "=&r" (tmp)
-	: "r" (&lock->slock)
-	: "cc");
-
+	lock->tickets.owner++;
 	dsb_sev();
 }
 
@@ -183,7 +169,7 @@ static inline int arch_write_trylock(arch_rwlock_t *rw)
 	unsigned long tmp;
 
 	__asm__ __volatile__(
-"1:	ldrex	%0, [%1]\n"
+"	ldrex	%0, [%1]\n"
 "	teq	%0, #0\n"
 "	strexeq	%0, %2, [%1]"
 	: "=&r" (tmp)
@@ -269,7 +255,7 @@ static inline int arch_read_trylock(arch_rwlock_t *rw)
 	unsigned long tmp, tmp2 = 1;
 
 	__asm__ __volatile__(
-"1:	ldrex	%0, [%2]\n"
+"	ldrex	%0, [%2]\n"
 "	adds	%0, %0, #1\n"
 "	strexpl	%1, %0, [%2]\n"
 	: "=&r" (tmp), "+r" (tmp2)

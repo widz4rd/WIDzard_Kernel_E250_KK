@@ -1,0 +1,265 @@
+scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make[1]: `include/generated/mach-types.h'는 이미 갱신되었습니다.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  GZIP    kernel/config_data.gz
+  IKCFG   kernel/config_data.h
+  CC      kernel/configs.o
+  LD      kernel/built-in.o
+  CC      drivers/staging/android/lowmemorykiller.o
+  CC      drivers/usb/class/usblp.o
+  CC      drivers/video/fb_notify.o
+drivers/staging/android/lowmemorykiller.c:583:30: warning: ‘android_oom_notifier’ defined but not used [-Wunused-variable]
+ static struct notifier_block android_oom_notifier = {
+                              ^
+  CC      drivers/staging/zsmalloc/zsmalloc-main.o
+  LD      drivers/staging/android/built-in.o
+  CC      drivers/video/fbmem.o
+  CC      drivers/video/fbmon.o
+  LD      drivers/usb/class/built-in.o
+  CC      drivers/usb/core/usb.o
+  LD      drivers/staging/zsmalloc/zsmalloc.o
+  LD      drivers/staging/zsmalloc/built-in.o
+  LD      drivers/staging/built-in.o
+  CC      drivers/usb/core/hub.o
+  CC      drivers/usb/core/hcd.o
+In file included from drivers/usb/core/hub.c:33:0:
+drivers/usb/core/sec-dock.h:40:13: warning: ‘call_audiodock_notify’ defined but not used [-Wunused-function]
+ static void call_audiodock_notify(struct usb_device *dev)
+             ^
+  CC      drivers/video/fbcmap.o
+  CC      drivers/usb/core/urb.o
+  CC      drivers/video/fbsysfs.o
+  CC      drivers/video/modedb.o
+  CC      drivers/usb/core/message.o
+  CC      drivers/video/fbcvt.o
+drivers/usb/core/hub.c: In function ‘hub_thread’:
+drivers/usb/core/hub.c:2232:17: warning: ‘portchange’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (portchange & USB_PORT_STAT_C_LINK_STATE)
+                 ^
+drivers/usb/core/hub.c:2207:18: note: ‘portchange’ was declared here
+  u16 portstatus, portchange;
+                  ^
+  CC      drivers/video/backlight/lcd.o
+  CC      drivers/video/console/dummycon.o
+  LD      drivers/video/console/built-in.o
+  CC      drivers/usb/gadget/s3c_udc_otg.o
+In file included from include/linux/kernel.h:20:0,
+                 from drivers/usb/core/hub.c:11:
+drivers/usb/core/hub.c: In function ‘usb_port_resume’:
+include/linux/printk.h:169:2: warning: ‘portstatus’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  printk(KERN_INFO pr_fmt(fmt), ##__VA_ARGS__)
+  ^
+drivers/usb/core/hub.c:2559:19: note: ‘portstatus’ was declared here
+  u16  portchange, portstatus;
+                   ^
+In file included from include/linux/kernel.h:20:0,
+                 from drivers/usb/core/hub.c:11:
+include/linux/printk.h:169:2: warning: ‘portchange’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  printk(KERN_INFO pr_fmt(fmt), ##__VA_ARGS__)
+  ^
+drivers/usb/core/hub.c:2559:7: note: ‘portchange’ was declared here
+  u16  portchange, portstatus;
+       ^
+  CC      drivers/video/backlight/backlight.o
+In file included from drivers/usb/gadget/s3c_udc_otg.c:218:0:
+drivers/usb/gadget/s3c_udc_otg_xfer_dma.c: In function ‘process_ep_in_intr’:
+drivers/usb/gadget/s3c_udc_otg_xfer_dma.c:375:6: warning: unused variable ‘ep_ctrl’ [-Wunused-variable]
+  u32 ep_ctrl;
+      ^
+  CC      drivers/usb/core/driver.o
+  CC      drivers/usb/core/config.o
+  LD      drivers/video/backlight/built-in.o
+  CC      drivers/video/samsung/s3cfb_main.o
+drivers/video/samsung/s3cfb_main.c: In function ‘s3cfb_probe’:
+drivers/video/samsung/s3cfb_main.c:1334:1: warning: label ‘err0’ defined but not used [-Wunused-label]
+ err0:
+ ^
+  CC      drivers/usb/host/ehci-hcd.o
+  CC      drivers/usb/gadget/android.o
+  CC      drivers/usb/core/file.o
+  CC      drivers/video/samsung/s3cfb_ops.o
+In file included from drivers/usb/host/ehci-hcd.c:1351:0:
+drivers/usb/host/ehci-s5p.c: In function ‘s5p_wait_for_cp_resume’:
+drivers/usb/host/ehci-s5p.c:143:28: warning: unused variable ‘pdata’ [-Wunused-variable]
+  struct s5p_ehci_platdata *pdata = pdev->dev.platform_data;
+                            ^
+drivers/video/samsung/s3cfb_ops.c: In function ‘s3c_fb_update_regs’:
+drivers/video/samsung/s3cfb_ops.c:1566:15: warning: unused variable ‘clkval’ [-Wunused-variable]
+  unsigned int clkval = 0;
+               ^
+In file included from drivers/usb/gadget/android.c:65:0:
+drivers/usb/gadget/f_diag.c: In function ‘usb_config_work_func’:
+drivers/usb/gadget/f_diag.c:145:21: warning: unused variable ‘s’ [-Wunused-variable]
+  struct usb_string *s;
+                     ^
+drivers/usb/gadget/f_diag.c:144:29: warning: unused variable ‘table’ [-Wunused-variable]
+  struct usb_gadget_strings *table;
+                             ^
+drivers/usb/gadget/f_diag.c:143:28: warning: unused variable ‘cdev’ [-Wunused-variable]
+  struct usb_composite_dev *cdev = ctxt->cdev;
+                            ^
+drivers/usb/gadget/android.c: In function ‘diag_function_bind_config’:
+drivers/usb/gadget/android.c:1053:6: warning: unused variable ‘once’ [-Wunused-variable]
+  int once = 0, err = -1;
+      ^
+  CC      drivers/usb/core/buffer.o
+drivers/video/samsung/s3cfb_ops.c: In function ‘s3cfb_ioctl’:
+drivers/video/samsung/s3cfb_ops.c:1984:3: warning: ‘fd’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   put_unused_fd(fd);
+   ^
+drivers/video/samsung/s3cfb_ops.c:1910:6: note: ‘fd’ was declared here
+  int fd;
+      ^
+  CC      drivers/usb/core/sysfs.o
+  CC      drivers/video/samsung/lcdfreq.o
+  CC      drivers/usb/core/endpoint.o
+  CC      drivers/video/samsung/s3cfb_fimd6x.o
+  CC      drivers/usb/core/devio.o
+  CC      drivers/video/samsung/s3cfb_mdnie.o
+  CC      drivers/video/samsung/s3cfb_ielcd.o
+  CC      drivers/usb/host/ohci-hcd.o
+In file included from drivers/usb/host/ohci-hcd.c:101:0:
+drivers/usb/host/ohci-dbg.c: In function ‘fill_registers_buffer’:
+drivers/usb/host/ohci-dbg.c:77:11: warning: the comparison will always evaluate as ‘true’ for the address of ‘next’ will never be NULL [-Waddress]
+  if (next != NULL) { \
+           ^
+drivers/usb/host/ohci-dbg.c:642:2: note: in expansion of macro ‘ohci_dbg_sw’
+  ohci_dbg_sw (ohci, &next, &size,
+  ^
+drivers/usb/host/ohci-dbg.c:77:11: warning: the comparison will always evaluate as ‘true’ for the address of ‘next’ will never be NULL [-Waddress]
+  if (next != NULL) { \
+           ^
+drivers/usb/host/ohci-dbg.c:661:3: note: in expansion of macro ‘ohci_dbg_sw’
+   ohci_dbg_sw (ohci, &next, &size,
+   ^
+  CC      drivers/video/samsung/mdnie.o
+drivers/video/samsung/mdnie.c: In function ‘mdnie_request_table’:
+drivers/video/samsung/mdnie.c:111:45: warning: comparison between ‘enum SCENARIO’ and ‘enum SCENARIO_DMB’ [-Wenum-compare]
+ #define SCENARIO_IS_DMB(scenario) (scenario == DMB_NORMAL_MODE)
+                                             ^
+drivers/video/samsung/mdnie.c:182:13: note: in expansion of macro ‘SCENARIO_IS_DMB’
+  } else if (SCENARIO_IS_DMB(mdnie->scenario)) {
+             ^
+  CC      drivers/usb/core/notify.o
+  CC      drivers/usb/core/generic.o
+  CC      drivers/video/samsung/mdnie_tuning.o
+  CC      drivers/usb/core/quirks.o
+  CC      drivers/usb/core/devices.o
+  CC      drivers/video/samsung/s3cfb_s6evr02.o
+  LD      drivers/usb/host/built-in.o
+  CC      drivers/usb/core/inode.o
+  CC      drivers/video/samsung/smart_dimming_s6evr02.o
+  CC      drivers/video/samsung/s3cfb_ea8061.o
+  LD      drivers/usb/core/usbcore.o
+  LD      drivers/usb/core/built-in.o
+  CC      drivers/usb/misc/diag_bridge.o
+  CC      drivers/video/samsung/smart_dimming_ea8061.o
+drivers/usb/misc/diag_bridge.c: In function ‘read_hsic_cb’:
+drivers/usb/misc/diag_bridge.c:123:26: warning: unused variable ‘cbs’ [-Wunused-variable]
+  struct diag_bridge_ops *cbs = dev->ops;
+                          ^
+  CC      drivers/usb/misc/mdm_ctrl_bridge.o
+  CC      drivers/video/samsung/s5p_dsim_lowlevel.o
+  CC      drivers/video/samsung/s5p-dsim.o
+  CC      drivers/video/samsung/boot_progressbar.o
+  CC      drivers/usb/misc/mdm_data_bridge.o
+  LD      drivers/video/samsung/s3cfb.o
+  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_main.o
+  LD      drivers/video/samsung/built-in.o
+  CC      drivers/video/cfbfillrect.o
+  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_ops.o
+  LD      drivers/usb/misc/mdm_bridge.o
+  LD      drivers/usb/misc/built-in.o
+  CC      drivers/usb/mon/mon_main.o
+  CC      drivers/usb/gadget/multi_config.o
+  CC      drivers/usb/mon/mon_stat.o
+  LD      drivers/usb/gadget/g_android.o
+  LD      drivers/usb/gadget/built-in.o
+  CC      drivers/usb/notify/host_notify_class.o
+  LD      drivers/video/samsung_extdisp/s3cfb_extdsp.o
+  LD      drivers/video/samsung_extdisp/built-in.o
+  CC      drivers/video/cfbcopyarea.o
+  CC      drivers/usb/serial/usb-serial.o
+  CC      drivers/usb/mon/mon_text.o
+  CC      drivers/usb/notify/host_notifier.o
+  CC      drivers/video/cfbimgblt.o
+  LD      drivers/usb/notify/built-in.o
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/usb/mon/mon_bin.o
+  LD      drivers/video/fb.o
+  LD      drivers/video/built-in.o
+  CC      drivers/usb/serial/generic.o
+  CC      drivers/usb/serial/bus.o
+  CC      drivers/usb/serial/pl2303.o
+  LD      drivers/usb/mon/usbmon.o
+  CC      drivers/usb/storage/protocol.o
+  LD      drivers/usb/mon/built-in.o
+  CC      drivers/usb/serial/qcserial.o
+  CC      drivers/usb/serial/usb_wwan.o
+  CC      drivers/usb/serial/csvt.o
+  CC      drivers/usb/storage/transport.o
+  LD      drivers/usb/serial/usbserial.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/usb/storage/initializers.o
+  LD      drivers/usb/serial/built-in.o
+drivers/usb/storage/transport.c: In function ‘usb_stor_bulk_transfer_sg’:
+drivers/usb/storage/transport.c:500:15: warning: ‘partial’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   length_left -= partial;
+               ^
+  CC      drivers/usb/storage/sierra_ms.o
+drivers/usb/storage/transport.c: In function ‘usb_stor_bulk_srb’:
+drivers/usb/storage/transport.c:474:40: warning: ‘partial’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  scsi_set_resid(srb, scsi_bufflen(srb) - partial);
+                                        ^
+  CC      drivers/usb/storage/option_ms.o
+  CC      drivers/usb/storage/usual-tables.o
+  LD      drivers/usb/storage/usb-storage.o
+  LD      drivers/usb/storage/built-in.o
+  LD      drivers/usb/built-in.o
+  LD      drivers/built-in.o
+  LD      vmlinux.o
+  MODPOST vmlinux.o
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  LD      init/built-in.o
+  LD      .tmp_vmlinux1
+  KSYM    .tmp_kallsyms1.S
+  AS      .tmp_kallsyms1.o
+  LD      .tmp_vmlinux2
+  KSYM    .tmp_kallsyms2.S
+  AS      .tmp_kallsyms2.o
+  LD      vmlinux
+  SYSMAP  System.map
+  SYSMAP  .tmp_System.map
+  Building modules, stage 2.
+  MODPOST 7 modules
+  OBJCOPY arch/arm/boot/Image
+  Kernel: arch/arm/boot/Image is ready
+  CC      arch/arm/mvp/commkm/commkm.mod.o
+  CC      arch/arm/mvp/oektestkm/oektestkm.mod.o
+  CC      arch/arm/mvp/mvpkm/mvpkm.mod.o
+  LZMA    arch/arm/boot/compressed/piggy.lzma
+  CC      arch/arm/mvp/pvtcpkm/pvtcpkm.mod.o
+  CC      drivers/net/wireless/bcmdhd/dhd.mod.o
+  CC      drivers/net/wireless/btlock/btlock.mod.o
+  CC      drivers/scsi/scsi_wait_scan.mod.o
+  LD [M]  arch/arm/mvp/commkm/commkm.ko
+  LD [M]  arch/arm/mvp/mvpkm/mvpkm.ko
+  LD [M]  arch/arm/mvp/oektestkm/oektestkm.ko
+  LD [M]  arch/arm/mvp/pvtcpkm/pvtcpkm.ko
+  LD [M]  drivers/net/wireless/bcmdhd/dhd.ko
+  LD [M]  drivers/net/wireless/btlock/btlock.ko
+  SHIPPED arch/arm/boot/compressed/lib1funcs.S
+  SHIPPED arch/arm/boot/compressed/ashldi3.S
+  AS      arch/arm/boot/compressed/ashldi3.o
+  AS      arch/arm/boot/compressed/lib1funcs.o
+  LD [M]  drivers/scsi/scsi_wait_scan.ko
+  AS      arch/arm/boot/compressed/piggy.lzma.o
+  LD      arch/arm/boot/compressed/vmlinux
+  OBJCOPY arch/arm/boot/zImage
+  Kernel: arch/arm/boot/zImage is ready

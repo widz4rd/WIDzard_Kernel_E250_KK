@@ -2149,10 +2149,6 @@ config MACH_GD2_SENSOR
 	  AK8963 / AKM
 	  CM36651 / CAPELLA
 
-config ABB_CONTROL
-	bool "Adaptive body bias control"
-	depends on EXYNOS4_CPUFREQ && CPU_EXYNOS4412
-	default n
 config GC2PD_LTE
 	bool "GC2PD LTE model"
 	help
@@ -2162,6 +2158,11 @@ config GC2PD_LTE_EUR_OPEN
 	bool "GC2PD LTE EUR model"
 	help
 	  Support GC2PD LTE for EUR
+	  
+config ABB_CONTROL
+	bool "Adaptive body bias control"
+	depends on EXYNOS4_CPUFREQ && CPU_EXYNOS4412
+	default n
 
 config USER_RESET_DEBUG
 	bool "KOR reset reason debug feature in user version"
