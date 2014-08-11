@@ -659,21 +659,20 @@ static void efx_fini_channels(struct efx_nic *efx)
 
 	/* Only perform flush if dma is enabled */
 	if (dev->is_busmaster) {
-		rc = efx_nic_flush_queues(efx);
-
-		if (rc && EFX_WORKAROUND_7803(efx)) {
-			/* Schedule a reset to recover from the flush failure. The
-			 * descriptor caches reference memory we're about to free,
-			 * but falcon_reconfigure_mac_wrapper() won't reconnect
-			 * the MACs because of the pending reset. */
-			netif_err(efx, drv, efx->net_dev,
-				  "Resetting to recover from flush failure\n");
-			efx_schedule_reset(efx, RESET_TYPE_ALL);
-		} else if (rc) {
-			netif_err(efx, drv, efx->net_dev, "failed to flush queues\n");
-		} else {
-			netif_dbg(efx, drv, efx->net_dev,
-				  "successfully flushed all queues\n");
+	rc = efx_nic_flush_queues(efx);
+	if (rc && EFX_WORKAROUND_7803(efx)) {
+		/* Schedule a reset to recover from the flush failure. The
+		 * descriptor caches reference memory we're about to free,
+		 * but falcon_reconfigure_mac_wrapper() won't reconnect
+		 * the MACs because of the pending reset. */
+		netif_err(efx, drv, efx->net_dev,
+			  "Resetting to recover from flush failure\n");
+		efx_schedule_reset(efx, RESET_TYPE_ALL);
+	} else if (rc) {
+		netif_err(efx, drv, efx->net_dev, "failed to flush queues\n");
+	} else {
+		netif_dbg(efx, drv, efx->net_dev,
+			  "successfully flushed all queues\n");
 		}
 	}
 
@@ -1807,11 +1806,11 @@ static int efx_change_mtu(struct net_device *net_dev, int new_mtu)
 	if (new_mtu > EFX_MAX_MTU)
 		return -EINVAL;
 
+
 	netif_dbg(efx, drv, efx->net_dev, "changing MTU to %d\n", new_mtu);
 
 	efx_device_detach_sync(efx);
 	efx_stop_all(efx);
-
 	efx_fini_channels(efx);
 
 	mutex_lock(&efx->mac_lock);
@@ -2044,6 +2043,7 @@ void efx_reset_down(struct efx_nic *efx, enum reset_type method)
 {
 	EFX_ASSERT_RESET_SERIALISED(efx);
 
+	efx_device_detach_sync(efx);
 	efx_stop_all(efx);
 	mutex_lock(&efx->mac_lock);
 

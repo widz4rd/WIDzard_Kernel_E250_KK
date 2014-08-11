@@ -180,15 +180,8 @@ static struct xhci_ring *xhci_ring_alloc(struct xhci_hcd *xhci,
 		struct xhci_segment	*next;
 
 		next = xhci_segment_alloc(xhci, flags);
-		if (!next) {
-			prev = ring->first_seg;
-			while (prev) {
-				next = prev->next;
-				xhci_segment_free(xhci, prev);
-				prev = next;
-			}
+		if (!next)
 			goto fail;
-		}
 		xhci_link_segments(xhci, prev, next, link_trbs, isoc);
 
 		prev = next;
@@ -208,7 +201,7 @@ static struct xhci_ring *xhci_ring_alloc(struct xhci_hcd *xhci,
 	return ring;
 
 fail:
-	kfree(ring);
+	xhci_ring_free(xhci, ring);
 	return NULL;
 }
 
@@ -273,10 +266,6 @@ static struct xhci_container_ctx *xhci_alloc_container_ctx(struct xhci_hcd *xhci
 		ctx->size += CTX_SIZE(xhci->hcc_params);
 
 	ctx->bytes = dma_pool_alloc(xhci->device_pool, flags, &ctx->dma);
-	if (!ctx->bytes) {
-		kfree(ctx);
-		return NULL;
-	}
 	memset(ctx->bytes, 0, ctx->size);
 	return ctx;
 }
@@ -1037,8 +1026,6 @@ static unsigned int xhci_microframes_to_exponent(struct usb_device *udev,
 static unsigned int xhci_parse_microframe_interval(struct usb_device *udev,
 		struct usb_host_endpoint *ep)
 {
-	if (ep->desc.bInterval == 0)
-		return 0;
 	return xhci_microframes_to_exponent(udev, ep,
 			ep->desc.bInterval, 0, 15);
 }
@@ -1532,7 +1519,6 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 	xhci->event_ring = NULL;
 	xhci_dbg(xhci, "Freed event ring\n");
 
-	xhci->cmd_ring_reserved_trbs = 0;
 	if (xhci->cmd_ring)
 		xhci_ring_free(xhci, xhci->cmd_ring);
 	xhci->cmd_ring = NULL;

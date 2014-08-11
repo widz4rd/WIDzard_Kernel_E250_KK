@@ -56,7 +56,6 @@ static void bdev_inode_switch_bdi(struct inode *inode,
 			struct backing_dev_info *dst)
 {
 	bool wakeup_bdi = false;
-
 	spin_lock(&inode_wb_list_lock);
 	spin_lock(&inode->i_lock);
 	inode->i_data.backing_dev_info = dst;

@@ -686,7 +686,7 @@ static unsigned long drm_mm_dump_hole(struct seq_file *m, struct drm_mm_node *en
 	if (entry->hole_follows) {
 		hole_start = drm_mm_hole_node_start(entry);
 		hole_end = drm_mm_hole_node_end(entry);
-		hole_size = hole_end - hole_start;
+	hole_size = hole_end - hole_start;
 		seq_printf(m, "0x%08lx-0x%08lx: 0x%08lx: free\n",
 				hole_start, hole_end, hole_size);
 		return hole_size;
@@ -694,7 +694,6 @@ static unsigned long drm_mm_dump_hole(struct seq_file *m, struct drm_mm_node *en
 
 	return 0;
 }
-
 int drm_mm_dump_table(struct seq_file *m, struct drm_mm *mm)
 {
 	struct drm_mm_node *entry;

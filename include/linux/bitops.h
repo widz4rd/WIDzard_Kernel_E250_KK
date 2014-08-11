@@ -182,7 +182,6 @@ static inline unsigned long __ffs64(u64 word)
 	new;							\
 })
 #endif
-
 #ifndef find_last_bit
 /**
  * find_last_bit - find the last set bit in a memory region

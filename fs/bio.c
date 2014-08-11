@@ -703,7 +703,6 @@ int submit_bio_wait(int rw, struct bio *bio)
 	return ret.error;
 }
 EXPORT_SYMBOL(submit_bio_wait);
-
 struct bio_map_data {
 	struct bio_vec *iovecs;
 	struct sg_iovec *sgvecs;
