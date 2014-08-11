@@ -90,6 +90,24 @@ config ANDROID_LOW_MEMORY_KILLER
 	---help---
 	  Register processes to be killed when memory is low
 
+config ANDROID_LOW_MEMORY_KILLER_AUTODETECT_OOM_ADJ_VALUES
+	bool "Android Low Memory Killer: detect oom_adj values"
+	depends on ANDROID_LOW_MEMORY_KILLER
+	default y
+	---help---
+	  Detect oom_adj values written to
+	  /sys/module/lowmemorykiller/parameters/adj and convert them
+	  to oom_score_adj values.
+
+config ANDROID_LOW_MEMORY_KILLER_DO_NOT_KILL_PROCESS
+	bool "Android Low Memory Killer: do not kill process inside user defined white-lists"
+	depends on ANDROID_LOW_MEMORY_KILLER
+	default N
+	---help---
+	  Allows the user to define processes and system processes
+	  white-lists to not be killed by lowmemorykiller, unless
+	  it is absolutely necessary.
+
 config SEC_OOM_KILLER
         bool "Android OOM Killer"
         default n
@@ -101,6 +119,11 @@ config SEC_OOM_KILLER
           Hence, it makes more sense that we select the oom victim
           as android does when LMK is invoked.
 
+config SEC_DEBUG_LMK_MEMINFO
+	bool "Show Meminfo when lmk invoked"
+	default n
+	help
+	  Show memory information when lmk kills process
 endif # if ANDROID
 
 endmenu
