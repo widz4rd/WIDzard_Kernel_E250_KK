@@ -172,17 +172,19 @@ static void haptic_work(struct work_struct *work)
 			int pwm_period = 0, pwm_duty = 0;
 			pwm_period = g_hap_data->pdata->period;
 				pwm_duty = pwm_period / 2 + ((pwm_period / 2 - 2) * intensity) / 127;
-#ifdef SEC_DEBUG_VIB
+		#ifdef SEC_DEBUG_VIB
 				printk(KERN_DEBUG "**************************************************");
 				printk(KERN_DEBUG "[VIB] vibtonz_pwm_period is called(127)\n");
-#endif
+			    printk(KERN_DEBUG "[VIB] Intensity is called(%d)\n", intensity);
+		#endif
 			hap_data->pdata->duty=pwm_duty;
-#ifdef SEC_DEBUG_VIB
+			pwm_config(hap_data->pwm, hap_data->pdata->duty, hap_data->pdata->period);
+		#ifdef SEC_DEBUG_VIB
 				printk(KERN_DEBUG "**************************************************");
 				printk(KERN_DEBUG "[VIB] hap_data->pdata->duty is called(%d)\n", hap_data->pdata->duty);
 				printk(KERN_DEBUG "[VIB] hap_data->pdata->period is called(%d)\n", hap_data->pdata->period);
 				printk(KERN_DEBUG "**************************************************");
-#endif
+		#endif
 		} 
 		else
 			pwm_config(hap_data->pwm, hap_data->pdata->duty, hap_data->pdata->period);
