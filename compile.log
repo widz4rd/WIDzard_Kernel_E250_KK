@@ -1,40 +1,2838 @@
 scripts/kconfig/conf --silentoldconfig Kconfig
   CHK     include/linux/version.h
   CHK     include/generated/utsrelease.h
-make[1]: `include/generated/mach-types.h'는 이미 갱신되었습니다.
+make[1]: `include/generated/mach-types.h' is up to date.
+  CC      arch/arm/kernel/asm-offsets.s
+  GEN     include/generated/asm-offsets.h
   CALL    scripts/checksyscalls.sh
+  CC      arch/arm/vfp/vfpmodule.o
+  CC      init/main.o
+  CC [M]  arch/arm/mvp/commkm/comm_ev_kernel.o
+  CC      arch/arm/hotplug/intelli_plug.o
+  CC [M]  arch/arm/mvp/commkm/comm.o
+  AS      arch/arm/vfp/entry.o
+  LD      arch/arm/hotplug/built-in.o
+  AS      arch/arm/vfp/vfphw.o
+  LD      arch/arm/vfp/vfp.o
+  LD      arch/arm/vfp/built-in.o
   CHK     include/generated/compile.h
+  CC [M]  arch/arm/mvp/mvpkm/mksck_kernel.o
+  CC      init/do_mounts.o
+  CC      init/do_mounts_rd.o
+  CC [M]  arch/arm/mvp/commkm/comm_os_linux.o
+In file included from arch/arm/mvp/mvpkm/mvp.h:29:0,
+                 from arch/arm/mvp/mvpkm/mksck_kernel.c:48:
+arch/arm/mvp/mvpkm/worldswitch.h: In function ‘REGSAVE’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvp_assert.h:88:3: note: in definition of macro ‘MY_ASSERTS’
+  *
+   ^
+arch/arm/mvp/mvpkm/worldswitch.h:247:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  uint32 mHCPTR;
+  ^
+arch/arm/mvp/mvpkm/worldswitch.h: In function ‘WSP’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvp_assert.h:88:3: note: in definition of macro ‘MY_ASSERTS’
+  *
+   ^
+arch/arm/mvp/mvpkm/worldswitch.h:368:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ 
+  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘LockPeer’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:609:3: note: in expansion of macro ‘ATOMIC_ADDV’
+ 
+   ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckPoll’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:775:2: note: in expansion of macro ‘ATOMIC_ADDV’
+ 
+  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckDgramRecvMsg’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:1545:2: note: in expansion of macro ‘ATOMIC_ADDV’
+   return -EINVAL;
+  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckDgramSendMsg’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:1762:4: note: in expansion of macro ‘ATOMIC_ADDV’
+    */
+    ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:106:33: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                 ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:1875:5: note: in expansion of macro ‘ATOMIC_ORV’
+   err = Mutex_Lock(&peerMksckPage->mutex, MutexModeSH);
+     ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckPage_GetFromVmIdIncRefc’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2134:3: note: in expansion of macro ‘ATOMIC_ADDV’
+  *               Call Mksck_DecRefc() when done with pointer
+   ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckPage_GetFromTgidIncRefc’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2172:4: note: in expansion of macro ‘ATOMIC_ADDV’
+   if (vmId == MKSCK_VMID_UNDEF) {
+    ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckPage_DecRefc’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2404:8: note: in expansion of macro ‘ATOMIC_SETIF’
+ MksckPage_DecRefc(struct MksckPage *mksckPage)
+        ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2421:12: note: in expansion of macro ‘ATOMIC_SETIF’
+ 
+            ^
+arch/arm/mvp/mvpkm/mksck_kernel.c: In function ‘MksckPageInfoShow’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2491:4: note: in expansion of macro ‘ATOMIC_ADDV’
+  struct MvpkmVM *vm;
+    ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mksck_kernel.c:2556:5: note: in expansion of macro ‘ATOMIC_ADDV’
+    if (!mksckPage->isGuest) {
+     ^
+  CC      init/do_mounts_initrd.o
+  CC [M]  arch/arm/mvp/commkm/comm_os_mod_linux.o
+  CC      init/initramfs.o
+  CC [M]  arch/arm/mvp/commkm/comm_svc.o
+  CC      init/version.o
+  LD      init/mounts.o
+  CC [M]  arch/arm/mvp/commkm/comm_transp_mvp.o
+  CC [M]  arch/arm/mvp/mvpkm/mutex_kernel.o
+  CC      arch/arm/kernel/elf.o
+  LD      init/built-in.o
+  CC      arch/arm/mm/fault.o
+In file included from arch/arm/mvp/mvpkm/mvp.h:29:0,
+                 from arch/arm/mvp/mvpkm/mutex_kernel.c:23:
+arch/arm/mvp/mvpkm/mutex_kernel.c: In function ‘Mutex_LockLine’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:150:9: note: in expansion of macro ‘ATOMIC_SETIF’
+   newState.mode  = oldState.mode + mode;
+         ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:166:12: note: in expansion of macro ‘ATOMIC_SETIF’
+        oldState.state))
+            ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:171:2: note: in expansion of macro ‘ATOMIC_ADDV’
+    mutex->lineUnl = -1;
+  ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:208:9: note: in expansion of macro ‘ATOMIC_SETIF’
+    * return success.
+         ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:241:12: note: in expansion of macro ‘ATOMIC_SETIF’
+    */
+            ^
+arch/arm/mvp/mvpkm/mutex_kernel.c: In function ‘Mutex_UnlockLine’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:121:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_ORV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, orr)
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:270:12: note: in expansion of macro ‘ATOMIC_SETIF’
+ void
+            ^
+arch/arm/mvp/mvpkm/mutex_kernel.c: In function ‘Mutex_UnlSleepTestLine’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:339:2: note: in expansion of macro ‘ATOMIC_ADDV’
+          AtmUInt32 *test,
+  ^
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:201:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:365:2: note: in expansion of macro ‘ATOMIC_SUBV’
+   * Release the mutex, someone can wake us up now.
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c: In function ‘Mutex_UnlPoll’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:216:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_SUBV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, sub)
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:98:33: note: in expansion of macro ‘ATOMIC_OPO_PRIVATE’
+          : "=&r" (_oldval)   \
+                                 ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:416:2: note: in expansion of macro ‘ATOMIC_ORO’
+   * an exclusive wait in that case and also increments the usage for
+  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c: In function ‘Mutex_CondSig’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:216:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_SUBV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, sub)
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:55:34: note: in expansion of macro ‘ATOMIC_OPO_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mutex_kernel.c:478:4: note: in expansion of macro ‘ATOMIC_ANDO’
+  waiters = ATOMIC_GETO(mutex->waiters);
+    ^
+  AS      arch/arm/kernel/entry-armv.o
+  AS      arch/arm/kernel/entry-common.o
+  CC      arch/arm/kernel/irq.o
+  CC [M]  arch/arm/mvp/mvpkm/mvpkm_main.o
+  CC      arch/arm/mm/dma-mapping.o
+  LD [M]  arch/arm/mvp/commkm/commkm.o
+  CC [M]  arch/arm/mvp/pvtcpkm/pvtcp_off_io_linux.o
+  CC      arch/arm/kernel/process.o
+In file included from arch/arm/mvp/mvpkm/mvp.h:29:0,
+                 from arch/arm/mvp/mvpkm/mvpkm_main.c:51:
+arch/arm/mvp/mvpkm/worldswitch.h: In function ‘REGSAVE’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvp_assert.h:88:3: note: in definition of macro ‘MY_ASSERTS’
+  *
+   ^
+arch/arm/mvp/mvpkm/worldswitch.h:247:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  uint32 mHCPTR;
+  ^
+arch/arm/mvp/mvpkm/worldswitch.h: In function ‘WSP’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvp_assert.h:88:3: note: in definition of macro ‘MY_ASSERTS’
+  *
+   ^
+arch/arm/mvp/mvpkm/worldswitch.h:368:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ 
+  ^
+arch/arm/mvp/mvpkm/wscalls.h: In function ‘WSParFn’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvp_assert.h:88:3: note: in definition of macro ‘MY_ASSERTS’
+  *
+   ^
+arch/arm/mvp/mvpkm/wscalls.h:164:5: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  };                           /**< anonymous union */
+     ^
+arch/arm/mvp/mvpkm/mvpkm_main.c: In function ‘LockedListDel’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:201:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mvpkm_main.c:1591:3: note: in expansion of macro ‘ATOMIC_SUBV’
+  lp = LockedListSearch(&vm->lockedRoot, mpn);
+   ^
+arch/arm/mvp/mvpkm/mvpkm_main.c: In function ‘LockedListAdd’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:243:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  _oldval;     \
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:47:34: note: in expansion of macro ‘ATOMIC_OPV_PRIVATE’
+ 
+                                  ^
+arch/arm/mvp/mvpkm/mvpkm_main.c:1657:3: note: in expansion of macro ‘ATOMIC_ADDV’
+        PhysMem_RegionType forRegion)
+   ^
+arch/arm/mvp/mvpkm/mvpkm_main.c: In function ‘MapWSPHKVA’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvpkm_main.c:1888:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+  struct page **pagesPtr;
+  ^
+arch/arm/mvp/mvpkm/mvpkm_main.c: In function ‘RunMonitor’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/mvpkm_main.c:2297:3: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+   }
+   ^
+arch/arm/mvp/mvpkm/mvpkm_main.c: In function ‘Mvpkm_WakeGuest’:
+arch/arm/mvp/mvpkm/mvp_assert.h:65:15: warning: typedef ‘AssertOnCompileFailed’ locally defined but not used [-Wunused-local-typedefs]
+  * Compile-time assertions.
+               ^
+arch/arm/mvp/mvpkm/atomic_arm.h:216:2: note: in expansion of macro ‘ASSERT_ON_COMPILE’
+ #define ATOMIC_SUBV(atm, modval) ATOMIC_OPV_PRIVATE(atm, modval, sub)
+  ^
+arch/arm/mvp/mvpkm/atomic_arm.h:98:33: note: in expansion of macro ‘ATOMIC_OPO_PRIVATE’
+          : "=&r" (_oldval)   \
+                                 ^
+arch/arm/mvp/mvpkm/mvpkm_main.c:2735:6: note: in expansion of macro ‘ATOMIC_ORO’
+  * @param vm which guest needs waking
+      ^
+  CC      arch/arm/mm/init.o
+  CC      arch/arm/kernel/ptrace.o
+  CC [M]  arch/arm/mvp/pvtcpkm/pvtcp_off_linux.o
+  CC      arch/arm/mm/fault-armv.o
+  CC      arch/arm/kernel/return_address.o
+  CC      arch/arm/mm/flush.o
+  CC [M]  arch/arm/mvp/mvpkm/qp_common.o
+  CC      arch/arm/kernel/setup.o
+  LD [M]  arch/arm/mvp/mvpkm/mvpkm.o
+  CC      arch/arm/kernel/signal.o
+  CC      arch/arm/mm/idmap.o
+  CC      arch/arm/mm/ioremap.o
+  CC      arch/arm/mm/mmap.o
+  CC      arch/arm/kernel/sys_arm.o
+  CC [M]  arch/arm/mvp/pvtcpkm/comm_os_linux.o
+  CC      arch/arm/mm/pgd.o
+  CC      arch/arm/mm/mmu.o
+  CC      arch/arm/kernel/stacktrace.o
+  CC [M]  arch/arm/mvp/pvtcpkm/comm_os_mod_linux.o
+  CC      arch/arm/mach-exynos/init.o
+  CC      arch/arm/kernel/time.o
+  CC [M]  arch/arm/mvp/pvtcpkm/pvtcp.o
+  CC      arch/arm/mach-exynos/cpu-exynos4.o
+  CC      arch/arm/mm/proc-syms.o
+  CC      arch/arm/kernel/traps.o
+  CC      arch/arm/mach-exynos/pm-exynos4.o
+  CC      arch/arm/mm/alignment.o
+  CC [M]  arch/arm/mvp/pvtcpkm/pvtcp_off.o
+  CC      arch/arm/kernel/armksyms.o
+  CC      arch/arm/mach-exynos/cpufreq.o
+  CC      arch/arm/mm/highmem.o
+  AS      arch/arm/kernel/sleep.o
+  CC      arch/arm/kernel/smp.o
+  LD [M]  arch/arm/mvp/pvtcpkm/pvtcpkm.o
+  AS      arch/arm/mm/cache-v7.o
+  CC      arch/arm/plat-s5p/irq.o
+  CC      arch/arm/mm/copypage-v6.o
+  CC      arch/arm/mach-exynos/cpufreq-4210.o
+  CC      arch/arm/kernel/smp_tlb.o
+  CC      arch/arm/mm/context.o
+  CC      arch/arm/plat-s5p/reserve_mem.o
+arch/arm/mach-exynos/cpufreq-4210.c: In function ‘exynos4210_cpufreq_init’:
+arch/arm/mach-exynos/cpufreq-4210.c:425:37: warning: iteration 6u invokes undefined behavior [-Waggressive-loop-optimizations]
+   exynos4210_clkdiv_table[i].clkdiv = tmp;
+                                     ^
+arch/arm/mach-exynos/cpufreq-4210.c:406:2: note: containing loop
+  for (i = L0; i <  CPUFREQ_LEVEL_END; i++) {
+  ^
+  CC      arch/arm/kernel/swp_emulate.o
+  AS      arch/arm/mm/tlb-v7.o
+  CC      arch/arm/mach-exynos/cpufreq-4x12.o
+  CC      arch/arm/plat-s5p/pm.o
+  AS      arch/arm/mm/proc-v7.o
+  LD      arch/arm/mm/built-in.o
+  CC      arch/arm/plat-samsung/init.o
+  CC      arch/arm/kernel/topology.o
+  CC      arch/arm/plat-s5p/dev-dsim.o
+  CC      arch/arm/plat-samsung/clock.o
+  AS      arch/arm/kernel/head.o
+  CC      arch/arm/mach-exynos/cpuidle-exynos4.o
+  CC      arch/arm/kernel/init_task.o
+  LD      arch/arm/plat-s5p/built-in.o
+arch/arm/mach-exynos/cpuidle-exynos4.c:189:13: warning: ‘exynos4212_gpio_conpdn_reg’ defined but not used [-Wunused-function]
+ static void exynos4212_gpio_conpdn_reg(void)
+             ^
+  CC      kernel/sched.o
+  CC      arch/arm/plat-samsung/irq-uart.o
+  LD      arch/arm/kernel/built-in.o
+  CC      mm/filemap.o
+  CC      arch/arm/mach-exynos/busfreq_opp_exynos4.o
+  CC      arch/arm/plat-samsung/adc.o
+  CC      arch/arm/mach-exynos/busfreq_opp_4x12.o
+  CC      arch/arm/plat-samsung/dev-hsmmc2.o
+arch/arm/mach-exynos/busfreq_opp_4x12.c: In function ‘exynos4x12_target’:
+arch/arm/mach-exynos/busfreq_opp_4x12.c:598:20: warning: unused variable ‘val’ [-Wunused-variable]
+  unsigned int tmp, val;
+                    ^
+  CC      arch/arm/plat-samsung/dev-hsmmc3.o
+  CC      arch/arm/plat-samsung/dev-mshc.o
+  CC      arch/arm/mach-exynos/mct.o
+  CC      arch/arm/plat-samsung/pm.o
+  CC      arch/arm/mach-exynos/mach-midas.o
+  LD      arch/arm/plat-samsung/built-in.o
+  CC      mm/mempool.o
+  CC      fs/open.o
+arch/arm/mach-exynos/mach-midas.c: In function ‘exynos4_reserve’:
+arch/arm/mach-exynos/mach-midas.c:5234:6: warning: unused variable ‘ret’ [-Wunused-variable]
+  int ret = 0;
+      ^
+In file included from arch/arm/mach-exynos/include/mach/midas-wacom.h:14:0,
+                 from arch/arm/mach-exynos/mach-midas.c:183:
+arch/arm/mach-exynos/mach-midas.c: At top level:
+include/linux/wacom_i2c.h:376:30: warning: ‘wacom_feature_EMR’ defined but not used [-Wunused-variable]
+ static struct wacom_features wacom_feature_EMR = {
+                              ^
+arch/arm/mach-exynos/mach-midas.c:1907:30: warning: ‘i2c_devs6’ defined but not used [-Wunused-variable]
+ static struct i2c_board_info i2c_devs6[] __initdata = {
+                              ^
+  CC      mm/oom_kill.o
+  CC      arch/arm/mach-exynos/midas-tsp.o
+arch/arm/mach-exynos/midas-tsp.c: In function ‘melfas_power’:
+arch/arm/mach-exynos/midas-tsp.c:1667:6: warning: unused variable ‘ret’ [-Wunused-variable]
+  int ret;
+      ^
+  CC      arch/arm/mach-exynos/midas-camera.o
+  CC      fs/read_write.o
+  CC      mm/fadvise.o
+  CC      arch/arm/mach-exynos/midas-mhl.o
+arch/arm/mach-exynos/midas-mhl.c: In function ‘sii9234_vbus_present’:
+arch/arm/mach-exynos/midas-mhl.c:198:5: warning: unused variable ‘intval’ [-Wunused-variable]
+  u8 intval;
+     ^
+arch/arm/mach-exynos/midas-mhl.c: At top level:
+arch/arm/mach-exynos/midas-mhl.c:173:12: warning: ‘sii9234_usb_op’ defined but not used [-Wunused-function]
+ static int sii9234_usb_op(bool on, int value)
+            ^
+arch/arm/mach-exynos/midas-mhl.c:194:13: warning: ‘sii9234_vbus_present’ defined but not used [-Wunused-function]
+ static void sii9234_vbus_present(bool on, int value)
+             ^
+  CC      mm/page-writeback.o
+  CC      arch/arm/mach-exynos/board-lcd-mipi.o
+  CC      arch/arm/mach-exynos/t0-gpio.o
+  CC      fs/file_table.o
+  CC      arch/arm/mach-exynos/t0-power.o
+  CC      arch/arm/mach-exynos/midas-nfc.o
+  CC      arch/arm/mach-exynos/midas-sensor.o
+  CC      mm/readahead.o
+  CC      fs/super.o
+arch/arm/mach-exynos/midas-sensor.c:257:13: warning: ‘ssp_get_positions’ defined but not used [-Wunused-function]
+ static void ssp_get_positions(int *acc, int *mag)
+             ^
+arch/arm/mach-exynos/midas-sensor.c:866:30: warning: ‘i2c_devs9_emul’ defined but not used [-Wunused-variable]
+ static struct i2c_board_info i2c_devs9_emul[] __initdata = {
+                              ^
+  CC      arch/arm/mach-exynos/setup-mfc.o
+  CC      mm/swap.o
+  CC      arch/arm/mach-exynos/setup-sdhci.o
+  CC      arch/arm/mach-exynos/setup-sdhci-gpio.o
+  CC      fs/char_dev.o
+  CC      arch/arm/mach-exynos/setup-mshci.o
+  CC      arch/arm/mach-exynos/setup-mshci-gpio.o
+  CC      mm/truncate.o
+  CC      kernel/fork.o
+  CC      arch/arm/mach-exynos/setup-usb-phy.o
+  CC      fs/stat.o
+  CC      mm/vmscan.o
+  CC      arch/arm/mach-exynos/sec_debug.o
+  CC      fs/exec.o
+mm/vmscan.c: In function ‘rtcc_do_try_to_free_pages’:
+mm/vmscan.c:3073:15: warning: unused variable ‘zone’ [-Wunused-variable]
+  struct zone *zone;
+               ^
+mm/vmscan.c:3072:18: warning: unused variable ‘z’ [-Wunused-variable]
+  struct zoneref *z;
+                  ^
+mm/vmscan.c:3071:15: warning: unused variable ‘cpuset_mems_cookie’ [-Wunused-variable]
+  unsigned int cpuset_mems_cookie;
+               ^
+arch/arm/mach-exynos/sec_debug.c: In function ‘sec_debug_one_key_crash’:
+arch/arm/mach-exynos/sec_debug.c:748:7: warning: unused variable ‘first_index’ [-Wunused-variable]
+   int first_index;
+       ^
+arch/arm/mach-exynos/sec_debug.c:747:7: warning: unused variable ‘next_index’ [-Wunused-variable]
+   int next_index;
+       ^
+arch/arm/mach-exynos/sec_debug.c: At top level:
+arch/arm/mach-exynos/sec_debug.c:728:13: warning: ‘sec_debug_one_key_crash’ defined but not used [-Wunused-function]
+ static void sec_debug_one_key_crash(unsigned int code, int value)
+             ^
+  CC      kernel/exec_domain.o
+  CC      arch/arm/mach-exynos/sec_gaf.o
+  CC      arch/arm/mach-exynos/sec_log.o
+  CC      kernel/panic.o
+  CC      fs/pipe.o
+  CC      kernel/printk.o
+  CC      arch/arm/mach-exynos/board-bluetooth-bcm4334.o
+  CC      arch/arm/mach-exynos/mdm_common.o
+  CC      mm/shmem.o
+  CC      fs/namei.o
+  CC      arch/arm/mach-exynos/subsystem_restart.o
+  CC      kernel/cpu.o
+  CC      arch/arm/mach-exynos/mdm_hsic_pm.o
+  CC      kernel/exit.o
+arch/arm/mach-exynos/mdm_hsic_pm.c: In function ‘clear_cpu0_from_usbhost_irq’:
+arch/arm/mach-exynos/mdm_hsic_pm.c:1139:2: warning: label ‘free_cpumask’ defined but not used [-Wunused-label]
+  free_cpumask:
+  ^
+arch/arm/mach-exynos/mdm_hsic_pm.c: In function ‘hotplug_work_start’:
+arch/arm/mach-exynos/mdm_hsic_pm.c:1180:27: warning: unused variable ‘pm_data’ [-Wunused-variable]
+  struct mdm_hsic_pm_data *pm_data =
+                           ^
+  CC      arch/arm/mach-exynos/midas-wacom.o
+  CC      mm/util.o
+In file included from arch/arm/mach-exynos/midas-wacom.c:16:0:
+include/linux/wacom_i2c.h:376:30: warning: ‘wacom_feature_EMR’ defined but not used [-Wunused-variable]
+ static struct wacom_features wacom_feature_EMR = {
+                              ^
+  CC      arch/arm/mach-exynos/sec-switch_max77693.o
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_mknodat’:
+include/linux/fs.h:2039:26: warning: ‘tmp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2457:8: note: ‘tmp’ was declared here
+  char *tmp;
+        ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_mknod’:
+include/linux/fs.h:2039:26: warning: ‘tmp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2457:8: note: ‘tmp’ was declared here
+  char *tmp;
+        ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_mkdirat’:
+include/linux/fs.h:2039:26: warning: ‘tmp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2537:9: note: ‘tmp’ was declared here
+  char * tmp;
+         ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_mkdir’:
+include/linux/fs.h:2039:26: warning: ‘tmp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2537:9: note: ‘tmp’ was declared here
+  char * tmp;
+         ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_rmdir’:
+include/linux/fs.h:2039:26: warning: ‘name’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2640:9: note: ‘name’ was declared here
+  char * name;
+         ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_unlinkat’:
+include/linux/fs.h:2039:26: warning: ‘name’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2736:8: note: ‘name’ was declared here
+  char *name;
+        ^
+In file included from fs/namei.c:20:0:
+include/linux/fs.h:2039:26: warning: ‘name’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2640:9: note: ‘name’ was declared here
+  char * name;
+         ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_unlink’:
+include/linux/fs.h:2039:26: warning: ‘name’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2736:8: note: ‘name’ was declared here
+  char *name;
+        ^
+  CC      kernel/itimer.o
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_symlinkat’:
+include/linux/fs.h:2039:26: warning: ‘to’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2829:8: note: ‘to’ was declared here
+  char *to;
+        ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_symlink’:
+include/linux/fs.h:2039:26: warning: ‘to’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2829:8: note: ‘to’ was declared here
+  char *to;
+        ^
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_linkat’:
+include/linux/fs.h:2039:26: warning: ‘to’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:2929:8: note: ‘to’ was declared here
+  char *to;
+        ^
+  CC      mm/vmstat.o
+In file included from fs/namei.c:20:0:
+fs/namei.c: In function ‘sys_renameat’:
+include/linux/fs.h:2039:26: warning: ‘to’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:3142:8: note: ‘to’ was declared here
+  char *to;
+        ^
+In file included from fs/namei.c:20:0:
+include/linux/fs.h:2039:26: warning: ‘from’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ #define __putname(name)  kmem_cache_free(names_cachep, (void *)(name))
+                          ^
+fs/namei.c:3141:8: note: ‘from’ was declared here
+  char *from;
+        ^
+  CC      arch/arm/mach-exynos/t0-sound.o
+arch/arm/mach-exynos/t0-sound.c: In function ‘t0_gpio_init’:
+arch/arm/mach-exynos/t0-sound.c:344:15: warning: unused variable ‘gpio’ [-Wunused-variable]
+  unsigned int gpio;
+               ^
+  LD      arch/arm/mach-exynos/built-in.o
+  CC      kernel/time.o
+  CC      fs/fcntl.o
+  CC      ipc/util.o
+  CC      kernel/softirq.o
+  CC      mm/backing-dev.o
+  CC      ipc/msgutil.o
+  CC      ipc/msg.o
+  CC      fs/ioctl.o
+  CC      mm/mmu_context.o
+  CC      ipc/sem.o
+  CC      fs/readdir.o
+  CC      kernel/resource.o
+  CC      mm/percpu.o
+  CC      fs/select.o
+  CC      ipc/shm.o
+  CC      kernel/sysctl.o
+ipc/shm.c: In function ‘sys_shmat’:
+ipc/shm.c:983:2: warning: ‘ret’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return (long)ret;
+  ^
+  CC      fs/fifo.o
+  CC      ipc/ipcns_notifier.o
+  CC      mm/fremap.o
+kernel/sysctl.c: In function ‘__do_proc_dointvec.isra.8’:
+kernel/sysctl.c:2148:8: warning: ‘kbuf’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  char *tmp = skip_spaces(*buf);
+        ^
+kernel/sysctl.c:2301:8: note: ‘kbuf’ was declared here
+  char *kbuf;
+        ^
+  CC      fs/dcache.o
+  CC      ipc/ipc_sysctl.o
+kernel/sysctl.c: In function ‘__do_proc_doulongvec_minmax’:
+kernel/sysctl.c:2149:12: warning: ‘kbuf’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  ret = tmp - *buf;
+            ^
+kernel/sysctl.c:2519:8: note: ‘kbuf’ was declared here
+  char *kbuf;
+        ^
+  CC      mm/highmem.o
+  CC      ipc/namespace.o
+  LD      ipc/built-in.o
+  CC      kernel/sysctl_binary.o
+  CC      security/keys/gc.o
+  CC      security/keys/key.o
+  CC      mm/madvise.o
+  CC      mm/memory.o
+  CC      kernel/capability.o
+  CC      security/keys/keyring.o
+  CC      fs/inode.o
+  CC      kernel/ptrace.o
+  CC      kernel/timer.o
+  CC      security/keys/keyctl.o
+  CC      fs/attr.o
+  CC      security/keys/permission.o
+  CC      fs/file.o
+  CC      mm/mincore.o
+  CC      security/keys/process_keys.o
+  CC      mm/mlock.o
+  CC      kernel/user.o
+  CC      fs/filesystems.o
+  CC      security/keys/request_key.o
+  CC      kernel/signal.o
+  CC      fs/namespace.o
+  CC      mm/mmap.o
+  CC      security/keys/request_key_auth.o
+  CC      security/keys/user_defined.o
+  CC      security/keys/proc.o
+  CC      security/keys/sysctl.o
+  LD      security/keys/built-in.o
+  CC      security/selinux/avc.o
+  CC      mm/mprotect.o
+fs/namespace.c: In function ‘sys_mount’:
+fs/namespace.c:2546:6: warning: ‘kernel_dev’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  ret = do_mount(kernel_dev, kernel_dir, kernel_type, flags,
+      ^
+fs/namespace.c:2546:6: warning: ‘kernel_type’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  CC      kernel/sys.o
+  CC      mm/mremap.o
+  CC      fs/xattr.o
+  CC      security/selinux/hooks.o
+  CC      mm/msync.o
+  CC      fs/libfs.o
+  CC      mm/rmap.o
+  CC      kernel/kmod.o
+  CC      fs/fs-writeback.o
+  CC      kernel/workqueue.o
+  CC      mm/vmalloc.o
+  CC      security/selinux/selinuxfs.o
+  CC      fs/drop_caches.o
+  CC      fs/splice.o
+In file included from include/linux/compiler.h:48:0,
+                 from include/linux/stddef.h:4,
+                 from include/linux/posix_types.h:4,
+                 from include/linux/types.h:17,
+                 from include/linux/list.h:4,
+                 from include/linux/module.h:9,
+                 from kernel/workqueue.c:26:
+kernel/workqueue.c: In function ‘freeze_workqueues_begin’:
+include/asm-generic/percpu.h:20:44: warning: array subscript is above array bounds [-Warray-bounds]
+ #define per_cpu_offset(x) (__per_cpu_offset[x])
+                                            ^
+include/linux/compiler-gcc.h:35:29: note: in definition of macro ‘RELOC_HIDE’
+     (typeof(ptr)) (__ptr + (off)); })
+                             ^
+include/linux/percpu.h:148:31: note: in expansion of macro ‘SHIFT_PERCPU_PTR’
+ #define per_cpu_ptr(ptr, cpu) SHIFT_PERCPU_PTR((ptr), per_cpu_offset((cpu)))
+                               ^
+include/linux/percpu.h:148:55: note: in expansion of macro ‘per_cpu_offset’
+ #define per_cpu_ptr(ptr, cpu) SHIFT_PERCPU_PTR((ptr), per_cpu_offset((cpu)))
+                                                       ^
+kernel/workqueue.c:494:11: note: in expansion of macro ‘per_cpu_ptr’
+    return per_cpu_ptr(wq->cpu_wq.pcpu, cpu);
+           ^
+kernel/workqueue.c: In function ‘freeze_workqueues_busy’:
+include/asm-generic/percpu.h:20:44: warning: array subscript is above array bounds [-Warray-bounds]
+ #define per_cpu_offset(x) (__per_cpu_offset[x])
+                                            ^
+include/linux/compiler-gcc.h:35:29: note: in definition of macro ‘RELOC_HIDE’
+     (typeof(ptr)) (__ptr + (off)); })
+                             ^
+include/linux/percpu.h:148:31: note: in expansion of macro ‘SHIFT_PERCPU_PTR’
+ #define per_cpu_ptr(ptr, cpu) SHIFT_PERCPU_PTR((ptr), per_cpu_offset((cpu)))
+                               ^
+include/linux/percpu.h:148:55: note: in expansion of macro ‘per_cpu_offset’
+ #define per_cpu_ptr(ptr, cpu) SHIFT_PERCPU_PTR((ptr), per_cpu_offset((cpu)))
+                                                       ^
+kernel/workqueue.c:494:11: note: in expansion of macro ‘per_cpu_ptr’
+    return per_cpu_ptr(wq->cpu_wq.pcpu, cpu);
+           ^
+  CC      security/selinux/nlmsgtab.o
+  CC      kernel/pid.o
+  CC      mm/pagewalk.o
+  CC      security/selinux/netif.o
+  CC      mm/pgtable-generic.o
+  CC      fs/sync.o
+  CC      mm/page_alloc.o
+  CC      security/selinux/netnode.o
+  CC      kernel/rcupdate.o
+mm/page_alloc.c: In function ‘__alloc_pages_slowpath’:
+mm/page_alloc.c:2168:7: warning: unused variable ‘deferred_compaction’ [-Wunused-variable]
+  bool deferred_compaction = false;
+       ^
+  CC      kernel/extable.o
+  CC      fs/utimes.o
+  CC      security/selinux/netport.o
+  CC      kernel/posix-timers.o
+  CC      fs/fs_struct.o
+  CC      security/selinux/ss/ebitmap.o
+  CC      fs/statfs.o
+  CC      kernel/kthread.o
+  CC      security/selinux/ss/sidtab.o
+  CC      fs/buffer.o
+  CC      kernel/wait.o
+  CC      security/selinux/ss/avtab.o
+  CC      kernel/posix-cpu-timers.o
+  CC      security/selinux/ss/policydb.o
+  CC      mm/bounce.o
+  CC      kernel/mutex.o
+  CC      kernel/hrtimer.o
+  CC      mm/page_io.o
+  CC      fs/bio.o
+  CC      mm/swap_state.o
+  CC      mm/swapfile.o
+  CC      security/selinux/ss/services.o
+  CC      kernel/rwsem.o
+  CC      kernel/nsproxy.o
+  CC      fs/block_dev.o
+  CC      kernel/srcu.o
+  CC      mm/thrash.o
+  CC      kernel/semaphore.o
+  CC      mm/dmapool.o
+  CC      kernel/ksysfs.o
+  CC      security/selinux/ss/conditional.o
+  CC      fs/direct-io.o
+  CC      kernel/pm_qos_params.o
+  CC      mm/ashmem.o
+  CC      security/selinux/ss/mls.o
+  CC      kernel/sched_clock.o
+  CC      mm/compaction.o
+  CC      kernel/cred.o
+  CC      fs/mpage.o
+  CC      security/selinux/ss/status.o
+  CC      mm/ksm.o
+  CC      kernel/async.o
+  CC      fs/ioprio.o
+  LD      security/selinux/selinux.o
+  LD      security/selinux/built-in.o
+  CC      security/commoncap.o
+  CC      kernel/groups.o
+  CC      fs/debugfs/inode.o
+  CC      security/min_addr.o
+  CC      mm/slqb.o
+  CC      kernel/freezer.o
+  CC      security/security.o
+  LD      fs/debugfs/debugfs.o
+  LD      fs/debugfs/built-in.o
+  CC      fs/devpts/inode.o
+  CC      kernel/sysctl_check.o
+  LD      fs/devpts/devpts.o
+  LD      fs/devpts/built-in.o
+  CC      fs/ecryptfs/dentry.o
+  CC      fs/ecryptfs/file.o
+  CC      security/capability.o
+  CC      kernel/stacktrace.o
+  CC      mm/migrate.o
+  CC      kernel/irq/handle.o
+  CC      fs/ecryptfs/inode.o
+  CC      kernel/irq/manage.o
+  CC      security/lsm_audit.o
+  CC      mm/memcontrol.o
+  CC      fs/ecryptfs/main.o
+  LD      security/built-in.o
+  CC      crypto/api.o
+  LD      kernel/irq/built-in.o
+  CC      kernel/power/main.o
+  CC      fs/ecryptfs/super.o
+  CC      kernel/power/console.o
+  CC      fs/ecryptfs/mmap.o
+  CC      crypto/scatterwalk.o
+  CC      kernel/power/process.o
+  CC      fs/ecryptfs/read_write.o
+  CC      crypto/ablkcipher.o
+  CC      kernel/power/suspend.o
+  CC      fs/ecryptfs/crypto.o
+  CC      kernel/power/wakelock.o
+  CC      crypto/blkcipher.o
+  CC      fs/ecryptfs/keystore.o
+  CC      mm/page_cgroup.o
+  CC      mm/cma.o
+  CC      kernel/power/userwakelock.o
+  CC      crypto/ahash.o
+  CC      kernel/power/earlysuspend.o
+  CC      fs/ecryptfs/messaging.o
+  CC      crypto/shash.o
+  LD      mm/built-in.o
+  CC      block/elevator.o
+  CC      kernel/power/fbearlysuspend.o
+  CC      fs/ecryptfs/miscdev.o
+  LD      kernel/power/built-in.o
+  CC      kernel/time/timekeeping.o
+  CC      crypto/algboss.o
+  CC      fs/ecryptfs/kthread.o
+  CC      fs/ecryptfs/debug.o
+  CC      block/blk-core.o
+  LD      crypto/crypto_algapi.o
+  CC      crypto/aead.o
+  LD      fs/ecryptfs/ecryptfs.o
+  LD      fs/ecryptfs/built-in.o
+  CC      kernel/time/clocksource.o
+  CC      fs/exfat/exfat.o
+  CC      kernel/time/timer_list.o
+  LD      crypto/crypto_blkcipher.o
+  CC      crypto/eseqiv.o
+  LD      crypto/crypto_hash.o
+  LD      crypto/cryptomgr.o
+  CC      crypto/hmac.o
+  CC      kernel/time/posix-clock.o
+  CC      crypto/ccm.o
+  CC      kernel/time/tick-common.o
+  CC      block/blk-tag.o
+  CC      kernel/time/tick-broadcast.o
+  CC      crypto/authenc.o
+  CC      kernel/time/tick-oneshot.o
+  CC      block/blk-sysfs.o
+  CC      crypto/authencesn.o
+  CC      kernel/time/tick-sched.o
+  CC      block/blk-flush.o
+  CC      fs/exfat/exfat_api.o
+  LD      kernel/time/built-in.o
+  CC      kernel/trace/trace_clock.o
+  LD      crypto/crypto.o
+  LD      crypto/built-in.o
+  CC      drivers/barcode_emul/barcode_emul_ice4.o
+  CC      kernel/trace/ring_buffer.o
+  CC      fs/exfat/exfat_blkdev.o
+  CC      block/blk-settings.o
+  CC      fs/exfat/exfat_cache.o
+  LD      drivers/barcode_emul/built-in.o
+  CC      drivers/base/dd.o
+  CC      fs/exfat/exfat_data.o
+  CC      block/blk-ioc.o
+  CC      drivers/base/cpu.o
+  CC      fs/exfat/exfat_nls.o
+  CC      drivers/base/power/main.o
+  CC      block/blk-map.o
+  CC      fs/exfat/exfat_super.o
+  CC      kernel/trace/trace.o
+  CC      block/blk-exec.o
+  CC      drivers/base/power/wakeup.o
+  CC      block/blk-merge.o
+  LD      fs/exfat/exfat_core.o
+  LD      fs/exfat/exfat_fs.o
+  LD      fs/exfat/built-in.o
+  CC      drivers/base/power/runtime.o
+  CC      fs/ext2/balloc.o
+  CC      block/blk-softirq.o
+  CC      block/blk-timeout.o
+  CC      fs/ext2/dir.o
+  LD      drivers/base/power/built-in.o
+  CC      drivers/base/firmware_class.o
+  CC      block/blk-iopoll.o
+  CC      fs/ext2/file.o
+  CC      drivers/base/sync.o
+  CC      kernel/trace/trace_output.o
+  CC      fs/ext2/ialloc.o
+  CC      block/blk-lib.o
+  CC      fs/ext2/inode.o
+  CC      block/ioctl.o
+  CC      drivers/base/sw_sync.o
+  CC      kernel/trace/trace_stat.o
+  LD      drivers/base/built-in.o
+  CC      drivers/battery/samsung_battery.o
+  CC      block/genhd.o
+  CC      fs/ext2/ioctl.o
+  CC      kernel/trace/trace_printk.o
+  CC      fs/ext2/namei.o
+  CC      kernel/trace/trace_sched_switch.o
+  CC      fs/ext2/super.o
+  CC      kernel/trace/trace_sched_wakeup.o
+  CC      drivers/battery/max17047_fuelgauge.o
+  CC      block/scsi_ioctl.o
+  CC      kernel/trace/trace_nop.o
+  CC      fs/ext2/xattr.o
+  CC      drivers/battery/max77693_charger.o
+  CC      kernel/trace/blktrace.o
+  CC      block/noop-iosched.o
+drivers/battery/max77693_charger.c: In function ‘check_charger_unlock_state’:
+drivers/battery/max77693_charger.c:266:21: warning: unused variable ‘i2c’ [-Wunused-variable]
+  struct i2c_client *i2c = chg_data->max77693->i2c;
+                     ^
+drivers/battery/max77693_charger.c: At top level:
+drivers/battery/max77693_charger.c:437:13: warning: ‘max77693_set_buck’ defined but not used [-Wunused-function]
+ static void max77693_set_buck(struct max77693_charger_data *chg_data,
+             ^
+  CC      kernel/trace/trace_events.o
+  CC      block/deadline-iosched.o
+  CC      fs/ext2/xattr_security.o
+  LD      fs/ext2/ext2.o
+  LD      fs/ext2/built-in.o
+  CC      drivers/battery/charge_control.o
+  CC      fs/ext4/balloc.o
+  CC      block/row-iosched.o
+  LD      drivers/battery/built-in.o
+  CC      drivers/block/brd.o
+  CC      kernel/trace/trace_export.o
+  CC      block/cfq-iosched.o
+  CC      fs/ext4/bitmap.o
+  CC      drivers/block/loop.o
+  CC      fs/ext4/dir.o
+  CC      kernel/trace/trace_events_filter.o
+  CC      fs/ext4/file.o
+  CC      fs/ext4/fsync.o
+  LD      drivers/block/built-in.o
+  CC      drivers/bluetooth/hci_ldisc.o
+  CC      kernel/trace/power-traces.o
+  CC      block/sio-iosched.o
+  CC      fs/ext4/ialloc.o
+  LD      kernel/trace/built-in.o
+  CC      block/bfq-iosched.o
+  CC      kernel/futex.o
+  CC      drivers/bluetooth/hci_h4.o
+  LD      drivers/bluetooth/hci_uart.o
+  LD      drivers/bluetooth/built-in.o
+  CC      drivers/char/mem.o
+  CC      fs/ext4/inode.o
+  CC      drivers/char/random.o
+  CC      kernel/rtmutex.o
+  CC      drivers/char/diag/diagchar_core.o
+  CC      kernel/uid16.o
+  CC      kernel/module.o
+  CC      block/vr-iosched.o
+  CC      drivers/char/diag/diagfwd.o
+  CC      block/zen-iosched.o
+  CC      fs/ext4/page-io.o
+  CC      block/fifo-iosched.o
+  LD      block/built-in.o
+  CC      sound/sound_core.o
+  CC      fs/ext4/ioctl.o
+  CC      sound/core/hwdep.o
+  CC      fs/ext4/namei.o
+  CC      drivers/char/diag/diagfwd_hsic.o
+  CC      sound/core/pcm.o
+  LD      drivers/char/diag/diagchar.o
+  LD      drivers/char/diag/built-in.o
+  CC      drivers/char/hw_random/core.o
+  CC      kernel/kallsyms.o
+  LD      drivers/char/hw_random/rng-core.o
+  LD      drivers/char/hw_random/built-in.o
+  CC      drivers/char/s3c_mem.o
+  CC      sound/core/pcm_native.o
+  CC      kernel/cgroup.o
+  CC      fs/ext4/super.o
+  LD      drivers/char/built-in.o
+  CC      drivers/cpufreq/cpufreq.o
+In file included from drivers/cpufreq/cpufreq.c:22:0:
+drivers/cpufreq/cpufreq.c:659:22: warning: ‘available_freqs’ defined but not used [-Wunused-variable]
+ cpufreq_freq_attr_ro(available_freqs);
+                      ^
+include/linux/cpufreq.h:291:25: note: in definition of macro ‘cpufreq_freq_attr_ro’
+ static struct freq_attr _name =   \
+                         ^
+  CC      drivers/cpufreq/cpu-boost.o
+  CC      drivers/cpufreq/cpufreq_ondemand.o
+  CC      sound/core/pcm_lib.o
+drivers/cpufreq/cpufreq_ondemand.c:1013:12: warning: ‘cpufreq_ondemand_flexrate_do’ defined but not used [-Wunused-function]
+ static int cpufreq_ondemand_flexrate_do(struct cpufreq_policy *policy,
+            ^
+  CC      drivers/cpufreq/cpufreq_conservative.o
+  CC      kernel/cgroup_freezer.o
+  CC      kernel/cgroup_timer_slack.o
+  CC      drivers/cpufreq/cpufreq_interactive.o
+  CC      kernel/utsname.o
+  CC      sound/core/pcm_timer.o
+  CC      kernel/user_namespace.o
+  CC      sound/core/pcm_misc.o
+  CC      kernel/pid_namespace.o
+  CC      drivers/cpufreq/cpufreq_adaptive.o
   GZIP    kernel/config_data.gz
+  CC      fs/ext4/symlink.o
+  CC      kernel/res_counter.o
+  CC      sound/core/pcm_memory.o
+  CC      drivers/cpufreq/cpufreq_pegasusq.o
+  CC      fs/ext4/hash.o
+  CC      kernel/stop_machine.o
+drivers/cpufreq/cpufreq_pegasusq.c:1290:30: warning: ‘pm_notifier’ defined but not used [-Wunused-variable]
+ static struct notifier_block pm_notifier = {
+                              ^
+  CC      sound/core/rawmidi.o
+  CC      fs/ext4/resize.o
+  CC      kernel/audit.o
+  CC      drivers/cpufreq/cpufreq_hotplug.o
+  CC      fs/ext4/extents.o
+  CC      drivers/cpufreq/cpufreq_pegasusqplus.o
+  CC      sound/core/timer.o
+drivers/cpufreq/cpufreq_pegasusqplus.c: In function ‘dbs_check_cpu’:
+drivers/cpufreq/cpufreq_pegasusqplus.c:1301:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  int hp_s_delay = this_dbs_info->flex_hotplug_sample_delay;
+  ^
+drivers/cpufreq/cpufreq_pegasusqplus.c: In function ‘cpufreq_ondemand_flexrate_request’:
+drivers/cpufreq/cpufreq_pegasusqplus.c:1620:7: warning: unused variable ‘now’ [-Wunused-variable]
+  bool now = 0;
+       ^
+drivers/cpufreq/cpufreq_pegasusqplus.c: At top level:
+drivers/cpufreq/cpufreq_pegasusqplus.c:1742:30: warning: ‘pm_notifier’ defined but not used [-Wunused-variable]
+ static struct notifier_block pm_notifier = {
+                              ^
+  CC      kernel/auditfilter.o
+  CC      drivers/cpufreq/cpufreq_yankasusq.o
+  CC      kernel/auditsc.o
+drivers/cpufreq/cpufreq_yankasusq.c:1515:30: warning: ‘pm_notifier’ defined but not used [-Wunused-variable]
+ static struct notifier_block pm_notifier = {
+                              ^
+  CC      sound/core/sound.o
+  CC      sound/core/init.o
+  CC      fs/ext4/ext4_jbd2.o
+  CC      drivers/cpufreq/cpufreq_lulzactiveq.o
+kernel/auditsc.c: In function ‘audit_alloc’:
+kernel/auditsc.c:681:7: warning: ‘state’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+    if (state == AUDIT_RECORD_CONTEXT)
+       ^
+kernel/auditsc.c:675:21: note: ‘state’ was declared here
+  enum audit_state   state;
+                     ^
+  CC      fs/ext4/migrate.o
+  CC      sound/core/memory.o
+  CC      kernel/audit_watch.o
+  CC      sound/core/info.o
+  CC      fs/ext4/mballoc.o
+  CC      drivers/cpufreq/cpufreq_zzmoove.o
+  CC      kernel/audit_tree.o
+  CC      sound/core/control.o
+  CC      kernel/rcutree.o
+  CC      sound/core/misc.o
+  CC      drivers/cpufreq/cpufreq_intelliactive.o
+  CC      sound/core/device.o
+drivers/cpufreq/cpufreq_intelliactive.c: In function ‘show_target_loads’:
+drivers/cpufreq/cpufreq_intelliactive.c:867:6: warning: operation on ‘ret’ may be undefined [-Wsequence-point]
+  ret += sprintf(buf + --ret, "\n");
+      ^
+drivers/cpufreq/cpufreq_intelliactive.c: In function ‘show_above_hispeed_delay’:
+drivers/cpufreq/cpufreq_intelliactive.c:910:6: warning: operation on ‘ret’ may be undefined [-Wsequence-point]
+  ret += sprintf(buf + --ret, "\n");
+      ^
+  CC      sound/core/jack.o
+  CC      fs/ext4/block_validity.o
+  CC      drivers/cpufreq/cpufreq_intellidemand.o
+  LD      sound/core/snd.o
+  LD      sound/core/snd-hwdep.o
+  LD      sound/core/snd-timer.o
+  LD      sound/core/snd-pcm.o
+  LD      sound/core/snd-page-alloc.o
+  LD      sound/core/snd-rawmidi.o
+  LD      sound/core/built-in.o
+  CC      kernel/relay.o
+drivers/cpufreq/cpufreq_intellidemand.c: In function ‘cpufreq_gov_dbs_exit’:
+drivers/cpufreq/cpufreq_intellidemand.c:2009:26: warning: unused variable ‘this_dbs_info’ [-Wunused-variable]
+   struct cpu_dbs_info_s *this_dbs_info =
+                          ^
+  CC      fs/ext4/move_extent.o
+  CC      drivers/cpufreq/cpufreq_wheatley.o
+  CC      kernel/utsname_sysctl.o
+  CC      fs/ext4/mmp.o
+  CC      kernel/tracepoint.o
+  CC      drivers/cpufreq/cpufreq_darkness.o
+  CC      sound/soc/soc-core.o
+  CC      fs/ext4/xattr.o
+  CC      drivers/cpufreq/cpufreq_abyssplug.o
+  CC      kernel/sched_cpupri.o
   IKCFG   kernel/config_data.h
   CC      kernel/configs.o
+  CC      drivers/cpufreq/cpufreq_abyssplugv2.o
   LD      kernel/built-in.o
+  CC      sound/usb/card.o
+  CC      fs/ext4/xattr_user.o
+  CC      drivers/cpufreq/cpufreq_nightmare.o
+  CC      fs/ext4/xattr_trusted.o
+  CC      sound/usb/mixer.o
+  CC      fs/ext4/xattr_security.o
+  LD      fs/ext4/ext4.o
+  LD      fs/ext4/built-in.o
+  CC      sound/soc/soc-dapm.o
+  CC      fs/f2fs/dir.o
+  CC      drivers/cpufreq/cpufreq_smartassH3.o
+  CC      fs/f2fs/file.o
+  CC      sound/usb/mixer_quirks.o
+  CC      drivers/cpufreq/cpufreq_lionheart.o
+  CC      drivers/cpufreq/cpufreq_dancedance.o
+  CC      sound/usb/proc.o
+  CC      fs/f2fs/inode.o
+  CC      sound/usb/quirks.o
+  CC      drivers/cpufreq/cpufreq_asswax.o
+  CC      sound/soc/soc-jack.o
+  CC      fs/f2fs/namei.o
+  CC      sound/usb/format.o
+sound/soc/soc-jack.c: In function ‘snd_soc_jack_report’:
+sound/soc/soc-jack.c:88:6: warning: unused variable ‘enable’ [-Wunused-variable]
+  int enable;
+      ^
+sound/soc/soc-jack.c:87:27: warning: unused variable ‘pin’ [-Wunused-variable]
+  struct snd_soc_jack_pin *pin;
+                           ^
+  CC      drivers/cpufreq/cpufreq_badass.o
+  CC      sound/soc/soc-cache.o
+  CC      fs/f2fs/hash.o
+  CC      sound/usb/endpoint.o
+  CC      fs/f2fs/super.o
+  LD      drivers/cpufreq/built-in.o
+  CC      drivers/cpuidle/cpuidle.o
+  CC      sound/usb/urb.o
+  CC      sound/soc/soc-utils.o
+  CC      drivers/cpuidle/governors/menu.o
+drivers/cpuidle/governors/menu.c:128:12: warning: ‘get_loadavg’ defined but not used [-Wunused-function]
+ static int get_loadavg(void)
+            ^
+  LD      drivers/cpuidle/governors/built-in.o
+  CC      sound/usb/pcm.o
+  LD      drivers/cpuidle/built-in.o
+  CC      drivers/crypto/ace.o
+  CC      sound/soc/codecs/wm_hubs.o
+drivers/crypto/ace.c: In function ‘s5p_ace_aes_crypt_dma_start’:
+drivers/crypto/ace.c:793:1: warning: label ‘run’ defined but not used [-Wunused-label]
+ run:
+ ^
+drivers/crypto/ace.c: At top level:
+drivers/crypto/ace.c:610:13: warning: ‘s5p_ace_aes_engine_wait’ defined but not used [-Wunused-function]
+ static void s5p_ace_aes_engine_wait(struct s5p_ace_aes_ctx *sctx,
+             ^
+  CC      fs/f2fs/inline.o
+  CC      sound/usb/helper.o
+  CC      sound/soc/codecs/wm8994.o
+  CC      sound/usb/clock.o
+  CC      fs/f2fs/checkpoint.o
+  LD      drivers/crypto/built-in.o
+  CC      drivers/gpio/gpiolib.o
+sound/soc/codecs/wm8994.c: In function ‘wm8994_readable’:
+sound/soc/codecs/wm8994.c:140:22: warning: unused variable ‘wm8994’ [-Wunused-variable]
+  struct wm8994_priv *wm8994 = snd_soc_codec_get_drvdata(codec);
+                      ^
+sound/soc/codecs/wm8994.c: In function ‘wm8994_codec_resume’:
+sound/soc/codecs/wm8994.c:3186:17: warning: unused variable ‘control’ [-Wunused-variable]
+  struct wm8994 *control = codec->control_data;
+                 ^
+sound/soc/codecs/wm8994.c: At top level:
+sound/soc/codecs/wm8994.c:2343:20: warning: ‘wm8994_fll_locked_irq’ defined but not used [-Wunused-function]
+ static irqreturn_t wm8994_fll_locked_irq(int irq, void *data)
+                    ^
+sound/soc/codecs/wm8994.c:3843:20: warning: ‘wm8994_fifo_error’ defined but not used [-Wunused-function]
+ static irqreturn_t wm8994_fifo_error(int irq, void *data)
+                    ^
+sound/soc/codecs/wm8994.c:3852:20: warning: ‘wm8994_temp_warn’ defined but not used [-Wunused-function]
+ static irqreturn_t wm8994_temp_warn(int irq, void *data)
+                    ^
+sound/soc/codecs/wm8994.c:3861:20: warning: ‘wm8994_temp_shut’ defined but not used [-Wunused-function]
+ static irqreturn_t wm8994_temp_shut(int irq, void *data)
+                    ^
+  CC      sound/usb/midi.o
+  CC      fs/f2fs/gc.o
+  CC      drivers/gpio/secgpio_dvs.o
+  CC      sound/soc/codecs/wm8994-tables.o
+  CC      fs/f2fs/data.o
+  LD      sound/usb/snd-usb-audio.o
+  LD      sound/usb/snd-usbmidi-lib.o
+  LD      sound/usb/built-in.o
+  LD      drivers/gpio/built-in.o
+  CC      sound/last.o
+  CC      drivers/gpu/ion/ion.o
+  CC      sound/soc/codecs/wm8958-dsp2.o
+  CC      net/socket.o
+  CC      drivers/gpu/ion/exynos/exynos_ion.o
+  CC      fs/f2fs/node.o
+  CC      sound/soc/codecs/boeffla_sound.o
+drivers/gpu/ion/exynos/exynos_ion.c:864:13: warning: ‘flush_local_cache_all’ defined but not used [-Wunused-function]
+ static void flush_local_cache_all(void *p)
+             ^
+sound/soc/codecs/boeffla_sound.c: In function ‘eq_gains_store_0’:
+sound/soc/codecs/boeffla_sound.c:1701:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+sound/soc/codecs/boeffla_sound.c: In function ‘eq_gains_store_1’:
+sound/soc/codecs/boeffla_sound.c:1743:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+sound/soc/codecs/boeffla_sound.c: In function ‘eq_gains_store_2’:
+sound/soc/codecs/boeffla_sound.c:1785:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+sound/soc/codecs/boeffla_sound.c: In function ‘eq_gains_store_3’:
+sound/soc/codecs/boeffla_sound.c:1827:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+sound/soc/codecs/boeffla_sound.c: In function ‘eq_gains_store_4’:
+sound/soc/codecs/boeffla_sound.c:1870:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+net/socket.c: In function ‘sys_socket’:
+net/socket.c:392:6: warning: ‘sock’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  int fd = sock_alloc_file(sock, &newfile, flags);
+      ^
+net/socket.c:1305:17: note: ‘sock’ was declared here
+  struct socket *sock;
+                 ^
+  LD      drivers/gpu/ion/exynos/built-in.o
+  LD      drivers/gpu/ion/built-in.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_osk_wait_queue.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_osk_low_level_mem.o
+  CC      net/bluetooth/af_bluetooth.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_osk_misc.o
+  LD      sound/soc/codecs/snd-soc-wm8994.o
+  LD      sound/soc/codecs/snd-soc-wm-hubs.o
+  LD      sound/soc/codecs/built-in.o
+  CC      fs/f2fs/segment.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_osk_notification.o
+  CC      sound/soc/samsung/audss.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_osk_pm.o
+  CC      net/bluetooth/hci_core.o
+  CC      sound/soc/samsung/i2s.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_pmu_power_up_down.o
+  CC      drivers/gpu/mali400/r3p2/mali/platform/pegasus-m400/exynos4.o
+  CC      drivers/gpu/mali400/r3p2/mali/linux/mali_sync_user.o
+  CC      sound/soc/samsung/idma.o
+  LD      drivers/gpu/mali400/r3p2/mali/mali.o
+  LD      drivers/gpu/mali400/r3p2/mali/built-in.o
+  CC      drivers/gpu/mali400/r3p2/ump/linux/ump_osk_low_level_mem.o
+  CC      fs/f2fs/recovery.o
+drivers/gpu/mali400/r3p2/ump/linux/ump_osk_low_level_mem.c:265:13: warning: ‘_ump_osk_msync_with_virt’ defined but not used [-Wunused-function]
+ static void _ump_osk_msync_with_virt(ump_dd_mem * mem, ump_uk_msync_op op, u32 start, u32 address, u32 size)
+             ^
+  CC      sound/soc/samsung/dma.o
+  LD      drivers/gpu/mali400/r3p2/ump/ump.o
+  LD      drivers/gpu/mali400/r3p2/ump/built-in.o
+  LD      drivers/gpu/built-in.o
+  CC      fs/f2fs/debug.o
+  CC      net/bluetooth/hci_conn.o
+  CC      drivers/gud20/MobiCoreDriver/logging.o
+  CC      sound/soc/samsung/t0_wm1811.o
+net/bluetooth/hci_conn.c: In function ‘hci_le_start_enc’:
+net/bluetooth/hci_conn.c:221:30: warning: argument to ‘sizeof’ in ‘memcpy’ call is the same pointer type ‘__u8 *’ as the destination; expected ‘__u8’ or an explicit length [-Wsizeof-pointer-memaccess]
+  memcpy(cp.rand, rand, sizeof(rand));
+                              ^
+net/bluetooth/hci_conn.c: In function ‘hci_le_ltk_reply’:
+net/bluetooth/hci_conn.c:237:28: warning: argument to ‘sizeof’ in ‘memcpy’ call is the same pointer type ‘__u8 *’ as the destination; expected ‘__u8’ or an explicit length [-Wsizeof-pointer-memaccess]
+  memcpy(cp.ltk, ltk, sizeof(ltk));
+                            ^
+net/bluetooth/hci_conn.c: In function ‘hci_connect’:
+net/bluetooth/hci_conn.c:511:24: warning: unused variable ‘ie’ [-Wunused-variable]
+  struct inquiry_entry *ie;
+                        ^
+sound/soc/samsung/t0_wm1811.c: In function ‘t0_wm1811_aif2_hw_params’:
+sound/soc/samsung/t0_wm1811.c:823:24: warning: unused variable ‘codec’ [-Wunused-variable]
+  struct snd_soc_codec *codec = rtd->codec;
+                        ^
+  CC      drivers/gud20/MobiCoreDriver/ops.o
+sound/soc/samsung/t0_wm1811.c: In function ‘t0_card_resume_pre’:
+sound/soc/samsung/t0_wm1811.c:1471:24: warning: unused variable ‘codec’ [-Wunused-variable]
+  struct snd_soc_codec *codec = card->rtd->codec;
+                        ^
+sound/soc/samsung/t0_wm1811.c: At top level:
+sound/soc/samsung/t0_wm1811.c:407:12: warning: ‘set_ext_micbias’ defined but not used [-Wunused-function]
+ static int set_ext_micbias(struct snd_soc_dapm_widget *w,
+            ^
+sound/soc/samsung/t0_wm1811.c:430:12: warning: ‘set_ext_submicbias’ defined but not used [-Wunused-function]
+ static int set_ext_submicbias(struct snd_soc_dapm_widget *w,
+            ^
+  CC      fs/f2fs/xattr.o
+  CC      drivers/gud20/MobiCoreDriver/mem.o
+  CC      sound/soc/samsung/srp_alp/srp_alp.o
+  LD      fs/f2fs/f2fs.o
+  LD      fs/f2fs/built-in.o
+  CC      fs/fat/fatent.o
+  CC      net/bluetooth/hci_event.o
+  CC      drivers/gud20/MobiCoreDriver/pm.o
+  CC      drivers/gud20/MobiCoreDriver/main.o
+  LD      sound/soc/samsung/srp_alp/built-in.o
+  LD      sound/soc/samsung/snd-soc-s3c24xx.o
+  LD      sound/soc/samsung/snd-soc-i2s.o
+  LD      sound/soc/samsung/snd-soc-audss.o
+  LD      sound/soc/samsung/snd-soc-idma.o
+  LD      sound/soc/samsung/snd-soc-t0-wm1811.o
+  CC      fs/fat/file.o
+  LD      sound/soc/samsung/built-in.o
+  LD      sound/soc/snd-soc-core.o
+  LD      sound/soc/built-in.o
+  LD      sound/soundcore.o
+  LD      sound/built-in.o
+  CC      net/bluetooth/mgmt.o
+  CC      drivers/gud20/MobiCoreKernelApi/main.o
+  CC      fs/fat/inode.o
+  CC      drivers/gud20/MobiCoreKernelApi/clientlib.o
+  CC      net/bluetooth/hci_sock.o
+  CC      drivers/gud20/MobiCoreKernelApi/connection.o
+  LD      fs/fat/vfat.o
+  LD      fs/fat/msdos.o
+  LD      fs/fat/fat.o
+  LD      fs/fat/built-in.o
+  CC      fs/fuse/dev.o
+  LD      drivers/gud20/mcKernelApi.o
+  LD      drivers/gud20/mcDrvModule.o
+  LD      drivers/gud20/built-in.o
+  CC      drivers/hid/hid-lg.o
+  AS      arch/arm/lib/copy_page.o
+  AS      arch/arm/lib/csumpartialcopyuser.o
+  AR      arch/arm/lib/lib.a
+  CC      net/bluetooth/hci_sysfs.o
+  CC      drivers/hid/hid-debug.o
+  CC      lib/audit.o
+  CC      lib/ioremap.o
+  CC      lib/is_single_threaded.o
+  CC      drivers/hid/hid-core.o
+  CC      fs/fuse/dir.o
+  CC      net/bluetooth/lib.o
+  CC      lib/klist.o
+  CC      lib/kobject_uevent.o
+  CC      net/bluetooth/l2cap_core.o
+  CC      fs/fuse/file.o
+  CC      drivers/hid/hidraw.o
+  CC      lib/rwsem.o
+  CC      lib/show_mem.o
+  CC      drivers/hid/uhid.o
+  CC      lib/vsprintf.o
+  CC      drivers/hid/hid-axff.o
+  CC      fs/fuse/inode.o
+  CC      drivers/hid/hid-apple.o
+  CC      drivers/hid/hid-dr.o
+  CC      fs/fuse/control.o
+  CC      drivers/hid/hid-emsff.o
+  CC      net/bluetooth/l2cap_sock.o
+fs/fuse/control.c: In function ‘fuse_conn_max_background_write’:
+fs/fuse/control.c:134:23: warning: ‘val’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+    fc->max_background = val;
+                       ^
+fs/fuse/control.c: In function ‘fuse_conn_congestion_threshold_write’:
+fs/fuse/control.c:171:29: warning: ‘val’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+    fc->congestion_threshold = val;
+                             ^
+  LD      drivers/hid/hid-logitech.o
+  CC      drivers/hid/hid-magicmouse.o
+  LD      fs/fuse/fuse.o
+  LD      fs/fuse/built-in.o
+  CC      fs/jbd2/transaction.o
+  LD      lib/built-in.o
+  AR      lib/lib.a
+  CC      fs/jbd2/commit.o
+  CC      drivers/hid/hid-multitouch.o
+  CC      net/bluetooth/smp.o
+  CC      drivers/hid/hid-ntrig.o
+  CC      fs/jbd2/recovery.o
+  CC      net/bluetooth/sco.o
+  CC      fs/jbd2/checkpoint.o
+  CC      drivers/hid/hid-prodikeys.o
+  CC      fs/jbd2/revoke.o
+  CC      net/bluetooth/bnep/core.o
+  CC      fs/jbd2/journal.o
+  CC      drivers/hid/hid-pl.o
+  CC      net/core/sock.o
+  CC      drivers/hid/hid-picolcd.o
+  CC      net/bluetooth/bnep/sock.o
+  CC      net/bluetooth/bnep/netdev.o
+fs/jbd2/journal.c: In function ‘jbd2_journal_init_inode’:
+fs/jbd2/journal.c:1051:5: warning: ‘blocknr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  bh = __getblk(journal->j_dev, blocknr, journal->j_blocksize);
+     ^
+fs/jbd2/journal.c: In function ‘jbd2_journal_get_descriptor_buffer’:
+fs/jbd2/journal.c:736:5: warning: ‘blocknr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  bh = __getblk(journal->j_dev, blocknr, journal->j_blocksize);
+     ^
+  CC      drivers/hid/hid-roccat.o
+  LD      net/bluetooth/bnep/bnep.o
+  LD      net/bluetooth/bnep/built-in.o
+  CC      net/bluetooth/hidp/core.o
+  LD      fs/jbd2/jbd2.o
+  LD      fs/jbd2/built-in.o
+  CC      drivers/hid/hid-roccat-common.o
+  CC      fs/notify/fsnotify.o
+  CC      net/core/request_sock.o
+  CC      drivers/hid/hid-roccat-arvo.o
+  CC      fs/notify/notification.o
+  CC      drivers/hid/hid-roccat-kone.o
+  CC      net/core/skbuff.o
+  CC      net/bluetooth/hidp/sock.o
+  CC      fs/notify/group.o
+  CC      fs/notify/inode_mark.o
+  CC      drivers/hid/hid-roccat-koneplus.o
+  LD      net/bluetooth/hidp/hidp.o
+  LD      net/bluetooth/hidp/built-in.o
+  CC      net/bluetooth/rfcomm/core.o
+  CC      fs/notify/mark.o
+  CC      drivers/hid/hid-roccat-kovaplus.o
+  CC      fs/notify/vfsmount_mark.o
+  CC      drivers/hid/hid-roccat-pyra.o
+  CC      fs/notify/inotify/inotify_fsnotify.o
+  CC      fs/notify/inotify/inotify_user.o
+  CC      drivers/hid/hid-samsung.o
+  LD      fs/notify/inotify/built-in.o
+  LD      fs/notify/built-in.o
+  CC      net/core/iovec.o
+  CC      drivers/hid/hid-sjoy.o
+  CC      fs/partitions/check.o
+  CC      net/bluetooth/rfcomm/sock.o
+  CC      drivers/hid/hid-sony.o
+  CC      drivers/hid/hid-gaff.o
+  CC      net/core/datagram.o
+  CC      fs/partitions/msdos.o
+  CC      drivers/hid/hid-tmff.o
+  CC      net/bluetooth/rfcomm/tty.o
+  CC      drivers/hid/hid-zpff.o
+  CC      fs/partitions/efi.o
+  CC      drivers/hid/usbhid/hid-core.o
+  CC      net/core/stream.o
+  LD      net/bluetooth/rfcomm/rfcomm.o
+  LD      net/bluetooth/rfcomm/built-in.o
+  LD      net/bluetooth/bluetooth.o
+  LD      net/bluetooth/built-in.o
+  CC      net/dns_resolver/dns_key.o
+  LD      fs/partitions/built-in.o
+  CC      fs/proc/task_mmu.o
+  CC      net/dns_resolver/dns_query.o
+  CC      net/core/scm.o
+  LD      net/dns_resolver/dns_resolver.o
+  LD      net/dns_resolver/built-in.o
+  CC      fs/proc/root.o
+  CC      net/ethernet/eth.o
+  LD      drivers/hid/usbhid/usbhid.o
+  LD      drivers/hid/usbhid/built-in.o
+  LD      drivers/hid/hid.o
+  LD      drivers/hid/built-in.o
+  CC      drivers/i2c/i2c-boardinfo.o
+  CC      fs/proc/base.o
+  CC      drivers/i2c/i2c-core.o
+  CC      net/core/gen_estimator.o
+  LD      net/ethernet/built-in.o
+  CC      net/ipv4/route.o
+  CC      net/core/net_namespace.o
+  CC      fs/proc/array.o
+  CC      drivers/i2c/i2c-dev.o
+  CC      net/core/sysctl_net_core.o
+  CC      fs/proc/loadavg.o
+  CC      drivers/i2c/algos/i2c-algo-bit.o
+  CC      fs/proc/meminfo.o
+  CC      net/core/dev.o
+  CC      fs/proc/stat.o
+  LD      drivers/i2c/algos/built-in.o
+  CC      net/ipv4/inetpeer.o
+  CC      drivers/i2c/busses/i2c-gpio.o
+  CC      fs/proc/uptime.o
+  CC      drivers/i2c/busses/i2c-s3c2410.o
+  CC      fs/proc/version.o
+  CC      fs/proc/namespaces.o
+  CC      net/ipv4/protocol.o
+  LD      drivers/i2c/busses/built-in.o
+  LD      drivers/i2c/built-in.o
+  CC      drivers/input/input.o
+  CC      fs/proc/proc_sysctl.o
+  CC      net/ipv4/ip_input.o
+  CC      fs/proc/proc_net.o
+  CC      net/ipv4/ip_fragment.o
+  CC      fs/proc/page.o
+  CC      drivers/input/ff-core.o
+  LD      fs/proc/proc.o
+  LD      fs/proc/built-in.o
+  CC      fs/ramfs/inode.o
+  CC      drivers/input/mousedev.o
+  LD      fs/ramfs/ramfs.o
+  LD      fs/ramfs/built-in.o
+  CC      net/ipv4/ip_forward.o
+  CC      fs/sdcardfs/dentry.o
+  CC      fs/sdcardfs/file.o
+  CC      drivers/input/evdev.o
+  CC      net/ipv4/ip_options.o
+  CC      net/core/ethtool.o
+  CC      fs/sdcardfs/inode.o
+  CC      drivers/input/keyboard/gpio_keys.o
+  CC      fs/sdcardfs/main.o
+  CC      net/ipv4/ip_output.o
+  CC      fs/sdcardfs/super.o
+  CC      drivers/input/keyboard/cypress/cypress-touchkey.o
+  CC      fs/sdcardfs/lookup.o
+  CC      net/core/dst.o
+  CC      fs/sdcardfs/mmap.o
+  CC      drivers/input/keyboard/cypress/issp_driver_routines.o
+  CC      fs/sdcardfs/packagelist.o
+  CC      net/core/neighbour.o
+  CC      drivers/input/keyboard/cypress/issp_main.o
+drivers/input/keyboard/cypress/issp_main.c: In function ‘ISSP_main’:
+drivers/input/keyboard/cypress/issp_main.c:651:16: warning: unused variable ‘flags’ [-Wunused-variable]
+  unsigned long flags;
+                ^
+  CC      net/ipv4/ip_sockglue.o
+  CC      fs/sdcardfs/derived_perm.o
+  CC      drivers/input/keyboard/cypress/issp_routines.o
+  LD      fs/sdcardfs/sdcardfs.o
+  LD      fs/sdcardfs/built-in.o
+  CC      fs/sysfs/inode.o
+  CC      fs/sysfs/file.o
+  CC      net/ipv4/inet_hashtables.o
+  LD      drivers/input/keyboard/cypress/built-in.o
+  LD      drivers/input/keyboard/built-in.o
+  CC      drivers/input/misc/keychord.o
+  CC      fs/sysfs/dir.o
+  CC      net/core/rtnetlink.o
+  CC      drivers/input/misc/uinput.o
+  CC      net/ipv4/inet_timewait_sock.o
+  CC      fs/sysfs/symlink.o
+  LD      drivers/input/misc/built-in.o
+  CC      drivers/input/touchscreen/wacom/wacom_i2c.o
+drivers/input/touchscreen/wacom/wacom_i2c.c: In function ‘wac_statecheck_work’:
+drivers/input/touchscreen/wacom/wacom_i2c.c:675:12: warning: unused variable ‘test’ [-Wunused-variable]
+  char buf, test[10];
+            ^
+drivers/input/touchscreen/wacom/wacom_i2c.c:674:11: warning: unused variable ‘i’ [-Wunused-variable]
+  int ret, i;
+           ^
+drivers/input/touchscreen/wacom/wacom_i2c.c: In function ‘wacom_i2c_probe’:
+drivers/input/touchscreen/wacom/wacom_i2c.c:1596:1: warning: label ‘err_create_device’ defined but not used [-Wunused-label]
+ err_create_device: 
+ ^
+  LD      fs/sysfs/built-in.o
+  CC      fs/eventpoll.o
+  CC      drivers/input/touchscreen/wacom/wacom_i2c_firm.o
+  CC      net/ipv4/inet_connection_sock.o
+drivers/input/touchscreen/wacom/wacom_i2c_firm.c: In function ‘wacom_i2c_init_firm_data’:
+drivers/input/touchscreen/wacom/wacom_i2c_firm.c:152:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i;
+      ^
+  CC      net/core/utils.o
+In file included from drivers/input/touchscreen/wacom/wacom_i2c_firm.c:20:0:
+drivers/input/touchscreen/wacom/wacom_i2c_firm.c: At top level:
+include/linux/wacom_i2c.h:376:30: warning: ‘wacom_feature_EMR’ defined but not used [-Wunused-variable]
+ static struct wacom_features wacom_feature_EMR = {
+                              ^
+  CC      drivers/input/touchscreen/wacom/wacom_i2c_func.o
+  CC      fs/anon_inodes.o
+In file included from drivers/input/touchscreen/wacom/wacom_i2c_func.c:20:0:
+include/linux/wacom_i2c.h:376:30: warning: ‘wacom_feature_EMR’ defined but not used [-Wunused-variable]
+ static struct wacom_features wacom_feature_EMR = {
+                              ^
+  CC      net/core/link_watch.o
+  CC      fs/signalfd.o
+  CC      net/ipv4/tcp.o
+  CC      drivers/input/touchscreen/wacom/wacom_i2c_flash.o
+In file included from drivers/input/touchscreen/wacom/wacom_i2c_flash.c:20:0:
+include/linux/wacom_i2c.h:376:30: warning: ‘wacom_feature_EMR’ defined but not used [-Wunused-variable]
+ static struct wacom_features wacom_feature_EMR = {
+                              ^
+  CC      fs/timerfd.o
+  LD      drivers/input/touchscreen/wacom/built-in.o
+  CC      drivers/input/touchscreen/mms152_ts.o
+  CC      net/core/filter.o
+  CC      fs/eventfd.o
+  CC      net/core/flow.o
+  CC      fs/aio.o
+  CC      net/core/net-sysfs.o
+  CC      net/ipv4/tcp_input.o
+  CC      fs/locks.o
+  LD      drivers/input/touchscreen/built-in.o
+  CC      drivers/input/keyreset.o
+  CC      net/core/fib_rules.o
+  LD      drivers/input/input-core.o
+  LD      drivers/input/built-in.o
+  CC      drivers/input/serio/serio.o
+  CC      drivers/input/serio/serport.o
+  CC      net/core/net-traces.o
+net/ipv4/tcp_input.c: In function ‘tcp_data_queue’:
+net/ipv4/tcp_input.c:4356:49: warning: array subscript is above array bounds [-Warray-bounds]
+     tp->selective_acks[i-1] = tp->selective_acks[i];
+                                                 ^
+  CC      drivers/input/serio/libps2.o
+  CC      fs/binfmt_misc.o
+  LD      net/core/built-in.o
+  LD      drivers/input/serio/built-in.o
+  CC      drivers/leds/leds-max77693.o
+  CC      net/ipv6/af_inet6.o
+  CC      fs/binfmt_elf.o
+drivers/leds/leds-max77693.c:103:13: warning: ‘print_all_reg_value’ defined but not used [-Wunused-function]
+ static void print_all_reg_value(struct i2c_client *client)
+             ^
+  CC      drivers/leds/leds-an30259a.o
+drivers/leds/leds-an30259a.c: In function ‘show_an30259a_led_intensity’:
+drivers/leds/leds-an30259a.c:630:6: warning: too many arguments for format [-Wformat-extra-args]
+      return sprintf(buf, "%d", led_intensity, 40-led_intensity);
+      ^
+drivers/leds/leds-an30259a.c:632:6: warning: too many arguments for format [-Wformat-extra-args]
+      return sprintf(buf, "%d", led_intensity, led_intensity-40);
+      ^
+drivers/leds/leds-an30259a.c: In function ‘show_an30259a_led_speed’:
+drivers/leds/leds-an30259a.c:661:3: warning: too many arguments for format [-Wformat-extra-args]
+   case 5:  return sprintf(buf, "%d", led_speed, led_speed);
+   ^
+  CC      drivers/leds/ledtrig-heartbeat.o
+  CC      drivers/leds/ledtrig-backlight.o
+  CC      net/ipv4/tcp_output.o
+  CC      fs/mbcache.o
+  CC      net/ipv6/anycast.o
+  CC      drivers/leds/ledtrig-sleep.o
+  LD      drivers/leds/built-in.o
+  CC      fs/posix_acl.o
+  CC      drivers/md/dm.o
+  CC      net/ipv6/ip6_output.o
+In file included from include/linux/device-mapper.h:11:0,
+                 from drivers/md/dm.h:14,
+                 from drivers/md/dm.c:8:
+drivers/md/dm.c: In function ‘split_bvec’:
+include/linux/bio.h:533:41: warning: statement with no effect [-Wunused-value]
+ #define bio_integrity_clone(a, b, c, d) (0)
+                                         ^
+drivers/md/dm.c:1070:3: note: in expansion of macro ‘bio_integrity_clone’
+   bio_integrity_clone(clone, bio, GFP_NOIO, bs);
+   ^
+drivers/md/dm.c: In function ‘clone_bio’:
+include/linux/bio.h:533:41: warning: statement with no effect [-Wunused-value]
+ #define bio_integrity_clone(a, b, c, d) (0)
+                                         ^
+drivers/md/dm.c:1097:3: note: in expansion of macro ‘bio_integrity_clone’
+   bio_integrity_clone(clone, bio, GFP_NOIO, bs);
+   ^
+  CC      fs/generic_acl.o
+  CC      fs/dyn_sync_cntrl.o
+  LD      fs/built-in.o
+  CC      net/ipv6/ip6_input.o
+  CC      drivers/md/dm-table.o
+  CC      net/ipv4/tcp_timer.o
+In file included from include/linux/device-mapper.h:12:0,
+                 from drivers/md/dm.h:14,
+                 from drivers/md/dm-table.c:8:
+drivers/md/dm-table.c: In function ‘dm_table_set_integrity’:
+include/linux/blkdev.h:1290:39: warning: statement with no effect [-Wunused-value]
+ #define blk_integrity_register(a, b)  (0)
+                                       ^
+drivers/md/dm-table.c:1188:3: note: in expansion of macro ‘blk_integrity_register’
+   blk_integrity_register(dm_disk(t->md),
+   ^
+  CC      net/key/af_key.o
+  CC      net/ipv6/addrconf.o
+  CC      net/ipv4/tcp_ipv4.o
+  CC      drivers/md/dm-target.o
+  CC      drivers/md/dm-linear.o
+  CC      drivers/md/dm-stripe.o
+  CC      drivers/md/dm-ioctl.o
+  LD      net/key/built-in.o
+  CC      net/ipv4/tcp_minisocks.o
+  CC      net/netfilter/core.o
+  CC      drivers/md/dm-io.o
+  CC      net/netfilter/nf_log.o
+  CC      net/ipv4/tcp_cong.o
+  CC      drivers/md/dm-kcopyd.o
+  CC      net/ipv6/addrlabel.o
+  CC      net/netfilter/nf_queue.o
+  CC      net/ipv4/datagram.o
+  CC      drivers/md/dm-sysfs.o
+  CC      net/ipv6/route.o
+  CC      net/netfilter/nf_sockopt.o
+  CC      drivers/md/dm-crypt.o
+  CC      net/ipv4/raw.o
+  CC      net/netfilter/nf_conntrack_core.o
+In file included from include/linux/radix-tree.h:26:0,
+                 from include/linux/mm_types.h:8,
+                 from include/linux/kmemcheck.h:4,
+                 from include/linux/skbuff.h:18,
+                 from include/linux/netfilter.h:6,
+                 from net/netfilter/nf_conntrack_core.c:15:
+net/netfilter/nf_conntrack_core.c: In function ‘nf_conntrack_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_conntrack_attach’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/netfilter/nf_conntrack_core.c:1594:3: note: in expansion of macro ‘rcu_assign_pointer’
+   rcu_assign_pointer(ip_ct_attach, nf_conntrack_attach);
+   ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘destroy_conntrack’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/netfilter/nf_conntrack_core.c:1595:3: note: in expansion of macro ‘rcu_assign_pointer’
+   rcu_assign_pointer(nf_ct_destroy, destroy_conntrack);
+   ^
+  LD      drivers/md/dm-mod.o
+  LD      drivers/md/built-in.o
+  CC      net/ipv4/udp.o
+  CC      drivers/media/rc/ir-raw.o
+  CC      net/ipv6/ip6_fib.o
+  CC      net/netfilter/nf_conntrack_standalone.o
+  CC      drivers/media/rc/lirc_dev.o
+  CC      net/ipv6/ipv6_sockglue.o
+  CC      net/netfilter/nf_conntrack_l3proto_generic.o
+  CC      drivers/media/rc/ir-lirc-codec.o
+  LD      drivers/media/rc/rc-core.o
+  LD      drivers/media/rc/built-in.o
+  CC      drivers/media/video/v4l2-device.o
+  CC      net/netfilter/nf_conntrack_proto_tcp.o
+  CC      net/ipv4/udplite.o
+  CC      drivers/media/video/v4l2-event.o
+  CC      net/ipv6/ndisc.o
+  CC      net/ipv4/arp.o
+  CC      drivers/media/video/v4l2-common.o
+  CC      net/netfilter/nf_conntrack_proto_udp.o
+  CC      drivers/media/video/s5c73m3.o
+drivers/media/video/s5c73m3.c: In function ‘s5c73m3_get_sensor_fw_version’:
+drivers/media/video/s5c73m3.c:825:6: warning: unused variable ‘sensor_type’ [-Wunused-variable]
+  u16 sensor_type;
+      ^
+drivers/media/video/s5c73m3.c: At top level:
+drivers/media/video/s5c73m3.c:265:12: warning: ‘s5c73m3_i2c_write_block’ defined but not used [-Wunused-function]
+ static int s5c73m3_i2c_write_block(struct v4l2_subdev *sd,
+            ^
+drivers/media/video/s5c73m3.c:1179:12: warning: ‘s5c73m3_SPI_booting_by_ISP’ defined but not used [-Wunused-function]
+ static int s5c73m3_SPI_booting_by_ISP(struct v4l2_subdev *sd)
+            ^
+drivers/media/video/s5c73m3.c:3233:12: warning: ‘s5c73m3_FROM_booting’ defined but not used [-Wunused-function]
+ static int s5c73m3_FROM_booting(struct v4l2_subdev *sd)
+            ^
+  CC      net/netfilter/nf_conntrack_h323_main.o
+  CC      net/ipv4/icmp.o
+  CC      net/ipv6/udp.o
+net/netfilter/nf_conntrack_h323_main.c: In function ‘h245_help’:
+net/netfilter/nf_conntrack_h323_main.c:172:11: warning: ‘dataoff’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tpktoff = *dataoff + *datalen;
+           ^
+net/netfilter/nf_conntrack_h323_main.c:570:6: note: ‘dataoff’ was declared here
+  int dataoff;
+      ^
+net/netfilter/nf_conntrack_h323_main.c:176:16: warning: ‘datalen’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tpkt = *data + *datalen;
+                ^
+net/netfilter/nf_conntrack_h323_main.c:569:6: note: ‘datalen’ was declared here
+  int datalen;
+      ^
+net/netfilter/nf_conntrack_h323_main.c: In function ‘q931_help’:
+net/netfilter/nf_conntrack_h323_main.c:172:11: warning: ‘dataoff’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tpktoff = *dataoff + *datalen;
+           ^
+net/netfilter/nf_conntrack_h323_main.c:1123:6: note: ‘dataoff’ was declared here
+  int dataoff;
+      ^
+net/netfilter/nf_conntrack_h323_main.c:176:16: warning: ‘datalen’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tpkt = *data + *datalen;
+                ^
+net/netfilter/nf_conntrack_h323_main.c:1122:6: note: ‘datalen’ was declared here
+  int datalen;
+      ^
+  CC      net/ipv4/devinet.o
+  CC      net/netfilter/nfnetlink.o
+  CC      drivers/media/video/videobuf2-cma-phys.o
+  CC      net/netfilter/nfnetlink_queue.o
+  CC      net/ipv6/udplite.o
+  CC      drivers/media/video/videobuf2-core.o
+  CC      net/ipv6/raw.o
+  CC      net/ipv4/af_inet.o
+  CC      net/netfilter/nfnetlink_log.o
+  CC      drivers/media/video/videobuf2-memops.o
+  CC      net/ipv6/protocol.o
+  LD      net/netfilter/nf_conntrack.o
+  CC      net/netfilter/nf_conntrack_proto_dccp.o
+  CC      net/ipv4/igmp.o
+  CC      drivers/media/video/v4l2-mem2mem.o
+  CC      net/ipv6/icmp.o
+  CC      net/netfilter/nf_conntrack_proto_udplite.o
+  CC      drivers/media/video/exynos/fimc-is/fimc-is-core.o
+  CC      net/netfilter/nf_conntrack_netlink.o
+  CC      drivers/media/video/exynos/fimc-is/fimc-is-v4l2.o
+  CC      net/ipv6/mcast.o
+  CC      net/ipv4/fib_frontend.o
+  CC      net/netfilter/nf_conntrack_amanda.o
+  CC      net/netfilter/nf_conntrack_ftp.o
+  CC      net/ipv4/fib_semantics.o
+  CC      net/ipv6/reassembly.o
+  LD      net/netfilter/nf_conntrack_h323.o
+  CC      net/netfilter/nf_conntrack_irc.o
+  CC      drivers/media/video/exynos/fimc-is/fimc-is-helper.o
+  CC      net/ipv4/fib_trie.o
+  CC      net/netfilter/nf_conntrack_broadcast.o
+  CC      net/ipv6/tcp_ipv6.o
+  CC      net/netfilter/nf_conntrack_pptp.o
+  CC      drivers/media/video/exynos/fimc-is/fimc-is-err.o
+  CC      drivers/media/video/exynos/fimc-is/fimc-is-mem.o
+  CC      net/netfilter/nf_conntrack_sane.o
+  CC      net/ipv4/inet_fragment.o
+  CC      net/ipv6/ping.o
+  LD      drivers/media/video/exynos/fimc-is/built-in.o
+  CC      drivers/media/video/exynos/fimc-lite/fimc-lite-core.o
+  CC      net/netfilter/nf_conntrack_tftp.o
+drivers/media/video/exynos/fimc-lite/fimc-lite-core.c: In function ‘flite_probe’:
+drivers/media/video/exynos/fimc-lite/fimc-lite-core.c:2145:1: warning: label ‘err_resource’ defined but not used [-Wunused-label]
+ err_resource:
+ ^
+drivers/media/video/exynos/fimc-lite/fimc-lite-core.c:2137:1: warning: label ‘err_device_register’ defined but not used [-Wunused-label]
+ err_device_register:
+ ^
+  CC      drivers/media/video/exynos/fimc-lite/fimc-lite-reg.o
+  CC      net/ipv6/exthdrs.o
+  CC      net/ipv4/ping.o
+  LD      drivers/media/video/exynos/fimc-lite/fimc-lite.o
+  CC      net/netfilter/nf_tproxy_core.o
+  LD      drivers/media/video/exynos/fimc-lite/built-in.o
+  CC      drivers/media/video/exynos/mdev/exynos-mdev.o
+  LD      drivers/media/video/exynos/mdev/mdev.o
+  LD      drivers/media/video/exynos/mdev/built-in.o
+  LD      drivers/media/video/exynos/built-in.o
+  CC      drivers/media/video/mhl/sii9234.o
+drivers/media/video/mhl/sii9234.c: In function ‘sii9234_mhl_tx_i2c_probe’:
+drivers/media/video/mhl/sii9234.c:4252:2: warning: label ‘err_exit2b’ defined but not used [-Wunused-label]
+  err_exit2b:
+  ^
+drivers/media/video/mhl/sii9234.c:4248:2: warning: label ‘err_exit2c’ defined but not used [-Wunused-label]
+  err_exit2c:
+  ^
+drivers/media/video/mhl/sii9234.c: At top level:
+drivers/media/video/mhl/sii9234.c:1205:13: warning: ‘cbus_handle_wrt_burst_recd’ defined but not used [-Wunused-function]
+ static void cbus_handle_wrt_burst_recd(struct sii9234_data *sii9234)
+             ^
+drivers/media/video/mhl/sii9234.c:3039:13: warning: ‘cbus_command_response_all’ defined but not used [-Wunused-function]
+ static void cbus_command_response_all(struct sii9234_data *sii9234)
+             ^
+drivers/media/video/mhl/sii9234.c:3713:13: warning: ‘mhl_cbus_command_timer’ defined but not used [-Wunused-function]
+ static void mhl_cbus_command_timer(unsigned long data)
+             ^
+In file included from include/linux/i2c.h:33:0,
+                 from drivers/media/video/mhl/sii9234.c:29:
+include/linux/device.h:436:25: warning: ‘dev_attr_mhl_read_reg’ defined but not used [-Wunused-variable]
+ struct device_attribute dev_attr_##_name = __ATTR(_name, _mode, _show, _store)
+                         ^
+drivers/media/video/mhl/sii9234.c:3876:8: note: in expansion of macro ‘DEVICE_ATTR’
+ static DEVICE_ATTR(mhl_read_reg, S_IRUGO | S_IWUSR,
+        ^
+  CC      net/netfilter/x_tables.o
+  CC      net/ipv6/datagram.o
+  CC      net/ipv4/sysctl_net_ipv4.o
+drivers/media/video/mhl/sii9234.c: In function ‘sii9234_irq_thread’:
+drivers/media/video/mhl/sii9234.c:604:2: warning: ‘value’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return i2c_smbus_write_byte_data(sii9234->pdata->cbus_client, offset,
+  ^
+drivers/media/video/mhl/sii9234.c:1281:27: note: ‘value’ was declared here
+  u8 intr_reg0, intr_reg1, value;
+                           ^
+drivers/media/video/mhl/sii9234.c:1320:16: warning: ‘intr_reg1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (intr_reg1 & MHL_INT_EDID_CHG) {
+                ^
+drivers/media/video/mhl/sii9234.c:1281:16: note: ‘intr_reg1’ was declared here
+  u8 intr_reg0, intr_reg1, value;
+                ^
+drivers/media/video/mhl/sii9234.c:1306:16: warning: ‘intr_reg0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (intr_reg0 & MHL_INT_REQ_WRT) {
+                ^
+drivers/media/video/mhl/sii9234.c:1281:5: note: ‘intr_reg0’ was declared here
+  u8 intr_reg0, intr_reg1, value;
+     ^
+drivers/media/video/mhl/sii9234.c:604:2: warning: ‘value’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return i2c_smbus_write_byte_data(sii9234->pdata->cbus_client, offset,
+  ^
+drivers/media/video/mhl/sii9234.c:1212:31: note: ‘value’ was declared here
+  u8 status_reg0, status_reg1, value;
+                               ^
+drivers/media/video/mhl/sii9234.c:1251:6: warning: ‘status_reg1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+      !(MHL_STATUS_PATH_ENABLED & status_reg1)) {
+      ^
+drivers/media/video/mhl/sii9234.c:1212:18: note: ‘status_reg1’ was declared here
+  u8 status_reg0, status_reg1, value;
+                  ^
+drivers/media/video/mhl/sii9234.c:1255:18: warning: ‘status_reg0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (status_reg0 & MHL_STATUS_DCAP_READY) {
+                  ^
+drivers/media/video/mhl/sii9234.c:1212:5: note: ‘status_reg0’ was declared here
+  u8 status_reg0, status_reg1, value;
+     ^
+drivers/media/video/mhl/sii9234.c:998:11: warning: ‘val2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (val2 > (val1 + 50)) {
+           ^
+drivers/media/video/mhl/sii9234.c:991:11: note: ‘val2’ was declared here
+  u8 val1, val2;
+           ^
+drivers/media/video/mhl/sii9234.c:998:19: warning: ‘val1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  if (val2 > (val1 + 50)) {
+                   ^
+drivers/media/video/mhl/sii9234.c:991:5: note: ‘val1’ was declared here
+  u8 val1, val2;
+     ^
+  CC      net/ipv6/ip6_flowlabel.o
+  CC      net/ipv4/sysfs_net_ipv4.o
+  LD      drivers/media/video/mhl/built-in.o
+  CC      net/netfilter/xt_tcpudp.o
+  CC      drivers/media/video/samsung/fimc/fimc_v4l2.o
+  CC      net/ipv4/proc.o
+  CC      net/ipv6/inet6_connection_sock.o
+  CC      drivers/media/video/samsung/fimc/fimc_output.o
+  CC      net/netfilter/xt_NFQUEUE.o
+  CC      net/ipv4/fib_rules.o
+  CC      net/netfilter/xt_SECMARK.o
+  CC      net/ipv6/sysctl_net_ipv6.o
+  CC      net/ipv4/esp4.o
+  CC      net/netfilter/xt_TPROXY.o
+  CC      net/ipv6/xfrm6_policy.o
+  CC      net/netfilter/xt_TCPMSS.o
+  CC      net/ipv4/tunnel4.o
+  CC      net/ipv6/xfrm6_state.o
+  CC      drivers/media/video/samsung/fimc/fimc_overlay.o
+  CC      net/netfilter/xt_connlimit.o
+  CC      net/ipv4/xfrm4_mode_transport.o
+  CC      net/ipv6/xfrm6_input.o
+  CC      drivers/media/video/samsung/fimc/fimc_regs.o
+  CC      net/ipv4/xfrm4_mode_tunnel.o
+  CC      net/netfilter/xt_conntrack.o
+  CC      net/ipv6/xfrm6_output.o
+  CC      net/ipv4/netfilter.o
+  CC      net/netfilter/xt_hashlimit.o
+  CC      drivers/media/video/samsung/fimc/fimc_capture.o
+  CC      net/ipv6/netfilter.o
+  CC      net/ipv4/netfilter/nf_nat_rule.o
+  CC      net/netfilter/xt_hl.o
+  CC      net/ipv4/netfilter/nf_nat_standalone.o
+  CC      net/ipv6/fib6_rules.o
+  CC      net/netfilter/xt_iprange.o
+In file included from include/linux/radix-tree.h:26:0,
+                 from include/linux/mm_types.h:8,
+                 from include/linux/kmemcheck.h:4,
+                 from include/linux/skbuff.h:18,
+                 from include/linux/icmp.h:86,
+                 from net/ipv4/netfilter/nf_nat_standalone.c:9:
+net/ipv4/netfilter/nf_nat_standalone.c: In function ‘nf_nat_standalone_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_decode_session’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_standalone.c:289:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(ip_nat_decode_session, nat_decode_session);
+  ^
+  CC      net/ipv4/netfilter/nf_conntrack_l3proto_ipv4_compat.o
+  CC      net/ipv6/proc.o
+  CC      net/netfilter/xt_length.o
+  CC      drivers/media/video/samsung/fimc/fimc_dev.o
+  CC      net/netfilter/xt_pkttype.o
+  CC      net/ipv4/netfilter/nf_conntrack_l3proto_ipv4.o
+  CC      net/ipv6/ah6.o
+drivers/media/video/samsung/fimc/fimc_dev.c: In function ‘fimc_mmap_own_mem’:
+drivers/media/video/samsung/fimc/fimc_dev.c:931:11: warning: unused variable ‘idx’ [-Wunused-variable]
+  u32 pfn, idx = vma->vm_pgoff;
+           ^
+drivers/media/video/samsung/fimc/fimc_dev.c: In function ‘fimc_mmap_out’:
+drivers/media/video/samsung/fimc/fimc_dev.c:1048:6: warning: unused variable ‘idx’ [-Wunused-variable]
+  int idx = ctrl->out->ctx[ctx_id].overlay.req_idx;
+      ^
+drivers/media/video/samsung/fimc/fimc_dev.c: In function ‘fimc_release’:
+drivers/media/video/samsung/fimc/fimc_dev.c:1659:26: warning: unused variable ‘pdev’ [-Wunused-variable]
+  struct platform_device *pdev = to_platform_device(ctrl->dev);
+                          ^
+  CC      net/netfilter/xt_policy.o
+  CC      net/ipv6/esp6.o
+  CC      net/ipv4/netfilter/nf_conntrack_proto_icmp.o
+  CC      net/netfilter/xt_qtaguid.o
+  LD      drivers/media/video/samsung/fimc/built-in.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d_drv.o
+  CC      net/ipv4/netfilter/nf_nat_core.o
+  CC      net/ipv6/ipcomp6.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d_ctx.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_core.c:11:
+net/ipv4/netfilter/nf_nat_core.c: In function ‘nf_nat_protocol_unregister’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_unknown_protocol’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:528:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_protos[proto->protonum],
+  ^
+net/ipv4/netfilter/nf_nat_core.c: In function ‘nf_nat_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_unknown_protocol’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:739:3: note: in expansion of macro ‘rcu_assign_pointer’
+   rcu_assign_pointer(nf_nat_protos[i], &nf_nat_unknown_protocol);
+   ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_protocol_tcp’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:740:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_protos[IPPROTO_TCP], &nf_nat_protocol_tcp);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_protocol_udp’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:741:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_protos[IPPROTO_UDP], &nf_nat_protocol_udp);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_protocol_icmp’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:742:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_protos[IPPROTO_ICMP], &nf_nat_protocol_icmp);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_seq_adjust’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:751:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_seq_adjust_hook, nf_nat_seq_adjust);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nfnetlink_parse_nat_setup’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:753:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nfnetlink_parse_nat_setup_hook,
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_get_offset’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_core.c:756:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_ct_nat_offset, nf_nat_get_offset);
+  ^
+  CC      net/ipv6/xfrm6_tunnel.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d_clk.o
+  CC      net/ipv4/netfilter/nf_nat_helper.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d_helper.o
+  CC      net/ipv6/tunnel6.o
+  CC      net/netfilter/xt_socket.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d4x_blt.o
+  CC      drivers/media/video/samsung/fimg2d4x-exynos4/fimg2d4x_hw.o
+  CC      net/ipv6/xfrm6_mode_transport.o
+  CC      net/ipv4/netfilter/nf_nat_proto_tcp.o
+  CC      net/ipv6/xfrm6_mode_tunnel.o
+  CC      net/ipv4/netfilter/nf_nat_proto_udp.o
+  LD      net/netfilter/netfilter.o
+  LD      net/netfilter/built-in.o
+  CC      net/netlink/af_netlink.o
+  LD      drivers/media/video/samsung/fimg2d4x-exynos4/built-in.o
+  CC      drivers/media/video/samsung/jpeg_v2x/jpeg_dev.o
+  LD      net/ipv4/netfilter/nf_nat.o
+  CC      net/ipv4/netfilter/nf_defrag_ipv4.o
+  CC      net/ipv6/xfrm6_mode_beet.o
+  CC      drivers/media/video/samsung/jpeg_v2x/jpeg_dec.o
+  CC      net/ipv6/mip6.o
+  CC      net/ipv4/netfilter/nf_nat_amanda.o
+  CC      drivers/media/video/samsung/jpeg_v2x/jpeg_enc.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_amanda.c:12:
+net/ipv4/netfilter/nf_nat_amanda.c: In function ‘nf_nat_amanda_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘help’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_amanda.c:80:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_amanda_hook, help);
+  ^
+  CC      net/ipv4/netfilter/nf_nat_ftp.o
+  CC      net/ipv6/netfilter/ip6_tables.o
+  CC      drivers/media/video/samsung/jpeg_v2x/jpeg_regs.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_ftp.c:11:
+net/ipv4/netfilter/nf_nat_ftp.c: In function ‘nf_nat_ftp_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nf_nat_ftp’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_ftp.c:123:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_ftp_hook, nf_nat_ftp);
+  ^
+  CC      net/netlink/genetlink.o
+  CC      net/ipv4/netfilter/nf_nat_h323.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_h323.c:12:
+net/ipv4/netfilter/nf_nat_h323.c: In function ‘init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘set_h245_addr’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:584:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(set_h245_addr_hook, set_h245_addr);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘set_h225_addr’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:585:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(set_h225_addr_hook, set_h225_addr);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘set_sig_addr’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:586:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(set_sig_addr_hook, set_sig_addr);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘set_ras_addr’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:587:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(set_ras_addr_hook, set_ras_addr);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_rtp_rtcp’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:588:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nat_rtp_rtcp_hook, nat_rtp_rtcp);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_t120’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:589:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nat_t120_hook, nat_t120);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_h245’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:590:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nat_h245_hook, nat_h245);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_callforwarding’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:591:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nat_callforwarding_hook, nat_callforwarding);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘nat_q931’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_h323.c:592:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nat_q931_hook, nat_q931);
+  ^
+  CC      drivers/media/video/samsung/jpeg_v2x/jpeg_mem.o
+  LD      drivers/media/video/samsung/jpeg_v2x/built-in.o
+  CC      net/ipv4/netfilter/nf_nat_irc.o
+  CC      drivers/media/video/samsung/mfc5x/mfc_dev.o
+  CC      net/ipv6/netfilter/ip6table_filter.o
+  LD      net/netlink/built-in.o
+  CC      net/packet/af_packet.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_irc.c:13:
+net/ipv4/netfilter/nf_nat_irc.c: In function ‘nf_nat_irc_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘help’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_irc.c:85:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_irc_hook, help);
+  ^
+  CC      net/ipv4/netfilter/nf_nat_pptp.o
+  CC      net/ipv6/netfilter/ip6table_mangle.o
+  CC      drivers/media/video/samsung/mfc5x/mfc_cmd.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_pptp.c:20:
+net/ipv4/netfilter/nf_nat_pptp.c: In function ‘nf_nat_helper_pptp_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘pptp_outbound_pkt’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_pptp.c:285:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_pptp_hook_outbound, pptp_outbound_pkt);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘pptp_inbound_pkt’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_pptp.c:288:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_pptp_hook_inbound, pptp_inbound_pkt);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘pptp_exp_gre’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_pptp.c:291:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_pptp_hook_exp_gre, pptp_exp_gre);
+  ^
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘pptp_nat_expected’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_pptp.c:294:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_pptp_hook_expectfn, pptp_nat_expected);
+  ^
+  CC      net/ipv4/netfilter/nf_nat_tftp.o
+  CC      net/ipv6/netfilter/ip6table_raw.o
+  CC      drivers/media/video/samsung/mfc5x/mfc_ctrl.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/ipv4/netfilter/nf_nat_tftp.c:8:
+net/ipv4/netfilter/nf_nat_tftp.c: In function ‘nf_nat_tftp_init’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘help’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/ipv4/netfilter/nf_nat_tftp.c:46:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(nf_nat_tftp_hook, help);
+  ^
+  CC      net/ipv4/netfilter/nf_nat_proto_dccp.o
+  CC      net/ipv6/netfilter/nf_conntrack_l3proto_ipv6.o
+  LD      drivers/media/video/samsung/mfc5x/built-in.o
+  CC      drivers/media/video/samsung/tvout/s5p_tvout.o
+  CC      net/ipv4/netfilter/nf_nat_proto_udplite.o
+  LD      net/packet/built-in.o
+drivers/media/video/samsung/tvout/s5p_tvout.c: In function ‘hdmi_set_audio_store’:
+drivers/media/video/samsung/tvout/s5p_tvout.c:87:8: warning: unused variable ‘after’ [-Wunused-variable]
+  char *after;
+        ^
+  CC      net/phonet/pn_dev.o
+  CC      net/ipv6/netfilter/nf_conntrack_proto_icmpv6.o
+  CC      drivers/media/video/samsung/tvout/s5p_tvout_fb.o
+  CC      net/ipv4/netfilter/nf_nat_proto_sctp.o
+  CC      net/phonet/pn_netlink.o
+  CC      net/ipv6/netfilter/nf_defrag_ipv6_hooks.o
+  CC      drivers/media/video/samsung/tvout/s5p_tvout_hpd.o
+  CC      net/ipv4/netfilter/ip_tables.o
+  CC      net/phonet/socket.o
+  CC      drivers/media/video/samsung/tvout/hw_if/mixer.o
+  CC      net/ipv6/netfilter/nf_conntrack_reasm.o
+  CC      drivers/media/video/samsung/tvout/hw_if/hdcp.o
+  CC      net/ipv6/netfilter/ip6t_LOG.o
+  CC      net/ipv4/netfilter/iptable_filter.o
+  CC      net/phonet/datagram.o
+In file included from /home/strawberry/Downloads/WIDzard/Kernel/arch/arm/include/asm/bitops.h:27:0,
+                 from include/linux/bitops.h:22,
+                 from include/linux/kernel.h:17,
+                 from include/linux/cache.h:4,
+                 from include/linux/time.h:7,
+                 from include/linux/stat.h:60,
+                 from include/linux/module.h:10,
+                 from net/ipv6/netfilter/ip6t_LOG.c:13:
+include/net/netfilter/xt_log.h: In function ‘sb_close’:
+/home/strawberry/Downloads/WIDzard/Kernel/arch/arm/include/asm/system.h:98:3: warning: value computed is not used [-Wunused-value]
+  ((__typeof__(*(ptr)))__xchg((unsigned long)(x),(ptr),sizeof(*(ptr))))
+   ^
+include/net/netfilter/xt_log.h:50:3: note: in expansion of macro ‘xchg’
+   xchg(&emergency_ptr, m);
+   ^
+  CC      net/ipv4/netfilter/iptable_mangle.o
+  CC      net/phonet/af_phonet.o
+  LD      drivers/media/video/samsung/tvout/hw_if/built-in.o
+  LD      drivers/media/video/samsung/tvout/built-in.o
+  LD      drivers/media/video/samsung/built-in.o
+  CC      net/ipv6/netfilter/ip6t_REJECT.o
+  CC      drivers/media/video/ir-kbd-i2c.o
+  LD      net/ipv4/netfilter/iptable_nat.o
+  CC      net/ipv4/netfilter/iptable_raw.o
+  LD      drivers/media/video/videodev.o
+  LD      drivers/media/video/built-in.o
+  LD      net/ipv6/netfilter/nf_conntrack_ipv6.o
+  LD      net/ipv6/netfilter/nf_defrag_ipv6.o
+  LD      drivers/media/built-in.o
+  LD      net/ipv6/netfilter/built-in.o
+  CC      net/ipv6/sit.o
+  CC      drivers/mfd/wm8994-core.o
+  CC      net/ipv4/netfilter/iptable_security.o
+  CC      net/phonet/pep.o
+  CC      net/ipv4/netfilter/ipt_ecn.o
+  CC      drivers/mfd/wm8994-irq.o
+  CC      net/ipv6/ip6_tunnel.o
+  CC      drivers/mfd/max77686.o
+  CC      net/ipv4/netfilter/ipt_LOG.o
+  CC      net/phonet/pep-gprs.o
+  CC      drivers/mfd/max77686-irq.o
+In file included from /home/strawberry/Downloads/WIDzard/Kernel/arch/arm/include/asm/bitops.h:27:0,
+                 from include/linux/bitops.h:22,
+                 from include/linux/kernel.h:17,
+                 from include/linux/cache.h:4,
+                 from include/linux/time.h:7,
+                 from include/linux/stat.h:60,
+                 from include/linux/module.h:10,
+                 from net/ipv4/netfilter/ipt_LOG.c:13:
+include/net/netfilter/xt_log.h: In function ‘sb_close’:
+/home/strawberry/Downloads/WIDzard/Kernel/arch/arm/include/asm/system.h:98:3: warning: value computed is not used [-Wunused-value]
+  ((__typeof__(*(ptr)))__xchg((unsigned long)(x),(ptr),sizeof(*(ptr))))
+   ^
+include/net/netfilter/xt_log.h:50:3: note: in expansion of macro ‘xchg’
+   xchg(&emergency_ptr, m);
+   ^
+  LD      net/phonet/phonet.o
+  LD      net/phonet/pn_pep.o
+  LD      net/phonet/built-in.o
+  CC      net/rfkill/core.o
+  CC      net/ipv4/netfilter/ipt_MASQUERADE.o
+  CC      drivers/mfd/max77693.o
+  CC      net/ipv6/addrconf_core.o
+  CC      drivers/mfd/max77693-irq.o
+  CC      net/ipv4/netfilter/ipt_REDIRECT.o
+  LD      net/rfkill/rfkill.o
+  LD      net/rfkill/built-in.o
+  CC      net/ipv4/inet_diag.o
+  LD      drivers/mfd/built-in.o
+  CC      drivers/misc/lkdtm.o
+  CC      net/ipv6/exthdrs_core.o
+  CC      net/ipv4/netfilter/ipt_REJECT.o
+  CC      drivers/misc/tzic.o
+  CC      net/ipv4/netfilter/arp_tables.o
+  CC      net/ipv6/inet6_hashtables.o
+  LD      drivers/misc/built-in.o
+  CC      drivers/mmc/card/block.o
+  CC      net/ipv4/tcp_diag.o
+drivers/mmc/card/block.c: In function ‘mmc_blk_ioctl_cmd’:
+drivers/mmc/card/block.c:416:4: warning: label ‘defualt’ defined but not used [-Wunused-label]
+    defualt: printk(KERN_ERR"Unkown ext flags on mmc_ioc_cmd\n");
+    ^
+  CC      drivers/mmc/card/queue.o
+drivers/mmc/card/block.c: In function ‘mmc_blk_issue_rq’:
+drivers/mmc/card/block.c:1041:9: warning: ‘arg’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   err = mmc_switch(card, EXT_CSD_CMD_SET_NORMAL,
+         ^
+drivers/mmc/card/block.c:1017:25: note: ‘arg’ was declared here
+  unsigned int from, nr, arg;
+                         ^
+drivers/mmc/card/block.c:1050:6: warning: ‘nr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  err = mmc_erase(card, from, nr, arg);
+      ^
+drivers/mmc/card/block.c:1017:21: note: ‘nr’ was declared here
+  unsigned int from, nr, arg;
+                     ^
+drivers/mmc/card/block.c:1050:6: warning: ‘from’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  err = mmc_erase(card, from, nr, arg);
+      ^
+drivers/mmc/card/block.c:1017:15: note: ‘from’ was declared here
+  unsigned int from, nr, arg;
+               ^
+  LD      net/ipv6/ipv6.o
+  LD      net/ipv6/built-in.o
+  CC      net/sched/sch_generic.o
+  CC      net/ipv4/netfilter/arpt_mangle.o
+In file included from include/linux/sysctl.h:933:0,
+                 from include/linux/kmod.h:27,
+                 from include/linux/module.h:13,
+                 from net/sched/sch_generic.c:15:
+net/sched/sch_generic.c: In function ‘dev_graft_qdisc’:
+include/linux/rcupdate.h:367:12: warning: the comparison will always evaluate as ‘true’ for the address of ‘noop_qdisc’ will never be NULL [-Waddress]
+       ((v) != NULL)) \
+            ^
+include/linux/rcupdate.h:706:2: note: in expansion of macro ‘__rcu_assign_pointer’
+  __rcu_assign_pointer((p), (v), __rcu)
+  ^
+net/sched/sch_generic.c:678:2: note: in expansion of macro ‘rcu_assign_pointer’
+  rcu_assign_pointer(dev_queue->qdisc, &noop_qdisc);
+  ^
+  CC      drivers/motor/max77693_haptic.o
+drivers/motor/max77693_haptic.c: In function ‘haptic_timer_func’:
+drivers/motor/max77693_haptic.c:121:16: warning: unused variable ‘flags’ [-Wunused-variable]
+  unsigned long flags;
+                ^
+  LD      drivers/mmc/card/mmc_block.o
+  LD      drivers/mmc/card/built-in.o
+  LD      net/ipv4/netfilter/nf_conntrack_ipv4.o
+  LD      net/ipv4/netfilter/built-in.o
+  CC      net/ipv4/tcp_bic.o
+  CC      drivers/motor/tspdrv.o
+  CC      drivers/mmc/core/core.o
+  CC      net/sched/sch_api.o
+  LD      drivers/motor/vibrator.o
+  CC      net/ipv4/tcp_cubic.o
+  LD      drivers/motor/built-in.o
+  CC      drivers/muic/max77693-muic.o
+drivers/muic/max77693-muic.c: In function ‘uart_switch_init’:
+drivers/muic/max77693-muic.c:2969:11: warning: unused variable ‘val’ [-Wunused-variable]
+  int ret, val;
+           ^
+drivers/muic/max77693-muic.c:2969:6: warning: unused variable ‘ret’ [-Wunused-variable]
+  int ret, val;
+      ^
+drivers/muic/max77693-muic.c: In function ‘max77693_muic_probe’:
+drivers/muic/max77693-muic.c:3334:2: warning: label ‘err_kfree’ defined but not used [-Wunused-label]
+  err_kfree:
+  ^
+  CC      net/ipv4/tcp_westwood.o
+  LD      drivers/muic/built-in.o
+  CC      drivers/net/loopback.o
+  CC      net/sched/cls_api.o
+  CC      drivers/mmc/core/bus.o
+  CC      net/ipv4/tcp_highspeed.o
+  CC      drivers/net/ppp_generic.o
+  CC      drivers/mmc/core/host.o
+  CC      net/ipv4/tcp_hybla.o
+  CC      net/sched/act_api.o
+  CC      drivers/mmc/core/mmc.o
+  CC      net/ipv4/tcp_htcp.o
+drivers/net/ppp_generic.c: In function ‘ppp_ioctl’:
+drivers/net/ppp_generic.c:763:23: warning: ‘code’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+    ppp->active_filter = code;
+                       ^
+drivers/net/ppp_generic.c:749:21: warning: ‘code’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+    ppp->pass_filter = code;
+                     ^
+  CC      net/ipv4/tcp_vegas.o
+  CC      drivers/mmc/core/mmc_ops.o
+  CC      drivers/net/pppox.o
+  LD      net/sched/built-in.o
+  CC      net/unix/af_unix.o
+  CC      net/ipv4/xfrm4_policy.o
+  CC      drivers/mmc/core/sd.o
+  CC      drivers/net/pppoe.o
+  CC      net/ipv4/xfrm4_state.o
+  CC      drivers/mmc/core/sd_ops.o
+net/unix/af_unix.c: In function ‘unix_dgram_connect’:
+net/unix/af_unix.c:973:9: warning: ‘hash’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   other = unix_find_other(net, sunaddr, alen, sock->type, hash, &err);
+         ^
+  CC      net/ipv4/xfrm4_input.o
+net/unix/af_unix.c: In function ‘unix_stream_connect’:
+net/unix/af_unix.c:1092:8: warning: ‘hash’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  other = unix_find_other(net, sunaddr, addr_len, sk->sk_type, hash, &err);
+        ^
+net/unix/af_unix.c: In function ‘unix_bind’:
+net/unix/af_unix.c:255:47: warning: ‘hash’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  sk_for_each(s, node, &unix_socket_table[hash ^ type]) {
+                                               ^
+net/unix/af_unix.c:813:11: note: ‘hash’ was declared here
+  unsigned hash;
+           ^
+  CC      drivers/net/pppolac.o
+net/unix/af_unix.c: In function ‘unix_dgram_sendmsg’:
+net/unix/af_unix.c:1473:9: warning: ‘hash’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   other = unix_find_other(net, sunaddr, namelen, sk->sk_type,
+         ^
+  CC      net/unix/garbage.o
+  CC      drivers/mmc/core/sdio.o
+  CC      drivers/net/pppopns.o
+  CC      net/unix/sysctl_net_unix.o
+drivers/mmc/core/sdio.c: In function ‘mmc_sdio_suspend’:
+drivers/mmc/core/sdio.c:951:1: warning: label ‘out’ defined but not used [-Wunused-label]
+ out:
+ ^
+drivers/mmc/core/sdio.c: In function ‘mmc_sdio_resume’:
+drivers/mmc/core/sdio.c:1006:1: warning: label ‘out’ defined but not used [-Wunused-label]
+ out:
+ ^
+  CC      net/ipv4/xfrm4_output.o
+  LD      net/unix/unix.o
+  LD      net/unix/built-in.o
+  CC      net/wireless/core.o
+  CC      drivers/net/slhc.o
+  CC      drivers/mmc/core/sdio_ops.o
+  LD      net/ipv4/built-in.o
+  CC      drivers/mmc/core/sdio_bus.o
+  CC      drivers/net/tun.o
+  CC      drivers/mmc/core/sdio_cis.o
+  CC      drivers/nfc/pn65n.o
+  CC      net/wireless/util.o
+  CC      drivers/mmc/core/sdio_io.o
+  LD      drivers/nfc/built-in.o
+  CC      drivers/regulator/core.o
+  CC      drivers/mmc/core/sdio_irq.o
+  CC      drivers/net/usb/asix.o
+  CC      net/wireless/nl80211.o
+  CC      drivers/mmc/core/debugfs.o
+  LD      drivers/mmc/core/mmc_core.o
+  LD      drivers/mmc/core/built-in.o
+net/wireless/nl80211.c: In function ‘nl80211_crypto_settings’:
+net/wireless/nl80211.c:4138:12: warning: unused variable ‘i’ [-Wunused-variable]
+   int len, i;
+            ^
+  CC      drivers/mmc/host/mshci.o
+net/wireless/nl80211.c: At top level:
+net/wireless/nl80211.c:3957:13: warning: ‘nl80211_valid_akm_suite’ defined but not used [-Wunused-function]
+ static bool nl80211_valid_akm_suite(u32 akm)
+             ^
+  CC      drivers/regulator/dummy.o
+  CC      drivers/regulator/max77686.o
+  CC      drivers/mmc/host/mshci-s3c.o
+drivers/mmc/host/mshci-s3c.c:610:13: warning: ‘mshci_s3c_shutdown’ defined but not used [-Wunused-function]
+ static void mshci_s3c_shutdown(struct platform_device *dev, pm_message_t pm)
+             ^
+  CC      drivers/mmc/host/sdhci.o
+  CC      drivers/regulator/max77693.o
+drivers/regulator/max77693.c: In function ‘max77693_pmic_probe’:
+drivers/regulator/max77693.c:517:2: warning: label ‘err_alloc’ defined but not used [-Wunused-label]
+  err_alloc:
+  ^
+  LD      drivers/regulator/built-in.o
+  CC      drivers/rtc/interface.o
+  CC      drivers/net/usb/cdc_ether.o
+  CC      drivers/rtc/rtc-dev.o
+  CC      drivers/net/usb/net1080.o
+  CC      drivers/mmc/host/sdhci-s3c.o
+  CC      drivers/rtc/alarm.o
+drivers/mmc/host/sdhci-s3c.c:352:12: warning: ‘sdhci_s3c_get_card_exist’ defined but not used [-Wunused-function]
+ static int sdhci_s3c_get_card_exist(struct sdhci_host *host)
+            ^
+  CC      net/wireless/ethtool.o
+  CC      drivers/net/usb/cdc_subset.o
+  LD      drivers/mmc/host/built-in.o
+  LD      drivers/mmc/built-in.o
+  CC      drivers/scsi/scsi.o
+  CC      drivers/rtc/alarm-dev.o
+  LD      net/wireless/cfg80211.o
+  LD      net/wireless/built-in.o
+  CC      drivers/net/usb/zaurus.o
+  CC      net/xfrm/xfrm_policy.o
+  CC      drivers/rtc/rtc-max77686.o
+  CC      drivers/net/usb/usbnet.o
+  LD      drivers/rtc/rtc-core.o
+  LD      drivers/rtc/built-in.o
+  CC      drivers/sensorhub/atmel/ssp_dev.o
+  CC      drivers/scsi/hosts.o
+  CC      drivers/sensorhub/atmel/ssp_i2c.o
+  CC      drivers/net/usb/cdc_ncm.o
+  CC      drivers/scsi/scsi_ioctl.o
+  CC      drivers/sensorhub/atmel/ssp_data.o
+  CC      drivers/sensorhub/atmel/ssp_sysfs.o
+  CC      drivers/net/usb/rmnet_usb_ctrl.o
+  CC      drivers/scsi/constants.o
+  CC      net/xfrm/xfrm_state.o
+  CC      drivers/sensorhub/atmel/ssp_input.o
+  CC      drivers/scsi/scsicam.o
+  CC      drivers/sensorhub/atmel/ssp_firmware.o
+  CC      drivers/net/usb/rmnet_usb_data.o
+  CC      drivers/sensorhub/atmel/ssp_debug.o
+  CC      drivers/scsi/scsi_error.o
+  LD      drivers/net/usb/rmnet_usb.o
+  LD      drivers/net/usb/built-in.o
+  CC      drivers/sensorhub/atmel/factory/accel_lsm330.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmsdh.o
+  CC      drivers/sensorhub/atmel/factory/gyro_lsm330.o
+  CC      net/xfrm/xfrm_input.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmsdh_linux.o
+  CC      drivers/sensorhub/atmel/factory/light_cm36651.o
+  CC      drivers/sensorhub/atmel/factory/prox_cm36651.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmsdh_sdmmc.o
+  CC      drivers/scsi/scsi_lib.o
+  CC      drivers/sensorhub/atmel/ssp_ak8963c.o
+  CC      net/xfrm/xfrm_output.o
+  CC      drivers/sensorhub/atmel/factory/magnetic_ak8963c.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmsdh_sdmmc_linux.o
+  CC      drivers/sensorhub/atmel/factory/pressure_bmp182.o
+  CC      net/xfrm/xfrm_algo.o
+  CC      drivers/sensorhub/atmel/factory/mcu_at32uc3l0128.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_cdc.o
+  CC      drivers/scsi/scsi_lib_dma.o
+  CC      drivers/sensorhub/atmel/ssp_sensorhub.o
+  CC      drivers/scsi/scsi_scan.o
+  CC      net/xfrm/xfrm_sysctl.o
+  LD      drivers/sensorhub/atmel/built-in.o
+  LD      drivers/sensorhub/built-in.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_pno.o
+  CC      drivers/staging/android/binder.o
+  CC      net/xfrm/xfrm_replay.o
+  CC      drivers/scsi/scsi_sysfs.o
+  CC      net/xfrm/xfrm_ipcomp.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_common.o
+  CC      drivers/scsi/scsi_devinfo.o
+  LD      net/xfrm/built-in.o
+  CC      net/sysctl_net.o
+  CC      net/activity_stats.o
+  CC      drivers/scsi/scsi_proc.o
+  CC      drivers/staging/android/logger.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_wlfc.o
+  LD      net/built-in.o
+  CC      drivers/scsi/scsi_trace.o
+  CC [M]  drivers/net/wireless/btlock/btlock.o
   CC      drivers/staging/android/lowmemorykiller.o
-  CC      drivers/usb/class/usblp.o
-  CC      drivers/video/fb_notify.o
+  CC      drivers/scsi/scsi_pm.o
+  CC      drivers/scsi/sd.o
 drivers/staging/android/lowmemorykiller.c:583:30: warning: ‘android_oom_notifier’ defined but not used [-Wunused-variable]
  static struct notifier_block android_oom_notifier = {
                               ^
-  CC      drivers/staging/zsmalloc/zsmalloc-main.o
   LD      drivers/staging/android/built-in.o
-  CC      drivers/video/fbmem.o
-  CC      drivers/video/fbmon.o
-  LD      drivers/usb/class/built-in.o
-  CC      drivers/usb/core/usb.o
+  CC      drivers/staging/zram/zram_drv.o
+  CC      drivers/scsi/sg.o
+  LD      drivers/staging/zram/zram.o
+  LD      drivers/staging/zram/built-in.o
+  CC      drivers/staging/zsmalloc/zsmalloc-main.o
+  LD      drivers/scsi/scsi_mod.o
+  LD      drivers/scsi/sd_mod.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_ip.o
   LD      drivers/staging/zsmalloc/zsmalloc.o
   LD      drivers/staging/zsmalloc/built-in.o
   LD      drivers/staging/built-in.o
+  LD      drivers/scsi/built-in.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_custom_gpio.o
+  CC      drivers/tty/tty_io.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_custom_sec.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_linux.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_linux_sched.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_cfg80211.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_sdio.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_linux_wq.o
+  CC      drivers/tty/n_tty.o
+  CC [M]  drivers/net/wireless/bcmdhd/aiutils.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmevent.o
+  CC      drivers/tty/tty_ioctl.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmutils.o
+  CC [M]  drivers/net/wireless/bcmdhd/bcmwifi_channels.o
+  CC      drivers/tty/tty_ldisc.o
+drivers/net/wireless/bcmdhd/bcmutils.c: In function ‘bcm_ether_atoe’:
+drivers/net/wireless/bcmdhd/bcmutils.c:1048:7: warning: ‘ep’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!*p++ || i == 6)
+       ^
+  CC [M]  drivers/net/wireless/bcmdhd/hndpmu.o
+  CC [M]  drivers/net/wireless/bcmdhd/linux_osl.o
+  CC      drivers/tty/tty_buffer.o
+  CC      drivers/tty/tty_port.o
+  CC      drivers/tty/tty_mutex.o
+  CC      drivers/tty/pty.o
+  CC [M]  drivers/net/wireless/bcmdhd/sbutils.o
+  CC [M]  drivers/net/wireless/bcmdhd/siutils.o
+  CC      drivers/tty/tty_audit.o
+  CC      drivers/tty/sysrq.o
+  CC      drivers/tty/serial/serial_core.o
+  CC      drivers/tty/vt/vt_ioctl.o
+  CC      drivers/tty/vt/vc_screen.o
+  CC      drivers/tty/vt/selection.o
+  CC      drivers/tty/serial/8250.o
+  CC      drivers/tty/vt/keyboard.o
+  CC      drivers/tty/vt/vt.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_android.o
+  CC      drivers/tty/serial/samsung.o
+  CC      drivers/usb/class/usblp.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_cfg80211.o
+  CC      drivers/tty/serial/s5pv210.o
+  LD      drivers/usb/class/built-in.o
+  LD      drivers/tty/serial/built-in.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_cfgp2p.o
+  CC      drivers/usb/core/usb.o
   CC      drivers/usb/core/hub.o
-  CC      drivers/usb/core/hcd.o
 In file included from drivers/usb/core/hub.c:33:0:
 drivers/usb/core/sec-dock.h:40:13: warning: ‘call_audiodock_notify’ defined but not used [-Wunused-function]
  static void call_audiodock_notify(struct usb_device *dev)
              ^
-  CC      drivers/video/fbcmap.o
-  CC      drivers/usb/core/urb.o
-  CC      drivers/video/fbsysfs.o
-  CC      drivers/video/modedb.o
-  CC      drivers/usb/core/message.o
-  CC      drivers/video/fbcvt.o
+  LD      drivers/tty/vt/built-in.o
+  LD      drivers/tty/built-in.o
+  CC      drivers/video/fb_notify.o
+  CC      drivers/video/fbmem.o
+  CC      drivers/usb/core/hcd.o
 drivers/usb/core/hub.c: In function ‘hub_thread’:
 drivers/usb/core/hub.c:2232:17: warning: ‘portchange’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   if (portchange & USB_PORT_STAT_C_LINK_STATE)
@@ -42,10 +2840,7 @@ drivers/usb/core/hub.c:2232:17: warning: ‘portchange’ may be used uninitiali
 drivers/usb/core/hub.c:2207:18: note: ‘portchange’ was declared here
   u16 portstatus, portchange;
                   ^
-  CC      drivers/video/backlight/lcd.o
-  CC      drivers/video/console/dummycon.o
-  LD      drivers/video/console/built-in.o
-  CC      drivers/usb/gadget/s3c_udc_otg.o
+  CC      drivers/video/fbmon.o
 In file included from include/linux/kernel.h:20:0,
                  from drivers/usb/core/hub.c:11:
 drivers/usb/core/hub.c: In function ‘usb_port_resume’:
@@ -63,33 +2858,77 @@ include/linux/printk.h:169:2: warning: ‘portchange’ may be used uninitialize
 drivers/usb/core/hub.c:2559:7: note: ‘portchange’ was declared here
   u16  portchange, portstatus;
        ^
+  CC      drivers/usb/core/urb.o
+  CC      drivers/usb/core/message.o
+  CC      drivers/video/fbcmap.o
+  CC      drivers/usb/core/driver.o
+  CC      drivers/video/fbsysfs.o
+  CC      drivers/video/modedb.o
+  CC      drivers/video/fbcvt.o
+  CC      drivers/usb/core/config.o
+  CC      drivers/video/backlight/lcd.o
+  CC      drivers/video/samsung/s3cfb_main.o
+  CC      drivers/usb/core/file.o
   CC      drivers/video/backlight/backlight.o
+drivers/video/samsung/s3cfb_main.c: In function ‘s3cfb_probe’:
+drivers/video/samsung/s3cfb_main.c:1334:1: warning: label ‘err0’ defined but not used [-Wunused-label]
+ err0:
+ ^
+  CC      drivers/video/samsung/s3cfb_ops.o
+  CC      drivers/usb/core/buffer.o
+  LD      drivers/video/backlight/built-in.o
+  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_main.o
+drivers/video/samsung/s3cfb_ops.c: In function ‘s3c_fb_update_regs’:
+drivers/video/samsung/s3cfb_ops.c:1566:15: warning: unused variable ‘clkval’ [-Wunused-variable]
+  unsigned int clkval = 0;
+               ^
+  CC      drivers/usb/core/sysfs.o
+  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_ops.o
+  CC      drivers/usb/core/endpoint.o
+drivers/video/samsung/s3cfb_ops.c: In function ‘s3cfb_ioctl’:
+drivers/video/samsung/s3cfb_ops.c:1984:3: warning: ‘fd’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   put_unused_fd(fd);
+   ^
+drivers/video/samsung/s3cfb_ops.c:1910:6: note: ‘fd’ was declared here
+  int fd;
+      ^
+  LD      drivers/video/samsung_extdisp/s3cfb_extdsp.o
+  LD      drivers/video/samsung_extdisp/built-in.o
+  CC      drivers/video/cfbfillrect.o
+  CC      drivers/usb/core/devio.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_cfg_btcoex.o
+  CC      drivers/video/samsung/lcdfreq.o
+  CC      drivers/video/cfbcopyarea.o
+  CC      drivers/video/samsung/s3cfb_fimd6x.o
+  CC [M]  drivers/net/wireless/bcmdhd/wldev_common.o
+  CC      drivers/video/cfbimgblt.o
+  CC      drivers/video/samsung/s3cfb_mdnie.o
+  LD      drivers/video/fb.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_linux_mon.o
+  CC      drivers/usb/gadget/s3c_udc_otg.o
+  CC      drivers/usb/core/notify.o
+  CC      drivers/video/samsung/s3cfb_ielcd.o
 In file included from drivers/usb/gadget/s3c_udc_otg.c:218:0:
 drivers/usb/gadget/s3c_udc_otg_xfer_dma.c: In function ‘process_ep_in_intr’:
 drivers/usb/gadget/s3c_udc_otg_xfer_dma.c:375:6: warning: unused variable ‘ep_ctrl’ [-Wunused-variable]
   u32 ep_ctrl;
       ^
-  CC      drivers/usb/core/driver.o
-  CC      drivers/usb/core/config.o
-  LD      drivers/video/backlight/built-in.o
-  CC      drivers/video/samsung/s3cfb_main.o
-drivers/video/samsung/s3cfb_main.c: In function ‘s3cfb_probe’:
-drivers/video/samsung/s3cfb_main.c:1334:1: warning: label ‘err0’ defined but not used [-Wunused-label]
- err0:
- ^
-  CC      drivers/usb/host/ehci-hcd.o
+  CC      drivers/usb/core/generic.o
+  CC      drivers/video/samsung/mdnie.o
+  CC [M]  drivers/net/wireless/bcmdhd/wl_roam.o
+  CC      drivers/usb/core/quirks.o
+drivers/video/samsung/mdnie.c: In function ‘mdnie_request_table’:
+drivers/video/samsung/mdnie.c:111:45: warning: comparison between ‘enum SCENARIO’ and ‘enum SCENARIO_DMB’ [-Wenum-compare]
+ #define SCENARIO_IS_DMB(scenario) (scenario == DMB_NORMAL_MODE)
+                                             ^
+drivers/video/samsung/mdnie.c:182:13: note: in expansion of macro ‘SCENARIO_IS_DMB’
+  } else if (SCENARIO_IS_DMB(mdnie->scenario)) {
+             ^
+  CC      drivers/usb/core/devices.o
+  CC [M]  drivers/net/wireless/bcmdhd/dhd_linux_platdev.o
   CC      drivers/usb/gadget/android.o
-  CC      drivers/usb/core/file.o
-  CC      drivers/video/samsung/s3cfb_ops.o
-In file included from drivers/usb/host/ehci-hcd.c:1351:0:
-drivers/usb/host/ehci-s5p.c: In function ‘s5p_wait_for_cp_resume’:
-drivers/usb/host/ehci-s5p.c:143:28: warning: unused variable ‘pdata’ [-Wunused-variable]
-  struct s5p_ehci_platdata *pdata = pdev->dev.platform_data;
-                            ^
-drivers/video/samsung/s3cfb_ops.c: In function ‘s3c_fb_update_regs’:
-drivers/video/samsung/s3cfb_ops.c:1566:15: warning: unused variable ‘clkval’ [-Wunused-variable]
-  unsigned int clkval = 0;
-               ^
+  CC      drivers/video/samsung/mdnie_tuning.o
+  CC      drivers/usb/core/inode.o
 In file included from drivers/usb/gadget/android.c:65:0:
 drivers/usb/gadget/f_diag.c: In function ‘usb_config_work_func’:
 drivers/usb/gadget/f_diag.c:145:21: warning: unused variable ‘s’ [-Wunused-variable]
@@ -101,26 +2940,22 @@ drivers/usb/gadget/f_diag.c:144:29: warning: unused variable ‘table’ [-Wunus
 drivers/usb/gadget/f_diag.c:143:28: warning: unused variable ‘cdev’ [-Wunused-variable]
   struct usb_composite_dev *cdev = ctxt->cdev;
                             ^
+  CC      drivers/video/samsung/s3cfb_s6evr02.o
 drivers/usb/gadget/android.c: In function ‘diag_function_bind_config’:
 drivers/usb/gadget/android.c:1053:6: warning: unused variable ‘once’ [-Wunused-variable]
   int once = 0, err = -1;
       ^
-  CC      drivers/usb/core/buffer.o
-drivers/video/samsung/s3cfb_ops.c: In function ‘s3cfb_ioctl’:
-drivers/video/samsung/s3cfb_ops.c:1984:3: warning: ‘fd’ may be used uninitialized in this function [-Wmaybe-uninitialized]
-   put_unused_fd(fd);
-   ^
-drivers/video/samsung/s3cfb_ops.c:1910:6: note: ‘fd’ was declared here
-  int fd;
-      ^
-  CC      drivers/usb/core/sysfs.o
-  CC      drivers/video/samsung/lcdfreq.o
-  CC      drivers/usb/core/endpoint.o
-  CC      drivers/video/samsung/s3cfb_fimd6x.o
-  CC      drivers/usb/core/devio.o
-  CC      drivers/video/samsung/s3cfb_mdnie.o
-  CC      drivers/video/samsung/s3cfb_ielcd.o
+  LD [M]  drivers/net/wireless/bcmdhd/dhd.o
+  LD      drivers/usb/core/usbcore.o
+  LD      drivers/usb/core/built-in.o
+  CC      drivers/usb/host/ehci-hcd.o
+  LD      drivers/net/built-in.o
   CC      drivers/usb/host/ohci-hcd.o
+In file included from drivers/usb/host/ehci-hcd.c:1351:0:
+drivers/usb/host/ehci-s5p.c: In function ‘s5p_wait_for_cp_resume’:
+drivers/usb/host/ehci-s5p.c:143:28: warning: unused variable ‘pdata’ [-Wunused-variable]
+  struct s5p_ehci_platdata *pdata = pdev->dev.platform_data;
+                            ^
 In file included from drivers/usb/host/ohci-hcd.c:101:0:
 drivers/usb/host/ohci-dbg.c: In function ‘fill_registers_buffer’:
 drivers/usb/host/ohci-dbg.c:77:11: warning: the comparison will always evaluate as ‘true’ for the address of ‘next’ will never be NULL [-Waddress]
@@ -135,86 +2970,56 @@ drivers/usb/host/ohci-dbg.c:77:11: warning: the comparison will always evaluate 
 drivers/usb/host/ohci-dbg.c:661:3: note: in expansion of macro ‘ohci_dbg_sw’
    ohci_dbg_sw (ohci, &next, &size,
    ^
-  CC      drivers/video/samsung/mdnie.o
-drivers/video/samsung/mdnie.c: In function ‘mdnie_request_table’:
-drivers/video/samsung/mdnie.c:111:45: warning: comparison between ‘enum SCENARIO’ and ‘enum SCENARIO_DMB’ [-Wenum-compare]
- #define SCENARIO_IS_DMB(scenario) (scenario == DMB_NORMAL_MODE)
-                                             ^
-drivers/video/samsung/mdnie.c:182:13: note: in expansion of macro ‘SCENARIO_IS_DMB’
-  } else if (SCENARIO_IS_DMB(mdnie->scenario)) {
-             ^
-  CC      drivers/usb/core/notify.o
-  CC      drivers/usb/core/generic.o
-  CC      drivers/video/samsung/mdnie_tuning.o
-  CC      drivers/usb/core/quirks.o
-  CC      drivers/usb/core/devices.o
-  CC      drivers/video/samsung/s3cfb_s6evr02.o
-  LD      drivers/usb/host/built-in.o
-  CC      drivers/usb/core/inode.o
-  CC      drivers/video/samsung/smart_dimming_s6evr02.o
   CC      drivers/video/samsung/s3cfb_ea8061.o
-  LD      drivers/usb/core/usbcore.o
-  LD      drivers/usb/core/built-in.o
+  CC      drivers/video/samsung/s5p-dsim.o
   CC      drivers/usb/misc/diag_bridge.o
-  CC      drivers/video/samsung/smart_dimming_ea8061.o
 drivers/usb/misc/diag_bridge.c: In function ‘read_hsic_cb’:
 drivers/usb/misc/diag_bridge.c:123:26: warning: unused variable ‘cbs’ [-Wunused-variable]
   struct diag_bridge_ops *cbs = dev->ops;
                           ^
-  CC      drivers/usb/misc/mdm_ctrl_bridge.o
-  CC      drivers/video/samsung/s5p_dsim_lowlevel.o
-  CC      drivers/video/samsung/s5p-dsim.o
   CC      drivers/video/samsung/boot_progressbar.o
-  CC      drivers/usb/misc/mdm_data_bridge.o
+  CC      drivers/usb/misc/mdm_ctrl_bridge.o
   LD      drivers/video/samsung/s3cfb.o
-  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_main.o
   LD      drivers/video/samsung/built-in.o
-  CC      drivers/video/cfbfillrect.o
-  CC      drivers/video/samsung_extdisp/s3cfb_extdsp_ops.o
+  LD      drivers/video/built-in.o
+  CC      drivers/usb/misc/mdm_data_bridge.o
+  LD      drivers/usb/host/built-in.o
+  CC      drivers/usb/mon/mon_main.o
+  CC      drivers/usb/notify/host_notifier.o
+  CC      drivers/usb/mon/mon_stat.o
   LD      drivers/usb/misc/mdm_bridge.o
   LD      drivers/usb/misc/built-in.o
-  CC      drivers/usb/mon/mon_main.o
-  CC      drivers/usb/gadget/multi_config.o
-  CC      drivers/usb/mon/mon_stat.o
-  LD      drivers/usb/gadget/g_android.o
-  LD      drivers/usb/gadget/built-in.o
-  CC      drivers/usb/notify/host_notify_class.o
-  LD      drivers/video/samsung_extdisp/s3cfb_extdsp.o
-  LD      drivers/video/samsung_extdisp/built-in.o
-  CC      drivers/video/cfbcopyarea.o
   CC      drivers/usb/serial/usb-serial.o
-  CC      drivers/usb/mon/mon_text.o
-  CC      drivers/usb/notify/host_notifier.o
-  CC      drivers/video/cfbimgblt.o
   LD      drivers/usb/notify/built-in.o
   CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/usb/mon/mon_text.o
   CC      drivers/usb/mon/mon_bin.o
-  LD      drivers/video/fb.o
-  LD      drivers/video/built-in.o
-  CC      drivers/usb/serial/generic.o
-  CC      drivers/usb/serial/bus.o
-  CC      drivers/usb/serial/pl2303.o
-  LD      drivers/usb/mon/usbmon.o
   CC      drivers/usb/storage/protocol.o
-  LD      drivers/usb/mon/built-in.o
-  CC      drivers/usb/serial/qcserial.o
-  CC      drivers/usb/serial/usb_wwan.o
-  CC      drivers/usb/serial/csvt.o
+  CC      drivers/usb/serial/generic.o
   CC      drivers/usb/storage/transport.o
-  LD      drivers/usb/serial/usbserial.o
-  CC      drivers/usb/storage/usb.o
-  CC      drivers/usb/storage/initializers.o
-  LD      drivers/usb/serial/built-in.o
+  LD      drivers/usb/mon/usbmon.o
+  LD      drivers/usb/mon/built-in.o
+  CC      drivers/usb/serial/bus.o
 drivers/usb/storage/transport.c: In function ‘usb_stor_bulk_transfer_sg’:
 drivers/usb/storage/transport.c:500:15: warning: ‘partial’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    length_left -= partial;
                ^
-  CC      drivers/usb/storage/sierra_ms.o
 drivers/usb/storage/transport.c: In function ‘usb_stor_bulk_srb’:
 drivers/usb/storage/transport.c:474:40: warning: ‘partial’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   scsi_set_resid(srb, scsi_bufflen(srb) - partial);
                                         ^
+  CC      drivers/usb/serial/pl2303.o
+  CC      drivers/usb/serial/qcserial.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/usb/serial/usb_wwan.o
+  CC      drivers/usb/serial/csvt.o
+  LD      drivers/usb/serial/usbserial.o
+  CC      drivers/usb/storage/initializers.o
+  CC      drivers/usb/storage/sierra_ms.o
+  LD      drivers/usb/serial/built-in.o
+  LD      drivers/usb/gadget/g_android.o
   CC      drivers/usb/storage/option_ms.o
+  LD      drivers/usb/gadget/built-in.o
   CC      drivers/usb/storage/usual-tables.o
   LD      drivers/usb/storage/usb-storage.o
   LD      drivers/usb/storage/built-in.o
@@ -238,15 +3043,17 @@ drivers/usb/storage/transport.c:474:40: warning: ‘partial’ may be used unini
   SYSMAP  .tmp_System.map
   Building modules, stage 2.
   MODPOST 7 modules
-  OBJCOPY arch/arm/boot/Image
-  Kernel: arch/arm/boot/Image is ready
   CC      arch/arm/mvp/commkm/commkm.mod.o
-  CC      arch/arm/mvp/oektestkm/oektestkm.mod.o
   CC      arch/arm/mvp/mvpkm/mvpkm.mod.o
-  LZMA    arch/arm/boot/compressed/piggy.lzma
+  CC      arch/arm/mvp/oektestkm/oektestkm.mod.o
+  OBJCOPY arch/arm/boot/Image
   CC      arch/arm/mvp/pvtcpkm/pvtcpkm.mod.o
+  Kernel: arch/arm/boot/Image is ready
   CC      drivers/net/wireless/bcmdhd/dhd.mod.o
   CC      drivers/net/wireless/btlock/btlock.mod.o
+  AS      arch/arm/boot/compressed/head.o
+  CC      arch/arm/boot/compressed/misc.o
+  CC      arch/arm/boot/compressed/decompress.o
   CC      drivers/scsi/scsi_wait_scan.mod.o
   LD [M]  arch/arm/mvp/commkm/commkm.ko
   LD [M]  arch/arm/mvp/mvpkm/mvpkm.ko
@@ -254,11 +3061,12 @@ drivers/usb/storage/transport.c:474:40: warning: ‘partial’ may be used unini
   LD [M]  arch/arm/mvp/pvtcpkm/pvtcpkm.ko
   LD [M]  drivers/net/wireless/bcmdhd/dhd.ko
   LD [M]  drivers/net/wireless/btlock/btlock.ko
+  LZMA    arch/arm/boot/compressed/piggy.lzma
+  LD [M]  drivers/scsi/scsi_wait_scan.ko
   SHIPPED arch/arm/boot/compressed/lib1funcs.S
   SHIPPED arch/arm/boot/compressed/ashldi3.S
-  AS      arch/arm/boot/compressed/ashldi3.o
   AS      arch/arm/boot/compressed/lib1funcs.o
-  LD [M]  drivers/scsi/scsi_wait_scan.ko
+  AS      arch/arm/boot/compressed/ashldi3.o
   AS      arch/arm/boot/compressed/piggy.lzma.o
   LD      arch/arm/boot/compressed/vmlinux
   OBJCOPY arch/arm/boot/zImage
