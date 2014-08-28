@@ -34,6 +34,7 @@
 #include <linux/delay.h>
 #include <linux/wakelock.h>
 #include <linux/input.h>
+#include <linux/syscalls.h>
 #include <linux/battery/samsung_battery.h>
 
 extern void touchscreen_enable(void);
@@ -46,11 +47,9 @@ static bool device_suspended = false;
 static bool timed_out = true;
 static bool prox_near = false;
 bool knockon = false;
-bool slide2wake = false;
 static bool knocked = false;
-int knockon_delay = 400;
-static unsigned int touchoff_delay = 10000;
-static unsigned int charging_touchoff_delay = 60000;
+static unsigned int touchoff_delay = 60000;
+static unsigned int charging_touchoff_delay = 180000;
 
 static void touchwake_touchoff(struct work_struct * touchoff_work);
 static DECLARE_DELAYED_WORK(touchoff_work, touchwake_touchoff);
@@ -68,9 +67,9 @@ static struct timeval last_powerkeypress;
 #define TIME_LONGPRESS 500
 #define POWERPRESS_DELAY 100
 #define POWERPRESS_TIMEOUT 1000
-#define KNOCKON_DELAY knockon_delay
+#define KNOCKON_DELAY 500
 
-//#define DEBUG_PRINT
+// #define DEBUG_PRINT
 
 static void touchwake_disable_touch(void)
 {
@@ -198,6 +197,13 @@ static struct early_suspend touchwake_suspend_data =
 
 static void touchwake_touchoff(struct work_struct * touchoff_work)
 {
+#ifdef DEBUG_PRINT
+	pr_info("%s: %s +\n", __func__, "sys_sync");
+#endif
+	sys_sync();
+#ifdef DEBUG_PRINT
+	pr_info("%s: %s -\n", __func__, "sys_sync");
+#endif
 	touchwake_disable_touch();
 	wake_unlock(&touchwake_wake_lock);
 
@@ -286,10 +292,9 @@ static ssize_t touchwake_keypower_write(struct device * dev, struct device_attri
 	return size;
 }
 
-
 static ssize_t touchwake_knockon_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%d\n", (knockon ? 1 : 0));
+	return sprintf(buf, "%u\n", (knockon ? 1 : 0));
 }
 
 static ssize_t touchwake_knockon_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -309,57 +314,9 @@ static ssize_t touchwake_knockon_write(struct device * dev, struct device_attrib
 	return size;
 }
 
-
-static ssize_t knockon_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
-{
-	return sprintf(buf, "%d\n", knockon_delay);
-}
-
-static ssize_t knockon_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int data;
-
-	if(sscanf(buf, "%d\n", &data) == 1) {
-		knockon_delay = data;
-	}
-
-	return size;
-}
-
-//#########################################################
-//##      Slide2Wake - (Ported By Strawberry)       ##
-//#########################################################
-int get_touchoff_delay()
-{   
-	return touchoff_delay;
-}
-EXPORT_SYMBOL(get_touchoff_delay);
-
-static ssize_t touchwake_slide2wake_read(struct device * dev, struct device_attribute * attr, char * buf)
-{
-	return sprintf(buf, "%d\n", (slide2wake ? 1 : 0));
-}
-
-static ssize_t touchwake_slide2wake_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	unsigned int ret = -EINVAL;
-	int val;
-
-	// read value from input buffer
-	ret = sscanf(buf, "%d", &val);
-
-	// check value and store if valid
-	if ((val == 0) ||  (val == 1))
-	{
-		slide2wake = val;
-	}
-
-	return size;
-}
-
 static ssize_t touchwake_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%u\n", touchoff_delay);
+	return sprintf(buf, "%u\n", touchoff_delay / 1000);
 }
 
 static ssize_t touchwake_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -367,7 +324,7 @@ static ssize_t touchwake_delay_write(struct device * dev, struct device_attribut
 	unsigned int data;
 
 	if(sscanf(buf, "%u\n", &data) == 1) {
-		touchoff_delay = data;
+		touchoff_delay = data * 1000;
 #ifdef DEBUG_PRINT
 		pr_info("[TOUCHWAKE] Delay set to %u\n", touchoff_delay); 
 	} else 	{
@@ -380,7 +337,7 @@ static ssize_t touchwake_delay_write(struct device * dev, struct device_attribut
 
 static ssize_t touchwake_charging_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%u\n", charging_touchoff_delay);
+	return sprintf(buf, "%u\n", charging_touchoff_delay / 1000);
 }
 
 static ssize_t touchwake_charging_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -388,7 +345,7 @@ static ssize_t touchwake_charging_delay_write(struct device * dev, struct device
 	unsigned int data;
 
 	if(sscanf(buf, "%u\n", &data) == 1) {
-		charging_touchoff_delay = data;
+		charging_touchoff_delay = data * 1000;
 #ifdef DEBUG_PRINT
 		pr_info("[TOUCHWAKE] Delay set to %u\n", charging_touchoff_delay); 
 	} else 	{
@@ -404,7 +361,6 @@ static ssize_t touchwake_version(struct device * dev, struct device_attribute * 
 	return sprintf(buf, "%s\n", TOUCHWAKE_VERSION);
 }
 
-
 #ifdef DEBUG_PRINT
 static ssize_t touchwake_debug(struct device * dev, struct device_attribute * attr, char * buf)
 {
@@ -414,9 +370,7 @@ static ssize_t touchwake_debug(struct device * dev, struct device_attribute * at
 
 static DEVICE_ATTR(enabled, S_IRUGO | S_IWUGO, touchwake_status_read, touchwake_status_write);
 static DEVICE_ATTR(knockon, S_IRUGO | S_IWUGO, touchwake_knockon_read, touchwake_knockon_write);
-static DEVICE_ATTR(slide2wake, S_IRUGO | S_IWUGO, touchwake_slide2wake_read, touchwake_slide2wake_write);
 static DEVICE_ATTR(delay, S_IRUGO | S_IWUGO, touchwake_delay_read, touchwake_delay_write);
-static DEVICE_ATTR(knockon_delay, S_IRUGO | S_IWUGO, knockon_delay_read, knockon_delay_write);
 static DEVICE_ATTR(charging_delay, S_IRUGO | S_IWUGO, touchwake_charging_delay_read, touchwake_charging_delay_write);
 static DEVICE_ATTR(keypower_mode, S_IRUGO | S_IWUGO, touchwake_keypower_read, touchwake_keypower_write);
 static DEVICE_ATTR(version, S_IRUGO , touchwake_version, NULL);
@@ -427,10 +381,8 @@ static DEVICE_ATTR(debug, S_IRUGO , touchwake_debug, NULL);
 static struct attribute *touchwake_notification_attributes[] =
 {
 	&dev_attr_enabled.attr,
-	&dev_attr_slide2wake.attr,
 	&dev_attr_knockon.attr,
 	&dev_attr_delay.attr,
-	&dev_attr_knockon_delay.attr,
 	&dev_attr_keypower_mode.attr,
 	&dev_attr_charging_delay.attr,
 	&dev_attr_version.attr,
@@ -515,7 +467,6 @@ void powerkey_released(void)
 }
 EXPORT_SYMBOL(powerkey_released);
 
-
 void touch_press(void)
 {
 #ifdef DEBUG_PRINT
@@ -525,28 +476,15 @@ void touch_press(void)
 	if (knockon) {
 		if (knocked) {
 			knocked = false;
-			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Knocked - knocked : %s\n",knocked?"true":"false");
 			if (unlikely(device_suspended && touchwake_enabled && !prox_near && mutex_trylock(&lock)))
-				{
-					pr_err("\t\t[TOUCHWAKE] touch_wake.c : Schedule Start");
-					schedule_work(&presspower_work);
-					
-				}
+				schedule_work(&presspower_work);
 		} else {
 			knocked = true;
-			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Delay [%dms] Start - knocked : %s\n",KNOCKON_DELAY, knocked?"true":"false");
 			schedule_delayed_work(&knockon_work, msecs_to_jiffies(KNOCKON_DELAY));
-			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Delay [%dms] Done - knocked : %s\n",KNOCKON_DELAY, knocked?"true":"false");
-
-			
 		}
 	} else {
 		if (unlikely(device_suspended && touchwake_enabled && !prox_near && mutex_trylock(&lock)))
-			{
-				schedule_work(&presspower_work);
-				pr_err("\t\t[TOUCHWAKE] touch_wake.c : Not Knocked - knocked : %s\n",knocked?"true":"false");
-
-			}
+			schedule_work(&presspower_work);
 	}
 
 	return;

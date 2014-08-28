@@ -227,29 +227,6 @@ static bool mms_ts_suspended = false;
 #define ISC_CHAR_2_BCD(num)	(((num/10)<<4) + (num%10))
 #define ISC_MAX(x, y)		(((x) > (y)) ? (x) : (y))
 
-//########################################################
-//##  Knock On - (Thx ater97, Ported By Strawberry)  ##
-//########################################################
-#define KNOCKON_DELAY knockon_delay
-
-static void knocked_work(struct work_struct * knockon_work);
-static DECLARE_DELAYED_WORK(knockon_work, knocked_work);
-static void knocked_work(struct work_struct * knockon_work)
-{
-	knockon_reset = false;
-	pr_err("\t\t[TOUCHWAKE] Delay Work, Delay Time : %d knockon_reset : %s\n", KNOCKON_DELAY, knockon_reset?"true":"false");
-	return;
-}
-
-//#########################################################
-//##      Slide2Wake - (Ported By Strawberry)       ##
-//#########################################################
-static unsigned int wake_start = -1;
-static unsigned int wake_start_y = -100;
-static unsigned int x_lo;
-static unsigned int x_hi;
-static unsigned int y_tolerance = 132;
-
 static const char section_name[SECTION_NUM][SECTION_NAME_LEN] = {
 	"BOOT", "CORE", "CONF"
 };
@@ -1074,25 +1051,8 @@ static irqreturn_t mms_ts_interrupt(int irq, void *dev_id)
 				}
 			}
 #endif
-#ifdef CONFIG_TOUCH_WAKE
-//#########################################################
-//##      Slide2Wake - (Ported By Strawberry)       ##
-//#########################################################
-        if (wake_start == i && x > x_hi && abs(wake_start_y - y) < y_tolerance && get_touchoff_delay() == 0 ) 
-			touch_press();
-        wake_start = -1;
-#endif
 			continue;
 		}
-#ifdef CONFIG_TOUCH_WAKE
-//#########################################################
-//##      Slide2Wake - (Ported By Strawberry)       ##
-//#########################################################
-        if (x < x_lo) {
-                wake_start = i;
-                wake_start_y = y;
-        }
-#endif
 		if (info->panel == 'M') {
 			input_mt_slot(info->input_dev, id);
 			input_mt_report_slot_state(info->input_dev,
@@ -1168,41 +1128,19 @@ static irqreturn_t mms_ts_interrupt(int irq, void *dev_id)
 			}
 #endif
 		}
-			touch_is_pressed++;
+		touch_is_pressed++;
 #ifdef CONFIG_TOUCH_WAKE
-//########################################################
-//##  Knock On - (Thx ater97, Ported By Strawberry)  ##
-//########################################################
 		if (mms_ts_suspended) {
-			if (knockon) 
-			{
-				if (touch_is_pressed >= 1) 
-				{
-					if (knockon_reset) 
-					{
+			if (knockon) {
+				if (touch_is_pressed == 0) {
+					if (knockon_reset) {
 						knockon_reset = false;
-						pr_err("\t\t[TOUCHWAKE] Touch_is_Pressed : %d knockon_reset : %s [KnockOn - ScreenOn]\n",touch_is_pressed, knockon_reset?"true":"false");
 						touch_press();
-					} 
-					else 
-					{
+					} else {
 						knockon_reset = true;
-						pr_err("\t\t[TOUCHWAKE] Touch_is_Pressed : %d knockon_reset : %s [KnockOn - ScreenOff]\n",touch_is_pressed, knockon_reset?"true":"false");
-						schedule_delayed_work(&knockon_work, msecs_to_jiffies(KNOCKON_DELAY));
 					}
 				}
-			}
-			else if(slide2wake)
-			{
-				if (get_touchoff_delay() != 0) 
-				{
-					pr_err("\t\t[TOUCHWAKE] Touch_is_Pressed : %d Slide2Wake [Screen On]\n",touch_is_pressed);
-					touch_press();
-				}
-			}
-			else 
-			{
-				pr_err("\t\t[TOUCHWAKE] Touch_is_Pressed : %d knockon_reset : %s TouchWake [Screen On]\n",touch_is_pressed, knockon_reset?"true":"false");
+			} else {
 				touch_press();
 			}
 		}
@@ -4519,14 +4457,7 @@ static int __devinit mms_ts_probe(struct i2c_client *client,
 	if (ret)
 		pr_err("[TSP] Failed to register fb\n");
 #endif
-#ifdef CONFIG_TOUCH_WAKE
-//#########################################################
-//##      Slide2Wake - (Ported By Strawberry)       ##
-//#########################################################
-	x_lo = info->max_x / 10 * 1;  /* 10% display width */
-	x_hi = info->max_x / 10 * 9;  /* 90% display width */
-	y_tolerance = info->max_y / 10 * 3 / 2;
-#endif
+
 	sec_touchscreen = device_create(sec_class,
 					NULL, 0, info, "sec_touchscreen");
 	if (IS_ERR(sec_touchscreen)) {
