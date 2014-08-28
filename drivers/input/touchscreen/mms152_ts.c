@@ -240,6 +240,16 @@ static void knocked_work(struct work_struct * knockon_work)
 	pr_err("\t\t[TOUCHWAKE] Delay Work, Delay Time : %d knockon_reset : %s\n", KNOCKON_DELAY, knockon_reset?"true":"false");
 	return;
 }
+
+//#########################################################
+//##      Slide2Wake - (Ported By Strawberry)       ##
+//#########################################################
+static unsigned int wake_start = -1;
+static unsigned int wake_start_y = -100;
+static unsigned int x_lo;
+static unsigned int x_hi;
+static unsigned int y_tolerance = 132;
+
 static const char section_name[SECTION_NUM][SECTION_NAME_LEN] = {
 	"BOOT", "CORE", "CONF"
 };
@@ -1064,8 +1074,25 @@ static irqreturn_t mms_ts_interrupt(int irq, void *dev_id)
 				}
 			}
 #endif
+#ifdef CONFIG_TOUCH_WAKE
+//#########################################################
+//##      Slide2Wake - (Ported By Strawberry)       ##
+//#########################################################
+        if (wake_start == i && x > x_hi && abs(wake_start_y - y) < y_tolerance && get_touchoff_delay() == 0 ) 
+			touch_press();
+        wake_start = -1;
+#endif
 			continue;
 		}
+#ifdef CONFIG_TOUCH_WAKE
+//#########################################################
+//##      Slide2Wake - (Ported By Strawberry)       ##
+//#########################################################
+        if (x < x_lo) {
+                wake_start = i;
+                wake_start_y = y;
+        }
+#endif
 		if (info->panel == 'M') {
 			input_mt_slot(info->input_dev, id);
 			input_mt_report_slot_state(info->input_dev,
@@ -4492,7 +4519,14 @@ static int __devinit mms_ts_probe(struct i2c_client *client,
 	if (ret)
 		pr_err("[TSP] Failed to register fb\n");
 #endif
-
+#ifdef CONFIG_TOUCH_WAKE
+//#########################################################
+//##      Slide2Wake - (Ported By Strawberry)       ##
+//#########################################################
+	x_lo = info->max_x / 10 * 1;  /* 10% display width */
+	x_hi = info->max_x / 10 * 9;  /* 90% display width */
+	y_tolerance = info->max_y / 10 * 3 / 2;
+#endif
 	sec_touchscreen = device_create(sec_class,
 					NULL, 0, info, "sec_touchscreen");
 	if (IS_ERR(sec_touchscreen)) {

@@ -47,6 +47,7 @@ static bool device_suspended = false;
 static bool timed_out = true;
 static bool prox_near = false;
 bool knockon = false;
+bool slide2wake = false;
 static bool knocked = false;
 int knockon_delay = 400;
 static unsigned int touchoff_delay = 10000;
@@ -330,6 +331,38 @@ static ssize_t knockon_delay_write(struct device * dev, struct device_attribute 
 
 	return size;
 }
+
+//#########################################################
+//##      Slide2Wake - (Ported By Strawberry)       ##
+//#########################################################
+int get_touchoff_delay()
+{   
+	return touchoff_delay;
+}
+EXPORT_SYMBOL(get_touchoff_delay);
+
+static ssize_t touchwake_slide2wake_read(struct device * dev, struct device_attribute * attr, char * buf)
+{
+	return sprintf(buf, "%d\n", (slide2wake ? 1 : 0));
+}
+
+static ssize_t touchwake_slide2wake_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	unsigned int ret = -EINVAL;
+	int val;
+
+	// read value from input buffer
+	ret = sscanf(buf, "%d", &val);
+
+	// check value and store if valid
+	if ((val == 0) ||  (val == 1))
+	{
+		slide2wake = val;
+	}
+
+	return size;
+}
+
 static ssize_t touchwake_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
 	return sprintf(buf, "%u\n", touchoff_delay);
@@ -386,6 +419,7 @@ static ssize_t touchwake_debug(struct device * dev, struct device_attribute * at
 
 static DEVICE_ATTR(enabled, S_IRUGO | S_IWUGO, touchwake_status_read, touchwake_status_write);
 static DEVICE_ATTR(knockon, S_IRUGO | S_IWUGO, touchwake_knockon_read, touchwake_knockon_write);
+static DEVICE_ATTR(slide2wake, S_IRUGO | S_IWUGO, touchwake_slide2wake_read, touchwake_slide2wake_write);
 static DEVICE_ATTR(delay, S_IRUGO | S_IWUGO, touchwake_delay_read, touchwake_delay_write);
 static DEVICE_ATTR(knockon_delay, S_IRUGO | S_IWUGO, knockon_delay_read, knockon_delay_write);
 static DEVICE_ATTR(charging_delay, S_IRUGO | S_IWUGO, touchwake_charging_delay_read, touchwake_charging_delay_write);
@@ -398,6 +432,7 @@ static DEVICE_ATTR(debug, S_IRUGO , touchwake_debug, NULL);
 static struct attribute *touchwake_notification_attributes[] =
 {
 	&dev_attr_enabled.attr,
+	&dev_attr_slide2wake.attr,
 	&dev_attr_knockon.attr,
 	&dev_attr_delay.attr,
 	&dev_attr_knockon_delay.attr,
