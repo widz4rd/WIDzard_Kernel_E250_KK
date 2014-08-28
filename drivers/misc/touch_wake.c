@@ -48,8 +48,9 @@ static bool timed_out = true;
 static bool prox_near = false;
 bool knockon = false;
 static bool knocked = false;
-static unsigned int touchoff_delay = 60000;
-static unsigned int charging_touchoff_delay = 180000;
+int knockon_delay = 400;
+static unsigned int touchoff_delay = 10000;
+static unsigned int charging_touchoff_delay = 60000;
 
 static void touchwake_touchoff(struct work_struct * touchoff_work);
 static DECLARE_DELAYED_WORK(touchoff_work, touchwake_touchoff);
@@ -67,9 +68,9 @@ static struct timeval last_powerkeypress;
 #define TIME_LONGPRESS 500
 #define POWERPRESS_DELAY 100
 #define POWERPRESS_TIMEOUT 1000
-#define KNOCKON_DELAY 500
+#define KNOCKON_DELAY knockon_delay
 
-// #define DEBUG_PRINT
+//#define DEBUG_PRINT
 
 static void touchwake_disable_touch(void)
 {
@@ -294,7 +295,7 @@ static ssize_t touchwake_keypower_write(struct device * dev, struct device_attri
 
 static ssize_t touchwake_knockon_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%u\n", (knockon ? 1 : 0));
+	return sprintf(buf, "%d\n", (knockon ? 1 : 0));
 }
 
 static ssize_t touchwake_knockon_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -314,9 +315,24 @@ static ssize_t touchwake_knockon_write(struct device * dev, struct device_attrib
 	return size;
 }
 
+static ssize_t knockon_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
+{
+	return sprintf(buf, "%d\n", knockon_delay);
+}
+
+static ssize_t knockon_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int data;
+
+	if(sscanf(buf, "%d\n", &data) == 1) {
+		knockon_delay = data;
+	}
+
+	return size;
+}
 static ssize_t touchwake_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%u\n", touchoff_delay / 1000);
+	return sprintf(buf, "%u\n", touchoff_delay);
 }
 
 static ssize_t touchwake_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -324,7 +340,7 @@ static ssize_t touchwake_delay_write(struct device * dev, struct device_attribut
 	unsigned int data;
 
 	if(sscanf(buf, "%u\n", &data) == 1) {
-		touchoff_delay = data * 1000;
+		touchoff_delay = data;
 #ifdef DEBUG_PRINT
 		pr_info("[TOUCHWAKE] Delay set to %u\n", touchoff_delay); 
 	} else 	{
@@ -337,7 +353,7 @@ static ssize_t touchwake_delay_write(struct device * dev, struct device_attribut
 
 static ssize_t touchwake_charging_delay_read(struct device * dev, struct device_attribute * attr, char * buf)
 {
-	return sprintf(buf, "%u\n", charging_touchoff_delay / 1000);
+	return sprintf(buf, "%u\n", charging_touchoff_delay);
 }
 
 static ssize_t touchwake_charging_delay_write(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -345,7 +361,7 @@ static ssize_t touchwake_charging_delay_write(struct device * dev, struct device
 	unsigned int data;
 
 	if(sscanf(buf, "%u\n", &data) == 1) {
-		charging_touchoff_delay = data * 1000;
+		charging_touchoff_delay = data;
 #ifdef DEBUG_PRINT
 		pr_info("[TOUCHWAKE] Delay set to %u\n", charging_touchoff_delay); 
 	} else 	{
@@ -371,6 +387,7 @@ static ssize_t touchwake_debug(struct device * dev, struct device_attribute * at
 static DEVICE_ATTR(enabled, S_IRUGO | S_IWUGO, touchwake_status_read, touchwake_status_write);
 static DEVICE_ATTR(knockon, S_IRUGO | S_IWUGO, touchwake_knockon_read, touchwake_knockon_write);
 static DEVICE_ATTR(delay, S_IRUGO | S_IWUGO, touchwake_delay_read, touchwake_delay_write);
+static DEVICE_ATTR(knockon_delay, S_IRUGO | S_IWUGO, knockon_delay_read, knockon_delay_write);
 static DEVICE_ATTR(charging_delay, S_IRUGO | S_IWUGO, touchwake_charging_delay_read, touchwake_charging_delay_write);
 static DEVICE_ATTR(keypower_mode, S_IRUGO | S_IWUGO, touchwake_keypower_read, touchwake_keypower_write);
 static DEVICE_ATTR(version, S_IRUGO , touchwake_version, NULL);
@@ -383,6 +400,7 @@ static struct attribute *touchwake_notification_attributes[] =
 	&dev_attr_enabled.attr,
 	&dev_attr_knockon.attr,
 	&dev_attr_delay.attr,
+	&dev_attr_knockon_delay.attr,
 	&dev_attr_keypower_mode.attr,
 	&dev_attr_charging_delay.attr,
 	&dev_attr_version.attr,
@@ -476,15 +494,28 @@ void touch_press(void)
 	if (knockon) {
 		if (knocked) {
 			knocked = false;
+			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Knocked - knocked : %s\n",knocked?"true":"false");
 			if (unlikely(device_suspended && touchwake_enabled && !prox_near && mutex_trylock(&lock)))
-				schedule_work(&presspower_work);
+				{
+					pr_err("\t\t[TOUCHWAKE] touch_wake.c : Schedule Start");
+					schedule_work(&presspower_work);
+					
+				}
 		} else {
 			knocked = true;
+			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Delay [%dms] Start - knocked : %s\n",KNOCKON_DELAY, knocked?"true":"false");
 			schedule_delayed_work(&knockon_work, msecs_to_jiffies(KNOCKON_DELAY));
+			pr_err("\t\t[TOUCHWAKE] touch_wake.c : Delay [%dms] Done - knocked : %s\n",KNOCKON_DELAY, knocked?"true":"false");
+
+			
 		}
 	} else {
 		if (unlikely(device_suspended && touchwake_enabled && !prox_near && mutex_trylock(&lock)))
-			schedule_work(&presspower_work);
+			{
+				schedule_work(&presspower_work);
+				pr_err("\t\t[TOUCHWAKE] touch_wake.c : Not Knocked - knocked : %s\n",knocked?"true":"false");
+
+			}
 	}
 
 	return;

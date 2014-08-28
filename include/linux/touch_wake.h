@@ -13,5 +13,5 @@ void touch_press(void);
 bool device_is_suspended(void);
 void set_powerkeydev(struct input_dev * input_device);
 extern bool knockon;
-
+extern int knockon_delay;
 #endif
