@@ -722,7 +722,6 @@ static struct notifier_block exynos_cpufreq_policy_notifier = {
 
 static int exynos_cpufreq_cpu_init(struct cpufreq_policy *policy)
 {
-	int retval;
 	policy->cur = policy->min = policy->max = exynos_getspeed(policy->cpu);
 
 	cpufreq_frequency_table_get_attr(exynos_info->freq_table, policy->cpu);
@@ -743,13 +742,16 @@ static int exynos_cpufreq_cpu_init(struct cpufreq_policy *policy)
 		cpumask_setall(policy->cpus);
 	}
 
-	retval = cpufreq_frequency_table_cpuinfo(policy, exynos_info->freq_table);
+	cpufreq_frequency_table_cpuinfo(policy, exynos_info->freq_table);
 
-	/* Keep stock frq. as default startup frq. */
-	policy->max = 1600000;
-	policy->min = 200000;
+  	/* Safe default startup limits */
+  	if (samsung_rev() >= EXYNOS4412_REV_2_0)
+  	  policy->max = 1600000;
+ 	else
+  	  policy->max = 1400000;
+  	policy->min = 200000;
 
-	return retval;
+  	return 0;
 }
 
 static int exynos_cpufreq_reboot_notifier_call(struct notifier_block *this,
@@ -902,7 +904,7 @@ ssize_t store_UV_uV_table(struct cpufreq_policy *policy,
 	if(tokens != CPUFREQ_LEVEL_END) {
 		top_offset = CPUFREQ_LEVEL_END - tokens;
 	}
-
+	
 	for (i = 0 + top_offset; i < CPUFREQ_LEVEL_END; i++) {
 		if (t[i] > CPU_UV_MV_MAX) 
 			t[i] = CPU_UV_MV_MAX;
@@ -914,7 +916,7 @@ ssize_t store_UV_uV_table(struct cpufreq_policy *policy,
 
 		exynos_info->volt_table[i+invalid_offset] = t[i];
 	}
-
+	
 	return count;
 }		
 
@@ -933,7 +935,7 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 	if(tokens != CPUFREQ_LEVEL_END) {
 		top_offset = CPUFREQ_LEVEL_END - tokens;
 	}
-
+	
 	for (i = 0 + top_offset; i < CPUFREQ_LEVEL_END; i++) {
 		int rest = 0;
 
@@ -945,7 +947,7 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 			else
 				t[i] -= rest;
 		}
-
+		
 		if (t[i] > CPU_UV_MV_MAX) 
 			t[i] = CPU_UV_MV_MAX;
 		else if (t[i] < CPU_UV_MV_MIN) 
@@ -953,23 +955,9 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 
 		while(exynos_info->freq_table[i+invalid_offset].frequency==CPUFREQ_ENTRY_INVALID)
 			++invalid_offset;
-
+		
 		exynos_info->volt_table[i+invalid_offset] = t[i];
 	}
-
-	return count;
-}
-
-/* sysfs interface for ASV level */
-ssize_t show_asv_level(struct cpufreq_policy *policy, char *buf) {
-
-	return sprintf(buf, "ASV level: %d\n",exynos_result_of_asv); 
-
-}
-
-extern ssize_t store_asv_level(struct cpufreq_policy *policy,
-                                      const char *buf, size_t count) {
 	
-	// the store function does not do anything
 	return count;
 }
