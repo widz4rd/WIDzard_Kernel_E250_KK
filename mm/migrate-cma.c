@@ -750,6 +750,11 @@ static int unmap_and_move(new_page_t get_new_page, unsigned long private,
 	/* prepare cgroup just returns 0 or -ENOMEM */
 	rc = -EAGAIN;
 
+	/*
+	 * Yank555.lu :
+	 * --- changed in 3.0.39, !sync is assumed to by ASYNC
+	 */
+
 	if (!trylock_page(page)) {
 		if (!force || !sync) {
 			if (is_failed_page(page, pass, tries)) {
@@ -978,6 +983,10 @@ static int unmap_and_move_huge_page(new_page_t get_new_page,
 
 	rc = -EAGAIN;
 
+	/*
+	 * Yank555.lu :
+	 * --- changed in 3.0.39, !sync is assumed to by ASYNC
+	 */
 	if (!trylock_page(hpage)) {
 		if (!force || !sync)
 			goto out;

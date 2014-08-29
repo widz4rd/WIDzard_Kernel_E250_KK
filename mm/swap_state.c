@@ -319,7 +319,7 @@ struct page *read_swap_cache_async(swp_entry_t entry, gfp_t gfp_mask,
 		 * Swap entry may have been freed since our caller observed it.
 		 */
 		err = swapcache_prepare(entry);
-		if (err == -EEXIST) {
+		if (err == -EEXIST) {	/* seems racy */
 			radix_tree_preload_end();
 			continue;
 		}
