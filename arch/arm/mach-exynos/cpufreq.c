@@ -958,6 +958,18 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 		
 		exynos_info->volt_table[i+invalid_offset] = t[i];
 	}
+	return count;
+}
+
+/* sysfs interface for ASV level */
+ssize_t show_asv_level(struct cpufreq_policy *policy, char *buf) {
+
+	return sprintf(buf, "ASV level: %d\n",exynos_result_of_asv); 
+
+}
+
+extern ssize_t store_asv_level(struct cpufreq_policy *policy,
+                                      const char *buf, size_t count) {
 	
 	return count;
 }
