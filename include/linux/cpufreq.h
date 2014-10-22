@@ -315,6 +315,25 @@ __ATTR(_name, 0444, show_##_name, NULL)
 static struct global_attr _name =		\
 __ATTR(_name, 0644, show_##_name, store_##_name)
 
+#define store_afs_threshold(name) \
+static ssize_t store_afs_threshold##name(struct kobject *a, struct attribute *b, \
+const char *buf, size_t count) \
+{ \
+unsigned int input; \
+int ret; \
+ret = sscanf(buf, "%u", &input); \
+\
+if (ret != 1 || input > 100 || input < 0 || set_profile_active == true) \
+return -EINVAL; \
+\
+dbs_tuners_ins.afs_threshold##name = input; \
+\
+if (dbs_tuners_ins.profile_number != 0) { \
+dbs_tuners_ins.profile_number = 0; \
+strncpy(dbs_tuners_ins.profile, custom_profile, sizeof(dbs_tuners_ins.profile)); \
+} \
+return count; \
+} \
 
 /*********************************************************************
  *                        CPUFREQ 2.6. INTERFACE                     *
@@ -415,14 +434,11 @@ extern struct cpufreq_governor cpufreq_gov_intelliactive;
 #define CPUFREQ_DEFAULT_GOVERNOR    (&cpufreq_gov_intelliactive)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND)
 extern struct cpufreq_governor cpufreq_gov_intellidemand;
-<<<<<<< HEAD
 #define CPUFREQ_DEFAULT_GOVERNOR        (&cpufreq_gov_intellidemand)
-=======
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_intellidemand)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTELLIACTIVE)
 extern struct cpufreq_governor cpufreq_gov_intelliactive;
 #define CPUFREQ_DEFAULT_GOVERNOR        (&cpufreq_gov_intelliactive)
->>>>>>> 2484ffb... cpufreq: intelliactive: initial coding and introduction!
 #endif
 
 
