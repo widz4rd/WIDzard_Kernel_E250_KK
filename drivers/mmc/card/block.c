@@ -422,6 +422,13 @@ static int mmc_blk_ioctl_cmd(struct block_device *bdev,
 	cmd.arg = idata->ic.arg;
 	cmd.flags = idata->ic.flags;
 
+	if( cmd.opcode == MMC_IOC_CLOCK )
+	{
+		mmc_set_clock(card->host, cmd.arg);
+		err = 0;
+		goto cmd_done;
+	}
+
 	if (idata->buf_bytes) {
 		int len;
 		data.blksz = idata->ic.blksz;
@@ -2541,8 +2548,9 @@ static int mmc_blk_probe(struct mmc_card *card)
 	printk(KERN_INFO "%s: %s %s %s %s\n",
 		md->disk->disk_name, mmc_card_id(card), mmc_card_name(card),
 		cap_str, md->read_only ? "(ro)" : "");
+
 	if (mmc_blk_alloc_parts(card, md))
-		goto out;
+	goto out;	
 
 	mmc_set_drvdata(card, md);
 	mmc_fixup_device(card, blk_fixups);

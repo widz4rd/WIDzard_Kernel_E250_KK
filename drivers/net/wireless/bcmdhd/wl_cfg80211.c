@@ -5121,10 +5121,8 @@ wl_cfg80211_af_searching_channel(struct bcm_cfg80211 *cfg, struct net_device *de
 	if (cfg->afx_hdl->pending_tx_act_frm) {
 		wl_action_frame_t *action_frame;
 		action_frame = &(cfg->afx_hdl->pending_tx_act_frm->action_frame);
-		if (wl_cfgp2p_is_p2p_gas_action(action_frame->data, action_frame->len)) {
+		if (wl_cfgp2p_is_p2p_gas_action(action_frame->data, action_frame->len))
 			is_p2p_gas = true;
-			WL_ERR((" is_p2p_gas %d  \n",is_p2p_gas));
-		}
 	}
 #endif /* CUSTOMER_HW4 */
 
@@ -5146,10 +5144,8 @@ wl_cfg80211_af_searching_channel(struct bcm_cfg80211 *cfg, struct net_device *de
 			!(wl_get_drv_status(cfg, FINDING_COMMON_CHANNEL, dev)))
 			break;
 #ifdef CUSTOMER_HW4
-		if (is_p2p_gas) {
-			WL_ERR((" is_p2p_gas %d break  \n",is_p2p_gas));
+		if (is_p2p_gas)
 			break;
-		}
 #endif /* CUSTOMER_HW4 */
 
 		if (cfg->afx_hdl->my_listen_chan) {
@@ -5379,18 +5375,6 @@ wl_cfg80211_send_action_frame(struct wiphy *wiphy, struct net_device *dev,
 	ulong off_chan_started_jiffies = 0;
 #endif
 	dhd_pub_t *dhd = (dhd_pub_t *)(cfg->pub);
-
-#if defined(CUSTOMER_HW4)
-#define PRIVATE_REQ_MASK 0xff000000
-	int32 requested_dwell = af_params->dwell_time;
-#endif /* CUSTOMER_HW4 */
-
-	/* Add the default dwell time
-	 * Dwell time to stay off-channel to wait for a response action frame
-	 * after transmitting an GO Negotiation action frame
-	 */
-	af_params->dwell_time = WL_DWELL_TIME;
-
 #ifdef WL11U
 #if defined(WL_CFG80211_P2P_DEV_IF)
 	ndev = dev;
@@ -5448,16 +5432,6 @@ wl_cfg80211_send_action_frame(struct wiphy *wiphy, struct net_device *dev,
 				cfg->next_af_subtype = action + 1;
 
 				af_params->dwell_time = WL_MED_DWELL_TIME;
-#if defined(CUSTOMER_HW4)
-				if (requested_dwell & PRIVATE_REQ_MASK) {
-					config_af_params.max_tx_retry = (requested_dwell & PRIVATE_REQ_MASK) >> 24;
-					af_params->dwell_time = (requested_dwell & ~PRIVATE_REQ_MASK);
-					WL_DBG(("Modified afx request. retry(%d) dwell time(%d)\n",
-						config_af_params.max_tx_retry,
-						af_params->dwell_time));
-				}
-#undef PRIVATE_REQ_MASK
-#endif /* CUSTOMER_HW4 */
 			} else if (action == P2PSD_ACTION_ID_GAS_IRESP ||
 				action == P2PSD_ACTION_ID_GAS_CRESP) {
 				/* configure service discovery response frame */
@@ -5530,7 +5504,6 @@ wl_cfg80211_send_action_frame(struct wiphy *wiphy, struct net_device *dev,
 	cfg->afx_hdl->pending_tx_act_frm = af_params;
 
 	/* search peer's channel */
-	WL_ERR(("config_af_params.search_channel %d.\n",config_af_params.search_channel));
 	if (config_af_params.search_channel) {
 		/* initialize afx_hdl */
 		if (wl_cfgp2p_find_idx(cfg, dev, &cfg->afx_hdl->bssidx) != BCME_OK) {
@@ -5575,7 +5548,6 @@ wl_cfg80211_send_action_frame(struct wiphy *wiphy, struct net_device *dev,
 
 	/* if failed, retry it. tx_retry_max value is configure by .... */
 	while ((ack == false) && (tx_retry++ < config_af_params.max_tx_retry)) {
-		WL_ERR(("(retry %d) (max%d)\n", tx_retry,config_af_params.max_tx_retry));
 #ifdef VSDB
 		if (af_params->channel) {
 			if (jiffies_to_msecs(jiffies - off_chan_started_jiffies) >
@@ -5813,7 +5785,11 @@ wl_cfg80211_mgmt_tx(struct wiphy *wiphy, bcm_struct_cfgdev *cfgdev,
 	cfg->afx_hdl->peer_listen_chan = af_params->channel;
 	WL_DBG(("channel from upper layer %d\n", cfg->afx_hdl->peer_listen_chan));
 
-	af_params->dwell_time = wait;
+	/* Add the default dwell time
+	 * Dwell time to stay off-channel to wait for a response action frame
+	 * after transmitting an GO Negotiation action frame
+	 */
+	af_params->dwell_time = WL_DWELL_TIME;
 
 	memcpy(action_frame->data, &buf[DOT11_MGMT_HDR_LEN], action_frame->len);
 
@@ -7475,7 +7451,6 @@ static s32 wl_setup_wiphy(struct wireless_dev *wdev, struct device *sdiofunc_dev
 #if (LINUX_VERSION_CODE > KERNEL_VERSION(3, 2, 0)) || defined(WL_COMPAT_WIRELESS)
 	wdev->wiphy->flags |= WIPHY_FLAG_SUPPORTS_TDLS;
 #endif
-<<<<<<< HEAD
 
 #if defined(CONFIG_PM) && defined(WL_CFG80211_P2P_DEV_IF)
 	/*
@@ -7486,9 +7461,6 @@ static s32 wl_setup_wiphy(struct wireless_dev *wdev, struct device *sdiofunc_dev
 	wdev->wiphy->wowlan.flags = WIPHY_WOWLAN_ANY;
 #endif /* CONFIG_PM && WL_CFG80211_P2P_DEV_IF */
 
-#if defined(CONFIG_PM)
-	wdev->wiphy->wowlan.flags = WIPHY_WOWLAN_ANY;
-#endif
 	WL_DBG(("Registering custom regulatory)\n"));
 	wdev->wiphy->flags |= WIPHY_FLAG_CUSTOM_REGULATORY;
 	wiphy_apply_custom_regulatory(wdev->wiphy, &brcm_regdom);

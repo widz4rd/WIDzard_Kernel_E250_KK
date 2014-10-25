@@ -105,7 +105,7 @@ static void cmc221_cpufreq_lock(struct work_struct *work)
 		mc->mdm_data->link_pm_data->freq_lock(mc->dev);
 
 		cancel_delayed_work(&mc->work_cpu_unlock);
-		schedule_delayed_work(&mc->work_cpu_unlock,
+		schedule_delayed_work(&mc->work_cpu_unlock, 
 					msecs_to_jiffies(5000));
 	}
 }
@@ -121,7 +121,7 @@ static void cmc221_cpufreq_unlock(struct work_struct *work)
 	mif_debug("TP Level is (%d)\n", tp_level);
 	if (tp_level) {
 		mif_debug("maintain cpufreq lock !!!\n");
-		schedule_delayed_work(&mc->work_cpu_unlock,
+		schedule_delayed_work(&mc->work_cpu_unlock, 
 					msecs_to_jiffies(5000));
 	} else {
 		if (mc->mdm_data->link_pm_data->freq_unlock) {

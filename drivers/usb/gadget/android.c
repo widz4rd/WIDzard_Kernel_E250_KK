@@ -152,6 +152,15 @@ static char serial_string[256];
 #endif
 #include "u_ether.c"
 
+#ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
+int g_rndis;
+int is_rndis_use(void)
+{
+	return g_rndis;
+}
+EXPORT_SYMBOL_GPL(is_rndis_use);
+#endif
+
 /* String Table */
 static struct usb_string strings_dev[] = {
 	[STRING_MANUFACTURER_IDX].s = manufacturer_string,
@@ -1317,6 +1326,10 @@ functions_store(struct device *pdev, struct device_attribute *attr,
 	char buf[256], *b;
 	int err;
 
+#ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
+	g_rndis = 0;
+#endif
+
 	mutex_lock(&dev->mutex);
 
 	if (dev->enabled) {
@@ -1357,6 +1370,9 @@ functions_store(struct device *pdev, struct device_attribute *attr,
 					pr_err(
 					"android_usb: Cannot enable '%s'",
 					name);
+			}
+			if (!strcmp(name,"rndis")) {
+				g_rndis = 1;
 			}
 #endif
 		}

@@ -145,9 +145,8 @@ static irqreturn_t s3cfb_irq_frame(int irq, void *dev_id)
 	if (fbdev[0]->regs != 0)
 		s3cfb_clear_interrupt(fbdev[0]);
 
-	fbdev[0]->vsync_info.timestamp = ktime_get();
-
 #if defined(CONFIG_FB_S5P_VSYNC_THREAD)
+	fbdev[0]->vsync_info.timestamp = ktime_get();
 	wake_up_interruptible_all(&fbdev[0]->vsync_info.wait);
 #endif
 
@@ -212,10 +211,6 @@ int s3cfb_wait_for_vsync(struct s3cfb_global *fbdev, u32 timeout)
 						!ktime_equal(timestamp,
 						fbdev->vsync_info.timestamp));
 	}
-
-	sysfs_notify(&fbdev->dev->kobj,
-				NULL, "vsync_time");
-
 	s3cfb_deactivate_vsync(fbdev);
 
 	pm_runtime_put_sync(fbdev->dev);
@@ -882,6 +877,28 @@ int s3cfb_resume(struct platform_device *pdev)
 #define s3cfb_resume NULL
 #endif
 
+#ifndef CONFIG_FB_S5P_GD2EVF
+void s3cfb_shutdown(struct platform_device *pdev)
+{
+	struct s3c_platform_fb *pdata = to_fb_plat(&pdev->dev);
+
+	dev_info(&pdev->dev, "+%s\n", __func__);
+
+#if defined(CONFIG_FB_S5P_MIPI_DSIM)
+	if (lcd_early_suspend)
+		lcd_early_suspend();
+#endif
+
+#if defined(CONFIG_FB_S5P_MIPI_DSIM)
+	s5p_dsim_early_suspend();
+#endif
+
+	dev_info(&pdev->dev, "-%s\n", __func__);
+
+	return;
+}
+#endif
+
 #ifdef CONFIG_FB_S5P_GD2EVF
 static int s3cfb_disable(struct s3cfb_global *fbdev)
 {
@@ -1425,6 +1442,9 @@ static struct platform_driver s3cfb_driver = {
 		.pm	= &s3cfb_pm_ops,
 #endif
 	},
+#ifndef CONFIG_FB_S5P_GD2EVF
+	.shutdown	= s3cfb_shutdown,
+#endif
 };
 
 struct fb_ops s3cfb_ops = {

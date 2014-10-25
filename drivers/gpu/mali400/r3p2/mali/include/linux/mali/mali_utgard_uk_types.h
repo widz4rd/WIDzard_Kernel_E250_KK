@@ -730,6 +730,7 @@ typedef struct
  */
 #undef _MALI_API_VERSION
 #define _MALI_API_VERSION 23
+
 #define _MALI_UK_API_VERSION _MAKE_VERSION_ID(_MALI_API_VERSION)
 
 /**

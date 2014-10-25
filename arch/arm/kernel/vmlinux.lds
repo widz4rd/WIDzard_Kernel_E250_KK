@@ -425,7 +425,7 @@ SECTIONS
   *(.init.data) *(.meminit.data) *(.init.rodata) . = ALIGN(8); __start_ftrace_events = .; *(_ftrace_events) __stop_ftrace_events = .; *(.meminit.rodata) . = ALIGN(32); __dtb_start = .; *(.dtb.init.rodata) __dtb_end = .;
   *(.exit.data) *(.memexit.data) *(.memexit.rodata)
  }
- . = ALIGN((1 << 12)); .data..percpu : AT(ADDR(.data..percpu) - 0) { __per_cpu_load = .; __per_cpu_start = .; *(.data..percpu..first) . = ALIGN((1 << 12)); *(.data..percpu..page_aligned) . = ALIGN((1 << 5)); *(.data..percpu..readmostly) . = ALIGN((1 << 5)); *(.data..percpu) *(.data..percpu..shared_aligned) __per_cpu_end = .; }
+ . = ALIGN((1 << 12)); .data..percpu : AT(ADDR(.data..percpu) - 0) { __per_cpu_load = .; __per_cpu_start = .; *(.data..percpu..first) . = ALIGN((1 << 12)); *(.data..percpu..page_aligned) . = ALIGN((1 << 6)); *(.data..percpu..readmostly) . = ALIGN((1 << 6)); *(.data..percpu) *(.data..percpu..shared_aligned) __per_cpu_end = .; }
  . = ALIGN((1 << 12));
  __init_end = .;
  /*
@@ -471,8 +471,8 @@ SECTIONS
 		 */
   . = ALIGN(8192); *(.data..init_task)
   . = ALIGN((1 << 12)); __nosave_begin = .; *(.data..nosave) . = ALIGN((1 << 12)); __nosave_end = .;
-  . = ALIGN((1 << 5)); *(.data..cacheline_aligned)
-  . = ALIGN((1 << 5)); *(.data..read_mostly) . = ALIGN((1 << 5));
+  . = ALIGN((1 << 6)); *(.data..cacheline_aligned)
+  . = ALIGN((1 << 6)); *(.data..read_mostly) . = ALIGN((1 << 6));
   /*
 		 * The exception fixup table (might need resorting at runtime)
 		 */

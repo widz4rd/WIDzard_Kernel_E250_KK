@@ -51,6 +51,16 @@ static void max17050_write_reg_array(struct i2c_client *client,
 static void max17050_init_regs(struct i2c_client *client)
 {
 	u8 data[2];
+	u8 coff[2];
+
+	printk("%s\n", __func__);
+	if(max17050_read_reg(client, MAX17050_REG_COFF, coff) != 0)
+	{
+		printk("%s: Coff register value is %d%d\n", __func__,coff[0],coff[1]);
+		max17050_write_reg(client, MAX17050_REG_COFF, 0x0);
+		max17050_read_reg(client, MAX17050_REG_COFF, coff);
+		printk("%s: Coff register value is modified to %d%d\n", __func__,coff[0],coff[1]);
+	}
 
 	if (max17050_read_reg(client, MAX17050_REG_FILTERCFG, data) < 0)
 		return;

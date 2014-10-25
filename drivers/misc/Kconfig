@@ -627,53 +627,6 @@ config AUDIENCE_ES305
 
 source "drivers/misc/2mic/Kconfig"
 
-config MUIC_MAX8997
-	tristate "MAX8997 MUIC"
-	depends on MFD_MAX8997
-	help
-	  If you say yes here you will get support for the MUIC of
-	  Maxim MAX8997 PMIC.
-	  The MAX8997 MUIC is a USB port accessory detector and switch.
-
-config MUIC_MAX8997_OVPUI
-	tristate "MAX8997 MUIC"
-	depends on MFD_MAX8997
-	default n
-	help
-	  If you say yes here you will get support for the MUIC OVP UI
-	  concept of Maxim MAX8997 PMIC. The MAX8997 MUIC OVP UI concept
-	  is used in Chinese models. When OVP is occurred, the battery UI
-	  must be changed to uncharging status.
-
-config MUIC_MAX77693_SEPARATE_MHL_PORT
-	bool "MUIC_MAX77693_SEPARATE_MHL_PORT"
-	depends on MFD_MAX77693
-	default n
-	help
-	  If you say yes here you will get support for the separated
-	  MHL port.
-
-config MUIC_MAX77693_SUPPORT_OTG_AUDIO_DOCK
-	bool "MUIC_MAX77693_SUPPORT_OTG_AUDIO_DOCK"
-	depends on MFD_MAX77693
-	default n
-	help
-	  If you say yes here you will get support for the OTG audio dock.
-
-config MUIC_MAX77693_SUPPORT_SMART_DOCK
-	bool "MUIC_MAX77693_SUPPORT_SMART_DOCK"
-	depends on MFD_MAX77693
-	default n
-	help
-	  If you say yes here you will get support for the smart dock.
-
-config MUIC_MAX77693_SUPPORT_CAR_DOCK
-	bool "MUIC_MAX77693_SUPPORT_CAR_DOCK"
-	depends on MFD_MAX77693
-	default n
-	help
-	  If you say yes here you will get support for the car dock.
-
 config USBHUB_USB3503
 	bool "USB3503 USB HUB Driver"
 	depends on I2C
@@ -737,6 +690,7 @@ source "drivers/misc/lis3lv02d/Kconfig"
 source "drivers/misc/carma/Kconfig"
 source "drivers/misc/c2c/Kconfig"
 source "drivers/misc/modem_if/Kconfig"
+source "drivers/misc/modem_if_c1/Kconfig"
 source "drivers/misc/modem_if_na/Kconfig"
 source "drivers/misc/modem_if_na_spr/Kconfig"
 source "drivers/misc/modem_v2/Kconfig"

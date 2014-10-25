@@ -757,10 +757,16 @@ static int cmc221_idpram_wakeup(struct dpram_link_device *dpld)
 		mif_info("gpio_dpram_status == 0 (cnt %d)\n", cnt);
 
 		gpio_set_value(mdm_data->gpio_dpram_wakeup, 0);
-		mdelay(1);
+		if (in_interrupt())
+			udelay(1000);
+		else
+			usleep_range(1000, 2000);
 
 		gpio_set_value(mdm_data->gpio_dpram_wakeup, 1);
-		mdelay(1);
+		if (in_interrupt())
+			udelay(1000);
+		else
+			usleep_range(1000, 2000);
 	}
 
 	return 0;

@@ -142,7 +142,6 @@ obj-$(CONFIG_ACCESSORY)		+= accessory/
 obj-$(CONFIG_IR_REMOCON)	+= irda/
 obj-$(CONFIG_BARCODE_EMUL)	+= barcode_emul/
 obj-$(CONFIG_EXTCON)		+= extcon/
-obj-$(CONFIG_SAMSUNG_PHONE_TTY)	+= dpram/
 # Secure OS Mobicore
 obj-$(CONFIG_MOBICORE_DRIVER)	+= gud20/
 
@@ -150,10 +149,8 @@ obj-$(CONFIG_IOMMU_SUPPORT)	+= iommu/
 
 obj-$(CONFIG_FELICA) += felica/
 
-obj-$(CONFIG_AUTHENTEC_VPNCLIENT_INTERCEPTOR) += interceptor/
-obj-$(CONFIG_J4FS)		+= j4fs/
-ifeq (1, $(shell if [ -d ./drivers/exfat ]; then echo 1; fi))
-obj-y	+= exfat/
-endif
-
+#obj-$(CONFIG_J4FS)		+= j4fs/
 obj-$(CONFIG_ICE4_FPGA)		+= ice4_fpga/
+
+# SecFilter Driver
+obj-$(CONFIG_SEC_NET_FILTER)	+= secfilter/
