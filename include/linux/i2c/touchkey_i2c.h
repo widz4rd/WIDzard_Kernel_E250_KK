@@ -59,7 +59,12 @@
 #define TK_FIRMWARE_VER  0x06
 #define TK_MODULE_VER    0x05
 #elif defined(CONFIG_MACH_T0)
+#if defined(CONFIG_MACH_T0_CHN_CU_DUOS)\
+	|| defined(CONFIG_MACH_T0_CHN_OPEN_DUOS)
+#define TK_FIRMWARE_VER	 0x13
+#else
 #define TK_FIRMWARE_VER	 0x11
+#endif
 #define TK_MODULE_VER    0x08
 #elif defined(CONFIG_MACH_SUPERIOR_KOR_SKT)
 #define TK_FIRMWARE_VER	 0x03
@@ -203,6 +208,8 @@ struct touchkey_i2c {
 	struct early_suspend early_suspend;
 	struct mutex lock;
 	struct device	*dev;
+    struct work_struct	work;
+    struct workqueue_struct *wq;
 	int irq;
 	int module_ver;
 	int firmware_ver;
@@ -211,7 +218,6 @@ struct touchkey_i2c {
 	int (*power)(int on);
 	struct work_struct update_work;
 	int update_status;
-	atomic_t keypad_enable;
 };
 
 #endif /* _LINUX_CYPRESS_TOUCHKEY_I2C_H */

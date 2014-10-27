@@ -646,6 +646,7 @@ __armv6_mmu_cache_on:
 		orr	r0, r0, #1 << 22	@ U (v6 unaligned access model)
 		mcr	p15, 0, r0, c1, c0, 0	@ write SCTLR
 		b	__armv4_mmu_cache_on
+
 __arm926ejs_mmu_cache_on:
 #ifdef CONFIG_CPU_DCACHE_WRITETHROUGH
 		.arch armv5
@@ -1190,6 +1191,7 @@ __armv3_mpu_cache_flush:
 		mov	r1, #0
 		mcr	p15, 0, r1, c7, c0, 0	@ invalidate whole cache v3
 		mov	pc, lr
+
 		.arch armv4
 
 /*

@@ -2637,26 +2637,7 @@ strncpy(dbs_tuners_ins.profile, custom_profile, sizeof(dbs_tuners_ins.profile));
 return count;
 }
 #endif
-// ZZ: tuneable -> possible values from 0 to 100
-#define store_afs_threshold(name) \
-static ssize_t store_afs_threshold##name(struct kobject *a, struct attribute *b, \
-const char *buf, size_t count) \
-{ \
-unsigned int input; \
-int ret; \
-ret = sscanf(buf, "%u", &input); \
-\
-if (ret != 1 || input > 100 || input < 0 || set_profile_active == true) \
-return -EINVAL; \
-\
-dbs_tuners_ins.afs_threshold##name = input; \
-\
-if (dbs_tuners_ins.profile_number != 0) { \
-dbs_tuners_ins.profile_number = 0; \
-strncpy(dbs_tuners_ins.profile, custom_profile, sizeof(dbs_tuners_ins.profile)); \
-} \
-return count; \
-} \
+
 store_afs_threshold(1);
 store_afs_threshold(2);
 store_afs_threshold(3);

@@ -543,7 +543,11 @@ static void exynos4x12_set_frequency(unsigned int old_index,
 				need_dynamic_ema)
 				__raw_writel(0x101, EXYNOS4_EMA_CONF);
 #ifndef CONFIG_ABB_CONTROL
-		if ((samsung_rev() >= EXYNOS4412_REV_2_0)
+		if ((soc_is_exynos4212())
+			&& (exynos_result_of_asv > 3)
+			&& (old_index > L7) && (new_index <= L7)) {
+			exynos4x12_set_abb_member(ABB_ARM, ABB_MODE_130V);
+		} else if ((samsung_rev() >= EXYNOS4412_REV_2_0)
 			&& (exynos_result_of_asv > 2)
 			&& (old_index > L10) && (new_index <= L10)) {
 			exynos4x12_set_abb_member(ABB_ARM, ABB_MODE_130V);
@@ -585,7 +589,11 @@ static void exynos4x12_set_frequency(unsigned int old_index,
 			set_clkdiv(new_index);
 		}
 #ifndef CONFIG_ABB_CONTROL
-		if ((samsung_rev() >= EXYNOS4412_REV_2_0)
+		if ((soc_is_exynos4212())
+			&& (exynos_result_of_asv > 3)
+			&& (old_index <= L7) && (new_index > L7)) {
+			exynos4x12_set_abb_member(ABB_ARM, ABB_MODE_100V);
+		} else if ((samsung_rev() >= EXYNOS4412_REV_2_0)
 			&& (exynos_result_of_asv > 2)
 			&& (old_index <= L10) && (new_index > L10)) {
 			exynos4x12_set_abb_member(ABB_ARM, ABB_MODE_100V);
@@ -600,8 +608,7 @@ static void exynos4x12_set_frequency(unsigned int old_index,
 
 #ifndef CONFIG_ABB_CONTROL
 	/* ABB value is changed in below case */
-	if (soc_is_exynos4412() && (exynos_result_of_asv > 3)
-		&& (samsung_rev() < EXYNOS4412_REV_2_0)) {
+	if (soc_is_exynos4412() && (exynos_result_of_asv > 3)) {
 		if (new_index == L18)
 			exynos4x12_set_abb_member(ABB_ARM, ABB_MODE_100V);
 		else
