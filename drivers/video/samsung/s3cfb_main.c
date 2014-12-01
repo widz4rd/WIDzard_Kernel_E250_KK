@@ -145,8 +145,9 @@ static irqreturn_t s3cfb_irq_frame(int irq, void *dev_id)
 	if (fbdev[0]->regs != 0)
 		s3cfb_clear_interrupt(fbdev[0]);
 
-#if defined(CONFIG_FB_S5P_VSYNC_THREAD)
 	fbdev[0]->vsync_info.timestamp = ktime_get();
+
+#if defined(CONFIG_FB_S5P_VSYNC_THREAD)
 	wake_up_interruptible_all(&fbdev[0]->vsync_info.wait);
 #endif
 
@@ -211,6 +212,9 @@ int s3cfb_wait_for_vsync(struct s3cfb_global *fbdev, u32 timeout)
 						!ktime_equal(timestamp,
 						fbdev->vsync_info.timestamp));
 	}
+
+	sysfs_notify(&fbdev->dev->kobj,
+				NULL, "vsync_time");
 	s3cfb_deactivate_vsync(fbdev);
 
 	pm_runtime_put_sync(fbdev->dev);
@@ -400,12 +404,12 @@ static ssize_t vsync_event_show(struct device *dev,
 	struct s3cfb_global *fbdev[1];
 	fbdev[0] = fbfimd->fbdev[0];
 
-	return snprintf(buf, PAGE_SIZE, "VSYNC=%llu",
+	return snprintf(buf, PAGE_SIZE, "%llu",
 			((fbdev[0] != 0) ?
 			ktime_to_ns(fbdev[0]->vsync_info.timestamp) : 0));
 }
 
-static DEVICE_ATTR(vsync_event, 0444, vsync_event_show, NULL);
+static DEVICE_ATTR(vsync_time, S_IRUGO, vsync_event_show, NULL);
 
 #if defined(CONFIG_FB_S5P_VSYNC_THREAD)
 static int s3cfb_wait_for_vsync_thread(void *data)
@@ -422,8 +426,8 @@ static int s3cfb_wait_for_vsync_thread(void *data)
 				fbdev->vsync_info.timestamp) &&
 				fbdev->vsync_info.active);
 
-		sysfs_notify(&fbdev->fb[pdata->default_win]->dev->kobj,
-				NULL, "vsync_event");
+		sysfs_notify(&fbdev->dev->kobj,
+				NULL, "vsync_time");
 	}
 
 	return 0;
@@ -616,6 +620,12 @@ void s3cfb_early_suspend(struct early_suspend *h)
 		s5p_sysmmu_disable(fbdev[0]->dev);
 	}
 #endif
+
+#ifdef CONFIG_SPEEDUP_EARLYSUSPEND
+//Lycan.Wang@Prd.BasicDrv, 2013-08-31 Add for speedup wakeup
+	//printk(KERN_EMERG "%s:%d\n", __func__, __LINE__);
+	request_speedup_late_resume();
+#endif /* CONFIG_SPEEDUP_EARLYSUSPEND */
 
 	dev_info(info->dev, "-%s\n", __func__);
 
@@ -875,28 +885,6 @@ int s3cfb_resume(struct platform_device *pdev)
 #else
 #define s3cfb_suspend NULL
 #define s3cfb_resume NULL
-#endif
-
-#ifndef CONFIG_FB_S5P_GD2EVF
-void s3cfb_shutdown(struct platform_device *pdev)
-{
-	struct s3c_platform_fb *pdata = to_fb_plat(&pdev->dev);
-
-	dev_info(&pdev->dev, "+%s\n", __func__);
-
-#if defined(CONFIG_FB_S5P_MIPI_DSIM)
-	if (lcd_early_suspend)
-		lcd_early_suspend();
-#endif
-
-#if defined(CONFIG_FB_S5P_MIPI_DSIM)
-	s5p_dsim_early_suspend();
-#endif
-
-	dev_info(&pdev->dev, "-%s\n", __func__);
-
-	return;
-}
 #endif
 
 #ifdef CONFIG_FB_S5P_GD2EVF
@@ -1272,6 +1260,10 @@ static int s3cfb_probe(struct platform_device *pdev)
 		fbdev[i]->early_suspend.suspend = s3cfb_early_suspend;
 		fbdev[i]->early_suspend.resume = s3cfb_late_resume;
 		fbdev[i]->early_suspend.level = EARLY_SUSPEND_LEVEL_DISABLE_FB;
+#ifdef CONFIG_SPEEDUP_EARLYSUSPEND
+//Lycan.Wang@Prd.BasicDrv, 2013-08-31 Add for speedup wakeup
+		fbdev[i]->early_suspend.need_speedup = 1,
+#endif /* CONFIG_SPEEDUP_EARLYSUSPEND */
 
 		register_early_suspend(&fbdev[i]->early_suspend);
 #endif
@@ -1300,6 +1292,10 @@ static int s3cfb_probe(struct platform_device *pdev)
 
 		ret = device_create_file(fbdev[i]->fb[pdata->default_win]->dev,
 					&dev_attr_vsync_event);
+		if (ret < 0)
+			dev_err(fbdev[0]->dev, "failed to add sysfs entries\n");
+
+		ret = device_create_file(fbdev[i]->dev, &dev_attr_vsync_time);
 		if (ret < 0)
 			dev_err(fbdev[0]->dev, "failed to add sysfs entries\n");
 
@@ -1442,9 +1438,6 @@ static struct platform_driver s3cfb_driver = {
 		.pm	= &s3cfb_pm_ops,
 #endif
 	},
-#ifndef CONFIG_FB_S5P_GD2EVF
-	.shutdown	= s3cfb_shutdown,
-#endif
 };
 
 struct fb_ops s3cfb_ops = {
