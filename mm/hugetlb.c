@@ -2839,7 +2839,12 @@ void hugetlb_change_protection(struct vm_area_struct *vma,
 	}
 	spin_unlock(&mm->page_table_lock);
 	i_mmap_unlock_write(vma->vm_file->f_mapping);
-
+	/*
+	 * Must flush TLB before releasing i_mmap_rwsem: x86's huge_pmd_unshare
+	 * may have cleared our pud entry and done put_page on the page table:
+	 * once we release i_mmap_rwsem, another task can do the final put_page
+	 * and that page table be reused and filled with junk.
+	 */
 	flush_tlb_range(vma, start, end);
 }
 
