@@ -183,7 +183,7 @@ __xip_unmap (struct address_space * mapping,
 		return;
 
 retry:
-	mutex_lock(&mapping->i_mmap_mutex);
+	i_mmap_lock_write(mapping);
 	vma_prio_tree_foreach(vma, &iter, &mapping->i_mmap, pgoff, pgoff) {
 		mm = vma->vm_mm;
 		address = vma->vm_start +
@@ -205,9 +205,9 @@ retry:
 			page_cache_release(page);
 		}
 	}
-	mutex_unlock(&mapping->i_mmap_mutex);
+	i_mmap_unlock_write(mapping);
 
-	if (locked) {
+		if (locked) {
 		mutex_unlock(&xip_sparse_mutex);
 	} else if (read_seqcount_retry(&xip_sparse_seq, count)) {
 		mutex_lock(&xip_sparse_mutex);
