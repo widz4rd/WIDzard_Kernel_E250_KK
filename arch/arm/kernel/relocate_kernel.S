@@ -3,7 +3,7 @@
  */
 
 #include <asm/kexec.h>
-
+#include <asm/assembler.h>
 #ifdef CONFIG_KEXEC_HARDBOOT
 #include <asm/memory.h>
 #ifdef CONFIG_ARCH_EXYNOS4
@@ -71,7 +71,7 @@ relocate_new_kernel:
 	mov r0,#0
 	ldr r1,kexec_mach_type
 	ldr r2,kexec_boot_atags
-	mov pc,lr
+	ret lr
 
 #ifdef CONFIG_KEXEC_HARDBOOT
 hardboot:

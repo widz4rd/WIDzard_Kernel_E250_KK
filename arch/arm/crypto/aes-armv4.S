@@ -1,3 +1,4 @@
+#include <asm/assembler.h>
 #define __ARM_ARCH__ __LINUX_ARM_ARCH__
 @ ====================================================================
 @ Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
@@ -244,7 +245,7 @@ AES_encrypt:
 #else
 	ldmia   sp!,{r4-r12,lr}
 	tst	lr,#1
-	moveq	pc,lr			@ be binary compatible with V4, yet
+	reteq	lr			@ be binary compatible with V4, yet
 	.word	0xe12fff1e			@ interoperable with Thumb ISA:-)
 #endif
 .size	AES_encrypt,.-AES_encrypt
@@ -659,7 +660,7 @@ _armv4_AES_set_encrypt_key:
 .Ldone:	mov	r0,#0
 	ldmia   sp!,{r4-r12,lr}
 .Labrt:	tst	lr,#1
-	moveq	pc,lr			@ be binary compatible with V4, yet
+	reteq	lr			@ be binary compatible with V4, yet
 	.word	0xe12fff1e			@ interoperable with Thumb ISA:-)
 .size	private_AES_set_encrypt_key,.-private_AES_set_encrypt_key
 
@@ -753,7 +754,7 @@ private_AES_set_decrypt_key:
 #else
 	ldmia   sp!,{r4-r12,lr}
 	tst	lr,#1
-	moveq	pc,lr			@ be binary compatible with V4, yet
+	reteq	lr			@ be binary compatible with V4, yet
 	.word	0xe12fff1e			@ interoperable with Thumb ISA:-)
 #endif
 .size	private_AES_set_decrypt_key,.-private_AES_set_decrypt_key
@@ -961,7 +962,7 @@ AES_decrypt:
 #else
 	ldmia   sp!,{r4-r12,lr}
 	tst	lr,#1
-	moveq	pc,lr			@ be binary compatible with V4, yet
+	reteq	lr			@ be binary compatible with V4, yet
 	.word	0xe12fff1e			@ interoperable with Thumb ISA:-)
 #endif
 .size	AES_decrypt,.-AES_decrypt

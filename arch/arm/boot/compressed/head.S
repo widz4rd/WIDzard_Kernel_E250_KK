@@ -9,7 +9,7 @@
  * published by the Free Software Foundation.
  */
 #include <linux/linkage.h>
-
+#include <asm/assembler.h>
 #ifdef CONFIG_KEXEC_HARDBOOT
   #include <asm/kexec.h>
   #include <asm/memory.h>

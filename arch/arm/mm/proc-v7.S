@@ -41,7 +41,7 @@
 #define PMD_FLAGS_SMP	PMD_SECT_WBWA|PMD_SECT_S
 
 ENTRY(cpu_v7_proc_init)
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_proc_init)
 
 ENTRY(cpu_v7_proc_fin)
@@ -49,7 +49,7 @@ ENTRY(cpu_v7_proc_fin)
 	bic	r0, r0, #0x1000			@ ...i............
 	bic	r0, r0, #0x0006			@ .............ca.
 	mcr	p15, 0, r0, c1, c0, 0		@ disable caches
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_proc_fin)
 
 /*
@@ -70,7 +70,7 @@ ENTRY(cpu_v7_reset)
 	bic	r1, r1, #0x1			@ ...............m
 	mcr	p15, 0, r1, c1, c0, 0		@ disable MMU
 	isb
-	mov	pc, r0
+	bx	r0
 ENDPROC(cpu_v7_reset)
 
 /*
@@ -83,7 +83,7 @@ ENDPROC(cpu_v7_reset)
 ENTRY(cpu_v7_do_idle)
 	dsb					@ WFI may enter a low-power mode
 	wfi
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_do_idle)
 
 ENTRY(cpu_v7_dcache_clean_area)
@@ -95,7 +95,7 @@ ENTRY(cpu_v7_dcache_clean_area)
 	bhi	1b
 	dsb
 #endif
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_dcache_clean_area)
 
 /*
@@ -130,7 +130,7 @@ ENTRY(cpu_v7_switch_mm)
 	mcr	p15, 0, r1, c13, c0, 1		@ set context ID
 	isb
 #endif
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_switch_mm)
 
 /*
@@ -179,7 +179,7 @@ ENTRY(cpu_v7_set_pte_ext)
  THUMB(	str	r3, [r0] )
 	mcr	p15, 0, r0, c7, c10, 1		@ flush_pte
 #endif
-	mov	pc, lr
+	ret	lr
 ENDPROC(cpu_v7_set_pte_ext)
 
 	string	cpu_v7_name, "ARMv7 Processor"
@@ -287,7 +287,6 @@ __v7_ca5mp_setup:
 __v7_ca9mp_setup:
 	mov	r10, #(1 << 0)			@ TLB ops broadcasting
 	b	1f
-__v7_ca7mp_setup:
 __v7_ca15mp_setup:
 	mov	r10, #0
 1:
@@ -302,7 +301,7 @@ __v7_ca15mp_setup:
 __v7_setup:
 	adr	r12, __v7_setup_stack		@ the local stack
 	stmia	r12, {r0-r5, r7, r9, r11, lr}
-	bl	v7_flush_dcache_louis
+	bl	v7_flush_dcache_all
 	ldmia	r12, {r0-r5, r7, r9, r11, lr}
 
 	mrc	p15, 0, r0, c0, c0, 0		@ read main ID register
@@ -489,7 +488,7 @@ __v7_setup:
 	bic	r0, r0, r5			@ clear bits them
 	orr	r0, r0, r6			@ set them
  THUMB(	orr	r0, r0, #1 << 30	)	@ Thumb exceptions
-	mov	pc, lr				@ return to head.S:__ret
+	ret	lr				@ return to head.S:__ret
 ENDPROC(__v7_setup)
 
 	/*   AT
@@ -553,16 +552,6 @@ __v7_ca5mp_proc_info:
 	.long	0xff0ffff0
 	__v7_proc __v7_ca5mp_setup
 	.size	__v7_ca5mp_proc_info, . - __v7_ca5mp_proc_info
-
-	/*
-	 * ARM Ltd. Cortex A7 processor.
-	 */
-	.type	__v7_ca7mp_proc_info, #object
-__v7_ca7mp_proc_info:
-	.long	0x410fc070
-	.long	0xff0ffff0
-	__v7_proc __v7_ca7mp_setup, hwcaps = HWCAP_IDIV
-	.size	__v7_ca7mp_proc_info, . - __v7_ca7mp_proc_info
 
 	/*
 	 * ARM Ltd. Cortex A9 processor.

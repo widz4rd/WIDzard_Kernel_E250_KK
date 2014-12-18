@@ -21,7 +21,7 @@
 #include "arm_defs.h"
 #include "platdefx.h"
 #include "arm_as_macros.h"
-
+#include <asm/assembler.h>
 /**
  *  @file
  *
@@ -114,7 +114,7 @@ SaveVFP:
 	 * Restore scratch registers and return.
 	 */
 	ldmia	sp!, {r4-r6}
-	mov	pc, lr
+	ret	lr
 
 
 /**
@@ -207,5 +207,5 @@ LoadVFP:
 	 * Restore scratch registers and return.
 	 */
 	ldmia	sp!, {r4-r6}
-	mov	pc, lr
+	ret	lr
 
