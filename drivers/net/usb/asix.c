@@ -3880,14 +3880,12 @@ static struct usb_driver asix_driver = {
 
 static int __init asix_init(void)
 {
-        printk(KERN_DEBUG "function %s line %d ",__FUNCTION__,__LINE__);
 	return usb_register(&asix_driver);
 }
 module_init(asix_init);
 
 static void __exit asix_exit(void)
 {
-        printk(KERN_DEBUG "function %s line %d ",__FUNCTION__,__LINE__);
 	usb_deregister(&asix_driver);
 }
 module_exit(asix_exit);

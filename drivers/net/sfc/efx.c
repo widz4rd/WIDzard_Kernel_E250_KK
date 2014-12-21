@@ -2043,7 +2043,6 @@ void efx_reset_down(struct efx_nic *efx, enum reset_type method)
 {
 	EFX_ASSERT_RESET_SERIALISED(efx);
 
-	efx_device_detach_sync(efx);
 	efx_stop_all(efx);
 	mutex_lock(&efx->mac_lock);
 
