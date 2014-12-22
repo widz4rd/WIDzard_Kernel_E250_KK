@@ -398,7 +398,7 @@ static ssize_t fimd_dump_show(struct device *dev,
 }
 static DEVICE_ATTR(fimd_dump, 0444, fimd_dump_show, NULL);
 
-static ssize_t vsync_event_show(struct device *dev,
+static ssize_t s3c_fb_vsync_time(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
 	struct s3cfb_global *fbdev[1];
@@ -409,7 +409,20 @@ static ssize_t vsync_event_show(struct device *dev,
 			ktime_to_ns(fbdev[0]->vsync_info.timestamp) : 0));
 }
 
-static DEVICE_ATTR(vsync_time, S_IRUGO, vsync_event_show, NULL);
+static DEVICE_ATTR(vsync_time, S_IRUGO, s3c_fb_vsync_time, NULL);
+
+static ssize_t vsync_event_show(struct device *dev,
+	struct device_attribute *attr, char *buf)
+{
+	struct s3cfb_global *fbdev[1];
+	fbdev[0] = fbfimd->fbdev[0];
+
+	return snprintf(buf, PAGE_SIZE, "VSYNC=%llu",
+			((fbdev[0] != 0) ?
+			ktime_to_ns(fbdev[0]->vsync_info.timestamp) : 0));
+}
+
+static DEVICE_ATTR(vsync_event, 0444, vsync_event_show, NULL);
 
 #if defined(CONFIG_FB_S5P_VSYNC_THREAD)
 static int s3cfb_wait_for_vsync_thread(void *data)
