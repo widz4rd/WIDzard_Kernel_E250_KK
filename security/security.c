@@ -19,6 +19,7 @@
 #include <linux/ima.h>
 
 #define MAX_LSM_XATTR	1
+
 /* Boot-time LSM user choice */
 static __initdata char chosen_lsm[SECURITY_NAME_MAX + 1] =
 	CONFIG_DEFAULT_SECURITY;
@@ -127,26 +128,6 @@ int __init register_security(struct security_operations *ops)
 }
 
 /* Security operations */
-
-int security_binder_set_context_mgr(struct task_struct *mgr)
-{
-	return security_ops->binder_set_context_mgr(mgr);
-}
-
-int security_binder_transaction(struct task_struct *from, struct task_struct *to)
-{
-	return security_ops->binder_transaction(from, to);
-}
-
-int security_binder_transfer_binder(struct task_struct *from, struct task_struct *to)
-{
-	return security_ops->binder_transfer_binder(from, to);
-}
-
-int security_binder_transfer_file(struct task_struct *from, struct task_struct *to, struct file *file)
-{
-	return security_ops->binder_transfer_file(from, to, file);
-}
 
 int security_ptrace_access_check(struct task_struct *child, unsigned int mode)
 {
@@ -360,8 +341,8 @@ void security_inode_free(struct inode *inode)
 }
 
 int security_inode_init_security(struct inode *inode, struct inode *dir,
-				 const struct qstr *qstr, char **name,
-				 void **value, size_t *len)
+				     const struct qstr *qstr, char **name,
+				     void **value, size_t *len)
 {
 	if (unlikely(IS_PRIVATE(inode)))
 		return -EOPNOTSUPP;
@@ -377,8 +358,10 @@ int security_new_inode_init_security(struct inode *inode, struct inode *dir,
 	struct xattr new_xattrs[MAX_LSM_XATTR + 1];
 	struct xattr *lsm_xattr;
 	int ret;
+
 	if (unlikely(IS_PRIVATE(inode)))
 		return -EOPNOTSUPP;
+
 	memset(new_xattrs, 0, sizeof new_xattrs);
 	if (!initxattrs)
 		return security_ops->inode_init_security(inode, dir, qstr,
@@ -394,9 +377,11 @@ int security_new_inode_init_security(struct inode *inode, struct inode *dir,
 out:
 	kfree(lsm_xattr->name);
 	kfree(lsm_xattr->value);
+
 	return (ret == -EOPNOTSUPP) ? 0 : ret;
 }
 EXPORT_SYMBOL(security_new_inode_init_security);
+
 #ifdef CONFIG_SECURITY_PATH
 int security_path_mknod(struct path *dir, struct dentry *dentry, int mode,
 			unsigned int dev)
@@ -674,10 +659,8 @@ int security_file_permission(struct file *file, int mask)
 
 	return fsnotify_perm(file, mask);
 }
-
-#if defined(CONFIG_VMWARE_MVP)
 EXPORT_SYMBOL_GPL(security_file_permission);
-#endif
+
 int security_file_alloc(struct file *file)
 {
 	return security_ops->file_alloc_security(file);
@@ -998,6 +981,12 @@ int security_netlink_send(struct sock *sk, struct sk_buff *skb)
 {
 	return security_ops->netlink_send(sk, skb);
 }
+
+int security_netlink_recv(struct sk_buff *skb, int cap)
+{
+	return security_ops->netlink_recv(skb, cap);
+}
+EXPORT_SYMBOL(security_netlink_recv);
 
 int security_secid_to_secctx(u32 secid, char **secdata, u32 *seclen)
 {
