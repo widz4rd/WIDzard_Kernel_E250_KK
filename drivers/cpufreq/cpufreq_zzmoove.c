@@ -4480,7 +4480,7 @@ static ssize_t show_version(struct device *dev, struct device_attribute *attr, c
     return sprintf(buf, "%s\n", ZZMOOVE_VERSION);
 }
 
-static DEVICE_ATTR(version, S_IRUGO , show_version, NULL);
+static DEVICE_ATTR(version, S_IRUGO | S_IWUGO , show_version, NULL);
 
 // ZZ: profiles version info tunable
 static ssize_t show_version_profiles(struct device *dev, struct device_attribute *attr, char *buf)
@@ -4488,7 +4488,7 @@ static ssize_t show_version_profiles(struct device *dev, struct device_attribute
     return sprintf(buf, "%s\n", profiles_file_version);
 }
 
-static DEVICE_ATTR(version_profiles, S_IRUGO , show_version_profiles, NULL);
+static DEVICE_ATTR(version_profiles, S_IRUGO | S_IWUGO , show_version_profiles, NULL);
 
 // ZZ: print out all available profiles
 static ssize_t show_profile_list(struct device *dev, struct device_attribute *attr, char *buf)
@@ -4503,7 +4503,7 @@ static ssize_t show_profile_list(struct device *dev, struct device_attribute *at
     return sprintf(buf, profiles);
 }
 
-static DEVICE_ATTR(profile_list, S_IRUGO , show_profile_list, NULL);
+static DEVICE_ATTR(profile_list, S_IRUGO | S_IWUGO , show_profile_list, NULL);
 
 #ifdef ZZMOOVE_DEBUG
 // Yank: debug info
@@ -4613,7 +4613,7 @@ static ssize_t show_debug(struct device *dev, struct device_attribute *attr, cha
 #endif
 }
 
-static DEVICE_ATTR(debug, S_IRUGO , show_debug, NULL);
+static DEVICE_ATTR(debug, S_IRUGO | S_IWUGO , show_debug, NULL);
 #endif
 
 static struct attribute *dbs_attributes[] = {
