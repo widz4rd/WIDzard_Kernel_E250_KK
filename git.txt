@@ -1,9 +1,0 @@
-# On branch master
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	SKT
-#	compile.log
-#	git.txt
-#	include/linux/rcu_types.h
-nothing added to commit but untracked files present (use "git add" to track)
