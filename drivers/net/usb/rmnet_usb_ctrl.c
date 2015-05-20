@@ -575,7 +575,8 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	struct urb		*sndurb;
 	struct usb_ctrlrequest	*out_ctlreq;
 	struct usb_device	*udev;
-#if defined (CONFIG_TARGET_LOCALE_USA) && defined (CONFIG_MACH_T0_USA_VZW)
+#if defined (CONFIG_TARGET_LOCALE_USA) && defined (CONFIG_MACH_T0_USA_VZW) \
+	|| (defined(CONFIG_TARGET_LOCALE_KOR) && defined (CONFIG_MACH_T0))
 	int			m_elapsed;
 	unsigned long flag, last_busy;
 	long elapsed;
@@ -621,7 +622,8 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 
 	udev = interface_to_usbdev(dev->intf);
 
-#if defined (CONFIG_TARGET_LOCALE_USA) && defined (CONFIG_MACH_T0_USA_VZW)
+#if defined (CONFIG_TARGET_LOCALE_USA) && defined (CONFIG_MACH_T0_USA_VZW) \
+	|| (defined(CONFIG_TARGET_LOCALE_KOR) && defined (CONFIG_MACH_T0))
 	if (sec_debug_level.uint_val != 0) {
 		spin_lock_irqsave(&dev->rx_lock, flag);
 

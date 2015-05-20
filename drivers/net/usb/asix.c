@@ -3116,7 +3116,7 @@ static struct sk_buff *ax88772_tx_fixup(struct usbnet *dev, struct sk_buff *skb,
 	skb_copy_to_linear_data(skb, &packet_len, sizeof(packet_len));
 #endif
 
-	if (padlen) {
+	if ((skb->len % 512) == 0) {
 		cpu_to_le32s(&padbytes);
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 22)
 		memcpy(skb->tail, &padbytes, sizeof(padbytes));
@@ -3880,12 +3880,14 @@ static struct usb_driver asix_driver = {
 
 static int __init asix_init(void)
 {
+        printk(KERN_DEBUG "function %s line %d ",__FUNCTION__,__LINE__);
 	return usb_register(&asix_driver);
 }
 module_init(asix_init);
 
 static void __exit asix_exit(void)
 {
+        printk(KERN_DEBUG "function %s line %d ",__FUNCTION__,__LINE__);
 	usb_deregister(&asix_driver);
 }
 module_exit(asix_exit);

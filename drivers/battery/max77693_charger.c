@@ -115,13 +115,7 @@
 #define MAX77693_CHG_CV_PRM_SHIFT		0
 #define MAX77693_CHG_CV_PRM_4_20V		0x16
 #define MAX77693_CHG_CV_PRM_4_30V		0x1A
-
-#if defined(CONFIG_MACH_GC2PD)
-#define MAX77693_CHG_CV_PRM_4_35V		0x1C
-#else
 #define MAX77693_CHG_CV_PRM_4_35V		0x1D
-#endif
-
 #define MAX77693_CHG_CV_PRM_4_40V		0x1F
 
 /* MAX77693_CHG_REG_CHG_CNFG_06 */
@@ -245,9 +239,9 @@ struct max77693_charger_data {
 #endif
 };
 
-#if defined(CONFIG_MACH_KONA)
-bool mhl_connected = false;
-#endif
+#if defined(CONFIG_MACH_KONA)		
+bool mhl_connected = false; 
+#endif			
 
 static void max77693_dump_reg(struct max77693_charger_data *chg_data)
 {
@@ -904,14 +898,14 @@ chg_det_err:
 		state = POWER_SUPPLY_TYPE_BATTERY;
 		break;
 	case 0x1:		/* USB cabled */
-#if defined(CONFIG_MACH_KONA)
+#if defined(CONFIG_MACH_KONA)		
 		if(mu_adc1k == 0x80) //MHL charging
 		{
 			state = POWER_SUPPLY_TYPE_MAINS;
 			mhl_connected = true;
 		}
-		else
-#endif
+		else	
+#endif			
 			state = POWER_SUPPLY_TYPE_USB;
 
 #ifdef CONFIG_BATTERY_WPC_CHARGER
@@ -928,7 +922,7 @@ chg_det_err:
 	case 0x5:		/* Apple 1A or 2A charger */
 	case 0x6:		/* Special charger */
 		state = POWER_SUPPLY_TYPE_MAINS;
-#if defined(CONFIG_MACH_KONA)
+#if defined(CONFIG_MACH_KONA)		
 		mhl_connected = false;
 #endif
 		break;
@@ -1357,12 +1351,6 @@ static void max77693_softreg_work(struct work_struct *work)
 	#endif
 	int in_curr = 0;
 	pr_debug("%s\n", __func__);
-	
-	#if defined(CONFIG_MACH_T0) || defined(CONFIG_MACH_KONALTE_USA_ATT)
-	cable_type_test = max77693_get_cable_type(chg_data);
-	if (cable_type_test == POWER_SUPPLY_TYPE_USB)
-		return;
-	#endif
 
 	#if defined(CONFIG_MACH_T0) || defined(CONFIG_MACH_KONALTE_USA_ATT)
 	cable_type_test = max77693_get_cable_type(chg_data);
@@ -1413,11 +1401,7 @@ static void max77693_softreg_work(struct work_struct *work)
 
 	if ((in_curr > SW_REG_CURR_STEP_MA) && (chg_dtls != 0x8) &&
 		((byp_dtls & MAX77693_BYP_DTLS3) ||
-		((chgin_dtls != 0x3) && (vbvolt == 0x1)))
-#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
-		&& !charge_control_is_flag(CHRG_CTRL_IGNORE_UNSTABLE)
-#endif
-		) {
+		((chgin_dtls != 0x3) && (vbvolt == 0x1)))) {
 		pr_info("%s: unstable power\n", __func__);
 
 		/* set soft regulation progress */
@@ -1449,11 +1433,7 @@ static void max77693_softreg_work(struct work_struct *work)
 		}
 
 		/* for margin */
-		if (chg_data->soft_reg_ing == true
-#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
-		     && !charge_control_is_flag(CHRG_CTRL_IGNORE_MARGIN)
-#endif
-		   ) {
+		if (chg_data->soft_reg_ing == true) {
 			pr_info("%s: stable power, reduce 1 more step "
 						"for margin\n", __func__);
 			max77693_reduce_input(chg_data, SW_REG_CURR_STEP_MA);
@@ -1512,7 +1492,7 @@ static void max77693_recovery_work(struct work_struct *work)
 		pr_info("%s: try to recovery, cnt(%d)\n", __func__,(chg_data->soft_reg_recovery_cnt + 1));
 		/* release softreg state */
 		chg_data->soft_reg_state = false;
-
+		
 		max77693_set_input_current(chg_data,chg_data->charging_current);
 #else
 	if ((chg_data->soft_reg_recovery_cnt < RECOVERY_CNT) && (
@@ -1552,7 +1532,7 @@ static void max77693_recovery_work(struct work_struct *work)
 #if defined(CONFIG_MACH_KONA)
 		in_curr = max77693_get_input_current(chg_data);
 		pr_info("%s: read input_curr (%dmA)\n", __func__, in_curr);
-
+		
 		if(in_curr < chg_data->charging_current)
 		{
 			chg_data->soft_reg_recovery_cnt = 0;
@@ -1661,7 +1641,7 @@ static int max77693_charger_set_property(struct power_supply *psy,
 				max77693_write_reg(chg_data->max77693->i2c,
 						   MAX77693_CHG_REG_CHG_CNFG_00,
 						   chg_cnfg_00);
-#if defined(CONFIG_MACH_T0) || defined(CONFIG_MACH_KONA)
+#if defined(CONFIG_MACH_T0)
 				gpio_request(GPIO_OTG_EN, "USB_OTG_EN");
 				gpio_direction_output(GPIO_OTG_EN, 1);
 				gpio_free(GPIO_OTG_EN);
@@ -1851,11 +1831,7 @@ static irqreturn_t max77693_charger_irq(int irq, void *data)
 
 #if defined(USE_CHGIN_INTR)
 	if (((chgin_dtls == 0x0) || (chgin_dtls == 0x1)) &&
-			(vbvolt == 0x1) && (chg_dtls != 0x8)
-#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
-		&& !charge_control_is_flag(CHRG_CTRL_IGNORE_UNSTABLE)
-#endif
-		) {
+			(vbvolt == 0x1) && (chg_dtls != 0x8)) {
 		pr_info("%s: abnormal power state: chgin(%d), vb(%d), chg(%d)\n",
 					__func__, chgin_dtls, vbvolt, chg_dtls);
 
@@ -2064,9 +2040,6 @@ static __devinit int max77693_charger_probe(struct platform_device *pdev)
 
 	platform_set_drvdata(pdev, chg_data);
 	chg_data->max77693 = max77693;
-#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
-	charger_control_set_charger(max77693);
-#endif
 
 	mutex_init(&chg_data->irq_lock);
 	mutex_init(&chg_data->ops_lock);

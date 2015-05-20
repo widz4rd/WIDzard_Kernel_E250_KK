@@ -57,6 +57,7 @@ struct battery_info {
 	struct power_supply psy_bat;
 	struct power_supply psy_usb;
 	struct power_supply psy_ac;
+	struct power_supply psy_ps;
 
 	/* charger, fuelgauge psy depends on machine */
 	struct power_supply *psy_charger;
@@ -130,6 +131,7 @@ struct battery_info {
 	unsigned int health_state;
 
 	/* SIOP */
+	unsigned int siop_state;
 	unsigned int siop_charge_current;
 	unsigned int siop_lv;
 
@@ -169,6 +171,11 @@ struct battery_info {
 
 	/* factory mode */
 	bool factory_mode;
+
+	/* wearable charging */
+	int ps_enable;
+	int ps_status;
+	int ps_changed;
 
 #if defined(CONFIG_TARGET_LOCALE_KOR)
 	/* error test charging off mode */
@@ -455,9 +462,7 @@ struct samsung_battery_platform_data {
 	unsigned int in_curr_limit;
 	unsigned int chg_curr_ta;
 	unsigned int chg_curr_usb;
-	unsigned int in_curr_usb;
 	unsigned int chg_curr_cdp;
-	unsigned int in_curr_cdp;
 	unsigned int chg_curr_wpc;
 	unsigned int chg_curr_dock;
 	unsigned int chg_curr_etc;
@@ -533,18 +538,4 @@ struct samsung_battery_platform_data {
 	bool battery_standever;
 };
 
-#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
-extern void charger_control_init(struct battery_info *info);
-struct max77693_dev;
-extern void charger_control_set_charger(struct max77693_dev *dev);
-extern int charge_control_is_flag(int flag);
-
-enum {
-	CHRG_CTRL_IGNORE_UNSTABLE = 0,
-	CHRG_CTRL_IGNORE_MARGIN,
-	CHRG_CTRL_FLAGS
-};
-#endif
-
-extern bool device_charging;
 #endif /* __MACH_SAMSUNG_BATTERY_H */

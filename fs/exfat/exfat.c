@@ -3226,7 +3226,7 @@ ENTRY_SET_CACHE_T *get_entry_set_in_dir (struct super_block *sb, CHAIN_T *p_dir,
 	UINT8 *buf;
 	UINT8 num_entries;
 	INT32 mode = ES_MODE_STARTED;
-
+	
 	if (p_fs->dev_ejected)
 		return NULL;
 

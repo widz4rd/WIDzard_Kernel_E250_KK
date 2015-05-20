@@ -70,8 +70,8 @@ typedef enum
 	_MALI_UK_GET_USER_SETTINGS,       /**< _mali_ukk_get_user_settings() *//**< [out] */
 	_MALI_UK_STREAM_CREATE,           /**< _mali_ukk_stream_create() */
 	_MALI_UK_FENCE_CREATE_EMPTY,           /**< _mali_ukk_fence_create_empty() */
+	_MALI_UK_FENCE_CREATE_SIGNALLED,  /**< _mali_ukk_fence_create_signalled() */
 	_MALI_UK_FENCE_VALIDATE,          /**< _mali_ukk_fence_validate() */
-	_MALI_UK_COMPOSITOR_PRIORITY,     /**< _mali_ukk_compositor_priority()  */
 
 	/** Memory functions */
 
@@ -779,14 +779,6 @@ typedef struct
 	u32 value;                       /**< [out] value of setting */
 } _mali_uk_get_user_setting_s;
 
-/** @} */ /* end group _mali_uk_get_user_settings_s */
-
-/** @brief  Arguments for _mali_ukk_compositor_priority */
-typedef struct
-{
-	void *ctx;                       /**< [in,out] user-kernel context (trashed on output) */
-} _mali_uk_compositor_priority_s;
-
 /** @} */ /* end group _mali_uk_core */
 
 
@@ -1152,6 +1144,15 @@ typedef struct
 	s32 stream;                     /**< [in] stream to create fence on */
 	s32 fence;                      /**< [out] file descriptor describing fence */
 } _mali_uk_fence_create_empty_s;
+
+/** @brief Create signalled fence
+ */
+typedef struct
+{
+	void *ctx;                      /**< [in,out] user-kernel context (trashed on output) */
+	s32 stream;                     /**< [in] stream to create fence on */
+	s32 fence;                      /**< [out] file descriptor describing fence */
+} _mali_uk_fence_create_signalled_s;
 
 /** @brief Check fence validity
  */

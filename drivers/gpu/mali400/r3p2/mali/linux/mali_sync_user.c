@@ -114,10 +114,8 @@ mali_sync_pt *mali_stream_create_point(int tl_fd)
 int mali_stream_create_fence(mali_sync_pt *pt)
 {
 	struct sync_fence *fence;
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,6,0)
 	struct fdtable * fdt;
 	struct files_struct * files;
-#endif
 	int fd = -1;
 
 	fence = sync_fence_create("mali_fence", pt);
@@ -129,14 +127,6 @@ int mali_stream_create_fence(mali_sync_pt *pt)
 	}
 
 	/* create a fd representing the fence */
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,6,0)
-	fd = get_unused_fd_flags(O_CLOEXEC);
-	if (fd < 0)
-	{
-		sync_fence_put(fence);
-		goto out;
-	}
-#else
 	fd = get_unused_fd();
 	if (fd < 0)
 	{
@@ -153,7 +143,6 @@ int mali_stream_create_fence(mali_sync_pt *pt)
 	FD_SET(fd, fdt->close_on_exec);
 #endif
 	spin_unlock(&files->file_lock);
-#endif /* Linux >= 3.6 */
 
 	/* bind fence to the new fd */
 	sync_fence_install(fence, fd);
@@ -172,6 +161,25 @@ int mali_stream_create_empty_fence(int tl_fd)
 	if (NULL == pt) return -ENOMEM;
 
 	fd = mali_stream_create_fence(pt);
+
+	return fd;
+}
+
+int mali_stream_create_signalled_fence(int tl_fd)
+{
+	int fd;
+	mali_sync_pt *pt;
+
+	pt = mali_stream_create_point_internal(tl_fd, MALI_FALSE);
+
+	if (NULL == pt) return -ENOMEM;
+
+	fd = mali_stream_create_fence(pt);
+
+	if (0 <= fd)
+	{
+		mali_sync_signal_pt(pt, 0);
+	}
 
 	return fd;
 }

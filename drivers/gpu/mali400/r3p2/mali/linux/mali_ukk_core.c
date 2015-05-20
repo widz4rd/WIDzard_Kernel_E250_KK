@@ -41,18 +41,6 @@ int get_api_version_wrapper(struct mali_session_data *session_data, _mali_uk_get
     return 0;
 }
 
-int compositor_priority_wrapper(struct mali_session_data *session_data)
-{
-#ifndef CONFIG_SYNC
-	/* Compositor super priority is currently only needed and supported in
-	 * systems without linux fences */
-	_mali_ukk_compositor_priority(session_data);
-#else
-	MALI_DEBUG_PRINT(2, ("Compositor Pid: %d - Using native fence\n", _mali_osk_get_pid() ));
-#endif
-
-	return 0;
-}
 int wait_for_notification_wrapper(struct mali_session_data *session_data, _mali_uk_wait_for_notification_s __user *uargs)
 {
     _mali_uk_wait_for_notification_s kargs;
@@ -160,6 +148,26 @@ int sync_fence_create_empty_wrapper(struct mali_session_data *session_data, _mal
 
 	kargs.ctx = NULL; /* prevent kernel address to be returned to user space */
 	if (0 != copy_to_user(uargs, &kargs, sizeof(_mali_uk_fence_create_empty_s))) return -EFAULT;
+
+	return 0;
+}
+
+int sync_fence_create_signalled_wrapper(struct mali_session_data *session_data, _mali_uk_fence_create_signalled_s __user *uargs)
+{
+	_mali_uk_fence_create_signalled_s kargs;
+
+	MALI_CHECK_NON_NULL(uargs, -EINVAL);
+
+	if (0 != get_user(kargs.stream, &uargs->stream)) return -EFAULT;
+
+	kargs.fence = mali_stream_create_signalled_fence(kargs.stream);
+	if (0 > kargs.fence)
+	{
+		return kargs.fence;
+	}
+
+	kargs.ctx = NULL; /* prevent kernel address to be returned to user space */
+	if (0 != copy_to_user(uargs, &kargs, sizeof(_mali_uk_fence_create_signalled_s))) return -EFAULT;
 
 	return 0;
 }
