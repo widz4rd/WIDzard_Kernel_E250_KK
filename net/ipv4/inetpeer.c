@@ -31,8 +31,8 @@
  *  At the moment of writing this notes identifier of IP packets is generated
  *  to be unpredictable using this code only for packets subjected
  *  (actually or potentially) to defragmentation.  I.e. DF packets less than
- *  PMTU in size uses a constant ID and do not use this code (see
- *  ip_select_ident() in include/net/ip.h).
+ *  PMTU in size when local fragmentation is disabled use a constant ID and do
+ *  not use this code (see ip_select_ident() in include/net/ip.h).
  *
  *  Route cache entries hold references to our nodes.
  *  New cache entries get references via lookup by destination IP address in
@@ -168,7 +168,7 @@ static int addr_compare(const struct inetpeer_addr *a,
 	for (i = 0; i < n; i++) {
 		if (a->addr.a6[i] == b->addr.a6[i])
 			continue;
-		if (a->addr.a6[i] < b->addr.a6[i])
+		if ((__force u32)a->addr.a6[i] < (__force u32)b->addr.a6[i])
 			return -1;
 		return 1;
 	}
