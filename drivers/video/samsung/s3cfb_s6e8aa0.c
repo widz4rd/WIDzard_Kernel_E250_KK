@@ -52,7 +52,7 @@
 #define POWER_IS_ON(pwr)	((pwr) <= FB_BLANK_NORMAL)
 
 #define MIN_BRIGHTNESS		0
-#define MAX_BRIGHTNESS		255
+#define MAX_BRIGHTNESS		300
 #if defined(CONFIG_S6E8AA0_AMS529HA01)
 #define MAX_GAMMA			290
 #define DEFAULT_BRIGHTNESS		150
