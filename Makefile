@@ -245,7 +245,7 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -std=gnu89
 HOSTCXXFLAGS = -O3
 
 # Decide whether to build built-in, modular, or both.
@@ -351,7 +351,7 @@ CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 #
 # Kernel optimizations
 #
-CFLAGS_A9       = -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -munaligned-access -mfpu=neon -funsafe-math-optimizations
+CFLAGS_A9       = -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -munaligned-access -mfpu=neon -funsafe-math-optimizations -std=gnu89
 CFLAGS_MODULO   = -fmodulo-sched -fsched-spec-load -fmodulo-sched-allow-regmoves -ftree-vectorize -mvectorize-with-neon-quad -funroll-loops -fgcse-lm -fgcse-sm 
 KERNEL_MODS     = $(CFLAGS_A9) $(CFLAGS_MODULO)
 
