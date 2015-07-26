@@ -39,10 +39,7 @@
 
 #ifdef CONFIG_KEXEC_HARDBOOT
 #ifdef CONFIG_MACH_MIDAS
-#define KEXEC_HB_PAGE_ADDR		UL(0x40000000)
-/*#define KEXEC_HB_KERNEL_LOC 		UL(0x22000000)*/
-#else
-#error "Adress for kexec hardboot page not defined"
+#define KEXEC_HB_PAGE_ADDR 0x40000000
 #endif
 #endif
 
