@@ -5,7 +5,7 @@
 ###############################################
 #   WIDZARD KERNEL CUSTOMIZE LIST   #
 ###############################################
-CONFIG_LOCALVERSION="-WIDzard-KERNEL-E250L-V2.4-Wolfson"
+CONFIG_LOCALVERSION="-WIDzard-KERNEL-E250L-V2.6-Wolfson"
 # CONFIG_LOCALVERSION_AUTO is not set
 #PM
 CONFIG_CPU_PM=y
