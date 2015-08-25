@@ -5,7 +5,10 @@
 ###############################################
 #   WIDZARD KERNEL CUSTOMIZE LIST   #
 ###############################################
-CONFIG_LOCALVERSION="-WIDzard-KERNEL-E250K-V2.4-Boeffla"
+CONFIG_STRICT_MEMORY_RWX=y
+
+
+CONFIG_LOCALVERSION="-WIDzard-KERNEL-E250K-V2.6-Boeffla"
 # CONFIG_LOCALVERSION_AUTO is not set
 #PM
 CONFIG_CPU_PM=y
