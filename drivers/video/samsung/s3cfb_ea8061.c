@@ -46,7 +46,7 @@
 #define POWER_IS_ON(pwr)	((pwr) <= FB_BLANK_NORMAL)
 
 #define MIN_BRIGHTNESS		0
-#define MAX_BRIGHTNESS		255
+#define MAX_BRIGHTNESS		300
 #define MAX_GAMMA			300
 #define DEFAULT_BRIGHTNESS		130
 #define DEFAULT_GAMMA_LEVEL		GAMMA_130CD
@@ -669,8 +669,8 @@ static int update_brightness(struct lcd_info *lcd, u8 force)
 
 	brightness = lcd->bd->props.brightness;
 
-	if (unlikely(!lcd->auto_brightness && brightness > 250))
-		brightness = 250;
+	if (unlikely(!lcd->auto_brightness && brightness > MAX_BRIGHTNESS))
+		brightness = MAX_BRIGHTNESS;
 
 	lcd->bl = get_backlight_level_from_brightness(brightness);
 
