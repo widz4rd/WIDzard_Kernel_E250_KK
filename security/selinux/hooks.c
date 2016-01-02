@@ -99,9 +99,6 @@ extern struct security_operations *security_ops;
 atomic_t selinux_secmark_refcount = ATOMIC_INIT(0);
 
 #ifdef CONFIG_SECURITY_SELINUX_DEVELOP
-#ifdef CONFIG_SECURITY_SELINUX_FORCE_PERMISSIVE
-int selinux_enforcing = 0;
-#else
 int selinux_enforcing;
 
 static int __init enforcing_setup(char *str)
@@ -112,7 +109,6 @@ static int __init enforcing_setup(char *str)
 	return 1;
 }
 __setup("enforcing=", enforcing_setup);
-#endif
 #endif
 
 #ifdef CONFIG_SECURITY_SELINUX_BOOTPARAM
@@ -219,6 +215,14 @@ static int inode_alloc_security(struct inode *inode)
 	return 0;
 }
 
+static void inode_free_rcu(struct rcu_head *head)
+{
+	struct inode_security_struct *isec;
+
+	isec = container_of(head, struct inode_security_struct, rcu);
+	kmem_cache_free(sel_inode_cache, isec);
+}
+
 static void inode_free_security(struct inode *inode)
 {
 	struct inode_security_struct *isec = inode->i_security;
@@ -229,8 +233,16 @@ static void inode_free_security(struct inode *inode)
 		list_del_init(&isec->list);
 	spin_unlock(&sbsec->isec_lock);
 
-	inode->i_security = NULL;
-	kmem_cache_free(sel_inode_cache, isec);
+	/*
+	 * The inode may still be referenced in a path walk and
+	 * a call to selinux_inode_permission() can be made
+	 * after inode_free_security() is called. Ideally, the VFS
+	 * wouldn't do this, but fixing that is a much harder
+	 * job. For now, simply free the i_security via RCU, and
+	 * leave the current inode->i_security pointer intact.
+	 * The inode will be freed after the RCU grace period too.
+	 */
+	call_rcu(&isec->rcu, inode_free_rcu);
 }
 
 static int file_alloc_security(struct file *file)
@@ -409,6 +421,13 @@ static int sb_finish_set_opts(struct super_block *sb)
 
 	/* Special handling for sysfs. Is genfs but also has setxattr handler*/
 	if (strncmp(sb->s_type->name, "sysfs", sizeof("sysfs")) == 0)
+		sbsec->flags |= SE_SBLABELSUPP;
+
+	/*
+	 * Special handling for rootfs. Is genfs but supports
+	 * setting SELinux context on in-core inodes.
+	 */
+	if (strncmp(sb->s_type->name, "rootfs", sizeof("rootfs")) == 0)
 		sbsec->flags |= SE_SBLABELSUPP;
 
 	/* Initialize the root inode. */
@@ -1489,6 +1508,11 @@ static int inode_has_perm(const struct cred *cred,
 
 	sid = cred_sid(cred);
 	isec = inode->i_security;
+
+	if (unlikely(!isec)){
+		printk(KERN_CRIT "[SELinux] isec is NULL, inode->i_security is already freed. \n");
+		return -EACCES;
+	}
 
 	return avc_has_perm_flags(sid, isec->sid, isec->sclass, perms, adp, flags);
 }
@@ -3792,6 +3816,11 @@ static int sock_has_perm(struct task_struct *task, struct sock *sk, u32 perms)
 	struct common_audit_data ad;
 	u32 tsid = task_sid(task);
 
+	if (unlikely(!sksec)){
+		printk(KERN_CRIT "[SELinux] sksec is NULL, socket is already freed. \n");
+		return -EINVAL;
+	}
+
 	if (sksec->sid == SECINITSID_KERNEL)
 		return 0;
 
@@ -4785,24 +4814,6 @@ static int selinux_netlink_send(struct sock *sk, struct sk_buff *skb)
 	return selinux_nlmsg_perm(sk, skb);
 }
 
-static int selinux_netlink_recv(struct sk_buff *skb, int capability)
-{
-	int err;
-	struct common_audit_data ad;
-	u32 sid;
-
-	err = cap_netlink_recv(skb, capability);
-	if (err)
-		return err;
-
-	COMMON_AUDIT_DATA_INIT(&ad, CAP);
-	ad.u.cap = capability;
-
-	security_task_getsecid(current, &sid);
-	return avc_has_perm(sid, sid, SECCLASS_CAPABILITY,
-			    CAP_TO_MASK(capability), &ad);
-}
-
 static int ipc_alloc_security(struct task_struct *task,
 			      struct kern_ipc_perm *perm,
 			      u16 sclass)
@@ -5536,7 +5547,6 @@ static struct security_operations selinux_ops = {
 	.vm_enough_memory =		selinux_vm_enough_memory,
 
 	.netlink_send =			selinux_netlink_send,
-	.netlink_recv =			selinux_netlink_recv,
 
 	.bprm_set_creds =		selinux_bprm_set_creds,
 	.bprm_committing_creds =	selinux_bprm_committing_creds,
